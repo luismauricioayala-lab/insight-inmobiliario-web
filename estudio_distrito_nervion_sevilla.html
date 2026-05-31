@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nervión — Estudio de Distrito | Insight Inmobiliario Sevilla</title>
+<style>
+  :root {
+    --blue:#0055FF; --blue-light:#E6EEFF; --blue-dark:#0033BB;
+    --dark:#0A0A0F; --text:#1A1A2E; --muted:#5A5A7A;
+    --border:#D0D8F0; --surface:#F7F9FF; --white:#FFFFFF;
+    --green:#0E7A4E; --green-light:#E6F5EE;
+    --amber:#C97A00; --amber-light:#FEF3DC;
+    --red:#B02020; --red-light:#FDEEEC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: var(--white); color: var(--text); line-height: 1.6; font-size: 15px; }
+  a { color: var(--blue); text-decoration: none; }
+
+  /* Top bar */
+  .topbar { background: var(--dark); padding: 0.6rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .topbar-brand { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+  .topbar-brand span { color: #4488FF; }
+  .topbar-link { font-size: 11px; color: #888; letter-spacing: 0.04em; }
+
+  /* Hero */
+  .hero { background: var(--dark); padding: 3rem 2.5rem 2.5rem; border-bottom: 3px solid var(--blue); }
+  .hero-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #4488FF; margin-bottom: 0.5rem; }
+  .hero-title { font-size: 36px; font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .hero-sub { font-size: 16px; color: #8899CC; margin-bottom: 2rem; }
+  .hero-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+  .hero-meta-item { }
+  .hero-meta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #556688; margin-bottom: 3px; }
+  .hero-meta-value { font-size: 13px; color: #AABBDD; font-weight: 500; }
+
+  /* Main */
+  .main { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem 4rem; }
+
+  /* Section */
+  .section { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.4rem; }
+  .section-title { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 1.25rem; }
+
+  /* KPI grid */
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .kpi { background: var(--white); padding: 1.25rem 1.25rem; }
+  .kpi-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+  .kpi-value { font-size: 26px; font-weight: 900; color: var(--dark); letter-spacing: -0.02em; line-height: 1.1; }
+  .kpi-unit { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 2px; }
+  .kpi-note { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .kpi-note.est { color: var(--amber); }
+  .kpi-note.good { color: var(--green); }
+
+  /* Narrative */
+  .narrative { font-size: 15px; color: var(--text); line-height: 1.8; }
+  .narrative p { margin-bottom: 1rem; }
+  .narrative strong { color: var(--dark); font-weight: 700; }
+
+  /* Risk block */
+  .risk-block { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem; }
+  .risk-card { border-radius: 4px; padding: 1.1rem 1.25rem; }
+  .risk-card.low { background: var(--green-light); border-left: 3px solid var(--green); }
+  .risk-card.med { background: var(--amber-light); border-left: 3px solid var(--amber); }
+  .risk-card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .risk-card.low .risk-card-title { color: var(--green); }
+  .risk-card.med .risk-card-title { color: var(--amber); }
+  .risk-card p { font-size: 13px; line-height: 1.6; color: var(--text); }
+
+  /* Methodology note */
+  .method-note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 0 4px 4px 0; padding: 1rem 1.25rem; font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 1.25rem; }
+  .method-note strong { color: var(--dark); }
+
+  /* CTA */
+  .cta-block { background: var(--dark); border-radius: 6px; padding: 2rem 2rem; margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .cta-text h3 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .cta-text p { font-size: 13px; color: #8899CC; line-height: 1.6; max-width: 480px; }
+  .cta-btn { display: inline-block; background: var(--blue); color: var(--white); font-size: 13px; font-weight: 700; padding: 0.75rem 1.75rem; border-radius: 3px; letter-spacing: 0.04em; white-space: nowrap; text-transform: uppercase; }
+  .cta-price { font-size: 11px; color: #556688; margin-top: 8px; text-align: center; }
+
+  /* Footer */
+  .footer { background: var(--surface); border-top: 1px solid var(--border); padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+  .footer-brand { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--blue); text-transform: uppercase; }
+  .footer-right { font-size: 11px; color: var(--muted); }
+
+  /* Badge */
+  .badge-low { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--green-light); color: var(--green); border: 1px solid #9FD9BF; padding: 3px 10px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+
+  /* Divider line */
+  .tick-row { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+  .tick { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text); line-height: 1.5; }
+  .tick-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">Insight <span>Inmobiliario</span> Sevilla</div>
+  <div class="topbar-link">antesdelnotario.es</div>
+</div>
+
+<div class="hero">
+  <div class="hero-label">Estudio de distrito · Mayo 2026</div>
+  <div class="hero-title">Nervión <span class="badge-low">Riesgo bajo</span></div>
+  <div class="hero-sub">Análisis independiente del mercado residencial · Sevilla capital</div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Precio oferta/m²</div>
+      <div class="hero-meta-value">€3.682</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Precio transacción est./m²</div>
+      <div class="hero-meta-value">€3.535</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Tendencia anual</div>
+      <div class="hero-meta-value">+11,3%</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Rentabilidad bruta</div>
+      <div class="hero-meta-value">4,40%</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Fuente base</div>
+      <div class="hero-meta-value">Brains RE Q1-2026 / Idealista</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Métricas clave -->
+  <div class="section">
+    <div class="section-label">Indicadores de mercado</div>
+    <div class="section-title">Métricas clave del distrito</div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Precio de oferta</div>
+        <div class="kpi-value">€3.682<span class="kpi-unit">/m²</span></div>
+        <div class="kpi-note">Precio publicado en portales (Idealista Dic-2025)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Precio de transacción est.</div>
+        <div class="kpi-value">€3.535<span class="kpi-unit">/m²</span></div>
+        <div class="kpi-note est">Estimado · descuento negociación 4% (Tinsa IMIE Q1-2026)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Alquiler medio</div>
+        <div class="kpi-value">€13,5<span class="kpi-unit">/m²/mes</span></div>
+        <div class="kpi-note">Fuente: Idealista Research Q1-2026</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Rentabilidad bruta</div>
+        <div class="kpi-value">4,40<span class="kpi-unit">%</span></div>
+        <div class="kpi-note good">Calculado: (alquiler × 12) / precio oferta</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Tiempo medio en mercado</div>
+        <div class="kpi-value">40<span class="kpi-unit"> días</span></div>
+        <div class="kpi-note est">Estimado · base 52 días ciudad (Idealista Q1-2026)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Operaciones / trimestre</div>
+        <div class="kpi-value">~220</div>
+        <div class="kpi-note est">Estimado · base Registradores Q4-2025</div>
+      </div>
+    </div>
+    <div class="method-note">
+      <strong>Nota metodológica:</strong> Los campos marcados como "estimado" se derivan de datos de oferta publicados con descuentos calibrados mediante estudios de Tinsa e Idealista Research. No se dispone aún de precio escriturado directo por distrito. Ver documentación metodológica completa en antesdelnotario.es/metodologia.
+    </div>
+  </div>
+
+  <!-- Análisis de mercado -->
+  <div class="section">
+    <div class="section-label">Análisis de mercado</div>
+    <div class="section-title">Perfil y dinámica del distrito</div>
+    <div class="narrative">
+      <p>Nervión es el distrito residencial de referencia de la clase media-alta sevillana. Concentra la mayor densidad de operaciones de los cuatro distritos piloto —<strong>~220 transacciones trimestrales</strong>— lo que lo convierte en el mercado más líquido y con mejores datos de referencia para valoración comparativa.</p>
+      <p>El perfil comprador es predominantemente de <strong>primera y segunda residencia para familias profesionales</strong>: médicos, abogados, funcionarios de escala alta y directivos. La demanda está impulsada por la proximidad al eje comercial y de servicios de la ciudad, con colegios, hospitales y zona de oficinas en radio inmediato.</p>
+      <p>La tendencia anual del <strong>+11,3%</strong> es la más alta de los cuatro distritos piloto, lo que refleja tanto la solidez de la demanda como la escasez relativa de producto de calidad. La rentabilidad bruta del <strong>4,40%</strong> es la más comprimida del grupo — señal de que el precio ha crecido con más fuerza que el alquiler, priorizando la apreciación patrimonial sobre el rendimiento corriente.</p>
+      <p>Para el comprador de uso propio, Nervión ofrece la combinación más sólida de liquidez, servicios y apreciación sostenida. Para el inversor puro, la compresión de yield requiere un horizonte mínimo de 5–7 años para que la ecuación sea favorable.</p>
+    </div>
+  </div>
+
+  <!-- Evaluación de riesgo -->
+  <div class="section">
+    <div class="section-label">Evaluación de riesgo</div>
+    <div class="section-title">Factores de riesgo y estabilidad</div>
+    <div class="risk-block">
+      <div class="risk-card low">
+        <div class="risk-card-title">Factores de estabilidad</div>
+        <p>Mayor volumen de transacciones de los cuatro distritos piloto — alta liquidez y referencias comparables abundantes. Demanda estructural de perfil profesional con capacidad financiera robusta y orientación a largo plazo.</p>
+      </div>
+      <div class="risk-card low">
+        <div class="risk-card-title">Liquidez de mercado</div>
+        <p>Con ~220 operaciones trimestrales y tiempo medio de 40 días, Nervión es el mercado más activo del grupo piloto. Mejor nivel de referencias comparables para valoración y menor riesgo de precio por iliquidez.</p>
+      </div>
+      <div class="risk-card med">
+        <div class="risk-card-title">Riesgo de precio por tendencia</div>
+        <p>La apreciación del +11,3% anual, sostenida durante varios años, eleva el riesgo de corrección si el ciclo se invierte. El comprador debe evaluar si entra en un punto alto del ciclo o si la demanda estructural justifica el precio actual.</p>
+      </div>
+      <div class="risk-card med">
+        <div class="risk-card-title">Esfuerzo financiero</div>
+        <p>A €3.535/m² de precio estimado de cierre, una vivienda de 90 m² implica ~€318.000. El análisis de sostenibilidad hipotecaria es especialmente relevante para compradores con LTV alto o ingresos variables.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lo que añade el informe completo -->
+  <div class="section">
+    <div class="section-label">Servicio Insight Inmobiliario</div>
+    <div class="section-title">De este estudio al informe de tu vivienda</div>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:1.25rem;">Este estudio describe el distrito. El informe personalizado analiza la vivienda concreta que estás considerando comprar.</p>
+    <div class="tick-row">
+      <div class="tick"><div class="tick-dot">1</div><div>Valoración independiente de la propiedad específica frente a comparables reales del distrito</div></div>
+      <div class="tick"><div class="tick-dot">2</div><div>Simulación hipotecaria con escenarios de Euribor: esfuerzo mensual, techo de endeudamiento, margen de seguridad</div></div>
+      <div class="tick"><div class="tick-dot">3</div><div>Análisis de precio de oferta vs. rango de cierre esperable — cuánto puedes negociar y con qué argumentos</div></div>
+      <div class="tick"><div class="tick-dot">4</div><div>Semáforo de viabilidad: recomendación de compra, espera o negociación con precio objetivo</div></div>
+    </div>
+    <div class="cta-block">
+      <div class="cta-text">
+        <h3>Informe de Opinión Técnica de Compra</h3>
+        <p>Análisis independiente de la vivienda que estás considerando. Sin conflicto de interés. Sin comisión de venta. Solo los números.</p>
+      </div>
+      <div>
+        <a href="https://antesdelnotario.es" class="cta-btn">Solicitar informe</a>
+        <div class="cta-price">€120 · Entrega en 48 h</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Insight Inmobiliario Sevilla · antesdelnotario.es</div>
+  <div class="footer-right">Datos: Brains RE Q1-2026, Idealista, Tinsa IMIE, Registradores · Mayo 2026 · Documento informativo, no constituye asesoramiento de inversión</div>
+</div>
+
+</body>
+</html>
