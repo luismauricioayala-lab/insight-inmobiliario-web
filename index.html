@@ -1582,7 +1582,7 @@ function calcSimulador() {
             diag.style.background  = 'rgba(192,57,43,0.12)';
             diag.style.borderColor = '#C0392B';
             diag.style.color       = '#C0392B';
-            txt.textContent = 'DIAGNOSTICO ROJO — Esfuerzo ' + fmtPct(esf) + ' >= 40%. La hipoteca destruye caja. Se recomienda revisar precio, plazo o capital aportado.';
+            txt.textContent = 'DIAGNOSTICO ROJO — Esfuerzo ' + fmtPct(esf) + ' >= 40%. El esfuerzo financiero proyectado se sitúa en una zona de alto riesgo para la estabilidad presupuestaria familiar. Se aconseja revisar precio, plazo o aportación inicial.';
         } else if (esf >= 0.33) {
             diag.style.background  = 'rgba(183,121,31,0.12)';
             diag.style.borderColor = 'var(--bb-orange)';
@@ -1592,7 +1592,7 @@ function calcSimulador() {
             diag.style.background  = 'rgba(14,122,78,0.12)';
             diag.style.borderColor = '#0E7A4E';
             diag.style.color       = '#0E7A4E';
-            txt.textContent = 'DIAGNOSTICO VERDE — Esfuerzo ' + fmtPct(esf) + ' < 33%. Operacion financieramente viable en el escenario base.';
+            txt.textContent = 'DIAGNOSTICO VERDE — Esfuerzo ' + fmtPct(esf) + ' < 33%. Operación financieramente viable en el escenario base. Mantiene un margen razonable frente a variaciones moderadas de tipos o gastos imprevistos.';
         }
 
         // 3. Matriz de Escenarios de Estrés Euríbor (+00pb, +100pb, +200pb)
