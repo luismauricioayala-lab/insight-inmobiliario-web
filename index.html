@@ -1337,9 +1337,11 @@ function abrirSimulador() {
 }
 
 function abrirMotorCompleto() {
-    const distrito = sessionStorage.getItem('sim_distrito') || 'nervion';
+    // Intentamos capturar el valor actual del select en pantalla; si no existe o está vacío, recurrimos al sessionStorage
+    const selectDistrito = document.getElementById('distrito');
+    const distrito = (selectDistrito && selectDistrito.value) ? selectDistrito.value : (sessionStorage.getItem('sim_distrito') || 'nervion');
     const precio   = document.getElementById('sim-precio').value || '300000';
-    
+
     // CAPTURAMOS LOS NUEVOS VALORES DEL FORMULARIO WEB
     const capital  = document.getElementById('sim-capital').value || '60000';
     const ingresos = document.getElementById('sim-ing-range').value || '2600';
