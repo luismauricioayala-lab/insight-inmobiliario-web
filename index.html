@@ -1595,8 +1595,9 @@
         // Forzamos la conversión a número entero redondeado
         var numeroLimpio = Number(Math.round(n));
         
-        // Forzamos al formateador a evaluar los millares bajo el estándar estricto
+        // useGrouping: 'always' fulmina la regla de los 4 dígitos y pone el punto sí o sí
         return numeroLimpio.toLocaleString('es-ES', { 
+            useGrouping: 'always',
             minimumFractionDigits: 0, 
             maximumFractionDigits: 0 
         }) + '\u00A0€'; 
