@@ -1591,7 +1591,11 @@
     </script>
 
 <script>
-    function fmtEur(n) { return Math.round(n).toLocaleString('es-ES') + '\u00A0€'; }
+    function fmtEur(n) { 
+        // Forzamos la conversión a número puro para garantizar el separador de miles español
+        var numeroLimpio = Number(Math.round(n));
+        return numeroLimpio.toLocaleString('es-ES') + '\u00A0€'; 
+    }
     function fmtPct(n) { return (n * 100).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%'; }
 
     function calcCuotaSim(hip, euribor_pct, dif_pct, plazo) {
