@@ -1592,9 +1592,14 @@
 
 <script>
     function fmtEur(n) { 
-        // Forzamos la conversión a número puro para garantizar el separador de miles español
+        // Forzamos la conversión a número entero redondeado
         var numeroLimpio = Number(Math.round(n));
-        return numeroLimpio.toLocaleString('es-ES') + '\u00A0€'; 
+        
+        // Forzamos al formateador a evaluar los millares bajo el estándar estricto
+        return numeroLimpio.toLocaleString('es-ES', { 
+            minimumFractionDigits: 0, 
+            maximumFractionDigits: 0 
+        }) + '\u00A0€'; 
     }
     function fmtPct(n) { return (n * 100).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%'; }
 
