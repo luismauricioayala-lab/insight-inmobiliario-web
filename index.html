@@ -1408,7 +1408,7 @@
                     <div class="kpi-value-internal" id="sim-cuota">—</div>
                 </div>
                 <div class="kpi-card-internal">
-                    <div class="kpi-label-internal">Ratio de esfuerzo</div>
+                    <div class="kpi-label-internal">Ratio de esfuerzo financiero</div>
                     <div class="kpi-value-internal" id="sim-esfuerzo" style="color:var(--bb-orange)">—</div>
                 </div>
                 <div class="kpi-card-internal">
@@ -1591,8 +1591,8 @@
     </script>
 
 <script>
-    function fmtEur(n) { return '€' + Math.round(n).toLocaleString('es-ES'); }
-    function fmtPct(n) { return (n*100).toFixed(1)+'%'; }
+    function fmtEur(n) { return Math.round(n).toLocaleString('es-ES') + ' &euro;';}
+    function fmtPct(n) { return (n * 100).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%'; }
 
     function calcCuotaSim(hip, euribor_pct, dif_pct, plazo) {
         var r = (euribor_pct + dif_pct) / 100 / 12;
@@ -1629,7 +1629,7 @@
 
         var ahorroEstimado = precio * 0.072; 
         if(document.getElementById('sim-ahorro-valor')) {
-            document.getElementById('sim-ahorro-valor').textContent = fmtEur(ahorroEstimado);
+            document.getElementById('sim-ahorro-valor').innerHTML = fmtEur(ahorroEstimado);
         }
         
         if (esf >= 0.40) {
@@ -1656,7 +1656,7 @@
             var e = (c + deudas) / ingresos;
             
             if(document.getElementById('ss-'+sid)) {
-                document.getElementById('ss-'+sid).textContent = fmtEur(c);
+                document.getElementById('ss-'+sid).innerHTML = fmtEur(c);
             }
             if(document.getElementById('ss-'+sid+'-mdsv')) {
                 document.getElementById('ss-'+sid+'-mdsv').textContent = 'MDSV ' + fmtPct(1 - e);
