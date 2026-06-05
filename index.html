@@ -1591,7 +1591,7 @@
     </script>
 
 <script>
-    function fmtEur(n) { return Math.round(n).toLocaleString('es-ES') + ' €'; }
+    function fmtEur(n) { return Math.round(n).toLocaleString('es-ES') + '\u00A0€'; }
     function fmtPct(n) { return (n * 100).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%'; }
 
     function calcCuotaSim(hip, euribor_pct, dif_pct, plazo) {
@@ -1629,7 +1629,7 @@
 
         var ahorroEstimado = precio * 0.072; 
         if(document.getElementById('sim-ahorro-valor')) {
-            document.getElementById('sim-ahorro-valor').innerHTML = fmtEur(ahorroEstimado);
+            document.getElementById('sim-ahorro-valor').textContent = fmtEur(ahorroEstimado);
         }
         
         if (esf >= 0.40) {
