@@ -1625,7 +1625,7 @@
         var pctMax = precio > 0 ? Math.floor((capital / precio) * 100 / 5) * 5 : 20;
         pctMax = Math.max(20, Math.min(80, pctMax));
         slider.max = pctMax;
-        slider.value = 20;  // Siempre arranca en 20% (máxima liquidez)
+        slider.value = pctMax;  // Sincronizado con el capital del input
         calcSimulador();
     }
 
