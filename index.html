@@ -539,6 +539,55 @@
             font-family: var(--font-sans) !important;
         }
 
+        /* ===== PRICING GRID — 3 PRODUCTOS ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .plan-card {
+            padding: 2.5rem !important;
+            margin: 0 !important;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-card .card-desc {
+            color: var(--ticket-muted) !important;
+            font-family: var(--font-sans) !important;
+            font-size: 0.95rem !important;
+            line-height: 1.6;
+            text-transform: none !important;
+            letter-spacing: 0 !important;
+            margin: 1rem 0 !important;
+            flex-grow: 1;
+        }
+
+        .plan-card .price {
+            font-size: 3rem !important;
+            margin: 1rem 0 0.25rem !important;
+        }
+
+        .plan-card .price-ref {
+            font-family: var(--font-mono) !important;
+            font-size: 0.75rem !important;
+            color: var(--ticket-muted) !important;
+            margin: 0 0 1rem 0 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-card-featured {
+            border: 1px solid var(--bb-orange) !important;
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.15);
+        }
+
+        .plan-card-featured .version {
+            color: var(--bb-orange) !important;
+        }
+
         /* ===== REJILLA DE CARACTERÍSTICAS ===== */
         .features-grid {
             display: grid;
@@ -925,15 +974,35 @@
         </section>
 
         <section class="plan-vuelo-section">
-            <h2>El informe que necesitas antes de firmar arras</h2>
-            <p class="section-intro">Un solo documento que responde a las preguntas que realmente importan antes de comprometerte: ¿el precio es razonable? ¿puedo pagarlo? ¿cuánto me queda después?</p>
+            <h2>Elige el formato que se ajusta a tu situación</h2>
+            <p class="section-intro">Tres formatos del mismo análisis técnico independiente. Cada uno pensado para un momento de decisión distinto.</p>
             
-            <div class="plan-vuelo-container">
-                <p class="version">Opinión técnica independiente</p>
-                <h3>Simulador de la viabilidad de la compra</h3>
-                <p>Viabilidad financiera · Impacto en tu patrimonio · Riesgos identificados · Guía de negociación basada en datos</p>
-                <div class="price">175 €</div>
-                <p class="subtitle">Entrega garantizada en un máximo de 48 horas tras la recepción de la solicitud.</p>
+            <div class="pricing-grid">
+                <div class="plan-vuelo-container plan-card">
+                    <p class="version">Cuando ya tienes una propiedad en mente</p>
+                    <h3>Informe individual</h3>
+                    <p class="card-desc">Análisis completo de una propiedad: viabilidad financiera, impacto patrimonial, riesgos identificados y guía de negociación.</p>
+                    <div class="price">175 €</div>
+                    <p class="subtitle">Entrega garantizada en 48 horas.</p>
+                </div>
+
+                <div class="plan-vuelo-container plan-card plan-card-featured">
+                    <p class="version">Cuando vendes para comprar</p>
+                    <h3>Pack Reposición</h3>
+                    <p class="card-desc">Dos informes para quien vende su vivienda actual y compra otra: análisis del precio de venta razonable + evaluación completa de la nueva.</p>
+                    <div class="price">299 €</div>
+                    <p class="price-ref">2 informes · ahorras 51 €</p>
+                    <p class="subtitle">Protege las dos decisiones que definen tu patrimonio.</p>
+                </div>
+
+                <div class="plan-vuelo-container plan-card">
+                    <p class="version">Cuando dudas entre dos opciones</p>
+                    <h3>Pack Explorador</h3>
+                    <p class="card-desc">Análisis comparativo de dos propiedades. Decides con datos en la mano, no con intuición.</p>
+                    <div class="price">299 €</div>
+                    <p class="price-ref">2 informes · ahorras 51 €</p>
+                    <p class="subtitle">Elimina la duda de "¿y si la otra era mejor?".</p>
+                </div>
             </div>
         </section>
 
