@@ -1616,7 +1616,7 @@
         return hip * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
     }
 
-    // Llamada cuando cambia precio o capital: auto-posiciona slider al max
+    // Llamada cuando cambia precio o capital: recalcula max del slider
     function syncEntradaYCalc() {
         var precio  = parseFloat(document.getElementById('sim-precio').value) || 0;
         var capital = parseFloat(document.getElementById('sim-capital').value) || 0;
@@ -1624,8 +1624,8 @@
 
         var pctMax = precio > 0 ? Math.floor((capital / precio) * 100 / 5) * 5 : 20;
         pctMax = Math.max(20, Math.min(80, pctMax));
-        slider.max   = pctMax;
-        slider.value = pctMax;  // Auto-posicionar al max del capital
+        slider.max = pctMax;
+        slider.value = 20;  // Siempre arranca en 20% (máxima liquidez)
         calcSimulador();
     }
 
