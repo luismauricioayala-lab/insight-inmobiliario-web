@@ -1357,13 +1357,13 @@
             <div class="sim-input-grid">
                 <div class="sim-input-block">
                     <label class="sim-label-accent">Precio de la vivienda <span style="color:var(--bb-orange)">*</span></label>
-                    <input type="number" id="sim-precio" value="300000" min="50000" max="2000000" step="5000" oninput="calcSimulador()" class="sim-field">
+                    <input type="number" id="sim-precio" value="300000" min="50000" max="2000000" step="5000" oninput="syncEntradaYCalc()" class="sim-field">
                     <span class="sim-field-desc">Precio pedido por el vendedor</span>
                 </div>
 
                 <div class="sim-input-block">
                     <label class="sim-label-accent">Capital que aportas <span style="color:var(--bb-orange)">*</span></label>
-                    <input type="number" id="sim-capital" value="60000" min="0" step="1000" oninput="calcSimulador()" class="sim-field">
+                    <input type="number" id="sim-capital" value="60000" min="0" step="1000" oninput="syncEntradaYCalc()" class="sim-field">
                     <span class="sim-field-desc">Ahorros totales (Mínimo 20% del precio para la entrada)</span>    
                 </div>
 
@@ -1616,6 +1616,19 @@
         return hip * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
     }
 
+    // Llamada cuando cambia precio o capital: auto-posiciona slider al max
+    function syncEntradaYCalc() {
+        var precio  = parseFloat(document.getElementById('sim-precio').value) || 0;
+        var capital = parseFloat(document.getElementById('sim-capital').value) || 0;
+        var slider  = document.getElementById('sim-pct-entrada');
+
+        var pctMax = precio > 0 ? Math.floor((capital / precio) * 100 / 5) * 5 : 20;
+        pctMax = Math.max(20, Math.min(80, pctMax));
+        slider.max   = pctMax;
+        slider.value = pctMax;  // Auto-posicionar al max del capital
+        calcSimulador();
+    }
+
     function calcSimulador() {
         var precio   = parseFloat(document.getElementById('sim-precio').value) || 0;
         var capital  = parseFloat(document.getElementById('sim-capital').value) || 0;
@@ -1628,12 +1641,12 @@
         var pctSlider  = document.getElementById('sim-pct-entrada');
         var pctLabel   = document.getElementById('sim-pct-label');
 
-        // Sincronizar slider max con capital disponible
+        // Recalcular max (por si otro campo cambió) sin mover el slider
         var pctMaxCapital = precio > 0 ? Math.floor((capital / precio) * 100 / 5) * 5 : 20;
         var pctMax = Math.max(20, Math.min(80, pctMaxCapital));
         pctSlider.max = pctMax;
 
-        // Si el slider está por encima del nuevo max, bajar al max
+        // Leer posición actual del slider (capear si excede max)
         var pctEntrada = Math.max(20, Math.min(pctMax, parseFloat(pctSlider.value) || 20));
         pctSlider.value = pctEntrada;
 
@@ -1714,7 +1727,7 @@
     function initSimulador() {
         var sp = sessionStorage.getItem('sim_precio');
         if (sp) { document.getElementById('sim-precio').value = sp; }
-        calcSimulador();
+        syncEntradaYCalc();
     }
 
     function submitContactForm(e) {
