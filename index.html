@@ -1653,8 +1653,8 @@
         var entrada = precio * (pctEntrada / 100);
         var hip     = precio - entrada;
 
-        // Label: muestra % y € de entrada
-        pctLabel.textContent = pctEntrada + '% · ' + fmtEur(entrada);
+        // Label: muestra % actual, € de entrada, y max disponible
+        pctLabel.textContent = pctEntrada + '% · ' + fmtEur(entrada) + ' (máx ' + pctMax + '%)';
         var cuota   = calcCuotaSim(hip, euribor, dif, plazo);
         var esf     = (cuota + deudas) / ingresos;
         var mdsv    = 1 - esf;
