@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dictum Previo — Cómo trabajamos con los datos</title>
+<script>
+  /* Detecta tema guardado en la landing */
+  const savedTheme = localStorage.getItem('insight-theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
+<style>
+  /* ===== MODO CLARO ===== */
+  :root {
+    --bg:#FFFFFF;
+    --text:#1A1A2E;
+    --text-heading:#0A0A0F;
+    --muted:#5A5A7A;
+    --border:#D0D8F0;
+    --surface:#F7F9FF;
+    --blue:#0055FF;
+    --blue-light:#E6EEFF;
+    --blue-callout-text:#0033AA;
+    --amber:#E8920A;
+    --amber-light:#FEF3DC;
+    --amber-callout-text:#7A4A00;
+    --green:#0E7A4E;
+    --green-light:#E6F5EE;
+    --green-callout-text:#065A30;
+    --th-bg:#0A0A0F;
+    --th-text:#FFFFFF;
+    --code-bg:#F7F9FF;
+  }
+
+  /* ===== MODO OSCURO ===== */
+  html[data-theme="dark"] {
+    --bg:#0B0E14;
+    --text:#E0E4EC;
+    --text-heading:#F5F7FA;
+    --muted:#8A94A6;
+    --border:#242933;
+    --surface:#12161F;
+    --blue-light:rgba(0,85,255,0.12);
+    --blue-callout-text:#7EB3FF;
+    --amber-light:rgba(232,146,10,0.12);
+    --amber-callout-text:#FFD080;
+    --green-light:rgba(14,122,78,0.12);
+    --green-callout-text:#7EDCAA;
+    --th-bg:#161B26;
+    --th-text:#F5F7FA;
+    --code-bg:#161B26;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14.5px;transition:background-color 0.25s ease, color 0.25s ease;}
+  .page{max-width:820px;margin:0 auto;padding:3rem 2rem;}
+
+  .brand-tag{font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:var(--blue);color:#FFFFFF;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:1rem;}
+  .doc-h1{font-family:Arial,sans-serif;font-size:24px;font-weight:700;color:var(--text-heading);line-height:1.3;margin-bottom:0.5rem;}
+  .doc-sub{font-family:Arial,sans-serif;font-size:13px;color:var(--muted);margin-bottom:2rem;}
+  .intro{font-size:15px;line-height:1.8;margin-bottom:2rem;color:var(--text);}
+
+  .section-title{font-family:Arial,sans-serif;font-size:16px;font-weight:700;color:var(--text-heading);padding-bottom:0.5rem;border-bottom:2px solid var(--blue);margin:2.5rem 0 1rem;}
+  .section-sub{font-family:Arial,sans-serif;font-size:13px;font-weight:600;color:var(--muted);margin:1.5rem 0 0.5rem;text-transform:uppercase;letter-spacing:0.05em;}
+
+  p{margin-bottom:0.8rem;}
+
+  .callout-blue{background:var(--blue-light);border-left:3px solid var(--blue);padding:1rem 1.25rem;font-family:Arial,sans-serif;font-size:13px;color:var(--blue-callout-text);margin:1.25rem 0;border-radius:0 4px 4px 0;line-height:1.6;}
+  .callout-amber{background:var(--amber-light);border-left:3px solid var(--amber);padding:1rem 1.25rem;font-family:Arial,sans-serif;font-size:13px;color:var(--amber-callout-text);border-radius:0 4px 4px 0;margin:1.25rem 0;line-height:1.6;}
+  .callout-green{background:var(--green-light);border-left:3px solid var(--green);padding:1rem 1.25rem;font-family:Arial,sans-serif;font-size:13px;color:var(--green-callout-text);border-radius:0 4px 4px 0;margin:1.25rem 0;line-height:1.6;}
+
+  table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:12.5px;margin:1.25rem 0;}
+  th{background:var(--th-bg);color:var(--th-text);font-weight:600;padding:8px 12px;text-align:left;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;}
+  td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;color:var(--text);}
+  tr:nth-child(even) td{background:var(--surface);}
+  .td-field{font-family:'Courier New',monospace;font-size:11px;color:var(--blue);white-space:nowrap;}
+
+  .footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--border);font-family:Arial,sans-serif;font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand-tag">Dictum Previo — Nota Metodológica</div>
+  <div class="doc-h1">Cómo trabajamos con los datos</div>
+  <div class="doc-sub">Versión 3.0 · Junio 2026 · antesdelnotario.es</div>
+
+  <p class="intro">Cada número que aparece en tu informe tiene un origen. Algunos vienen directamente de fuentes oficiales; otros los estimamos porque todavía no tenemos acceso a los datos reales. En ambos casos, te decimos cuál es cuál. Este documento explica exactamente de dónde sale cada cifra y qué estamos haciendo para mejorar las que aún son estimaciones.</p>
+
+  <div class="callout-blue">
+    <strong>Nuestro principio:</strong> cuando un dato es una estimación, te lo decimos. Cuando lo corregimos, te explicamos por qué. Cuando no tenemos acceso al dato real, te indicamos cuándo esperamos tenerlo.
+  </div>
+
+  <!-- ============================================================ -->
+  <div class="section-title">1. Lo que sabemos con certeza</div>
+  <!-- ============================================================ -->
+
+  <p>Estos datos vienen directamente de fuentes oficiales o de investigación de mercado verificable. No los manipulamos ni los ajustamos — los usamos tal cual.</p>
+
+  <table>
+    <thead>
+      <tr><th>Qué medimos</th><th>De dónde viene</th><th style="width:100px">Campo técnico</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Precio de oferta por m²</strong><br>Lo que los vendedores piden en portales inmobiliarios en tu distrito.</td>
+        <td>Brains RE (Q1-2026) e Idealista (Dic-2025 y May-2026). Datos de oferta publicada.</td>
+        <td class="td-field">Precio_Oferta_m2</td>
+      </tr>
+      <tr>
+        <td><strong>Alquiler medio por m²</strong><br>Lo que se pide de media por alquilar en tu zona.</td>
+        <td>Idealista Research Q1-2026.</td>
+        <td class="td-field">Alquiler_Medio_m2</td>
+      </tr>
+      <tr>
+        <td><strong>Tendencia anual de precios</strong><br>Cuánto han subido (o bajado) los precios en el último año.</td>
+        <td>Brains RE Q1-2026. Dos distritos corregidos por dato atípico (ver sección 3).</td>
+        <td class="td-field">Tendencia_Anual</td>
+      </tr>
+      <tr>
+        <td><strong>Rentabilidad bruta</strong><br>Qué porcentaje de retorno anual genera un alquiler sobre el precio de compra.</td>
+        <td>Cálculo directo: (alquiler mensual × 12) ÷ precio de oferta. No es estimación.</td>
+        <td class="td-field">Rentabilidad_Bruta</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ============================================================ -->
+  <div class="section-title">2. Lo que estimamos — y cómo</div>
+  <!-- ============================================================ -->
+
+  <p>Hay datos que aún no tenemos directamente porque requieren acuerdos con notarías o acceso a estadística registral por distrito. En estos casos, estimamos el valor con la mejor metodología disponible y lo marcamos explícitamente en cada informe.</p>
+
+  <div class="callout-amber">
+    <strong>Limitación que declaramos:</strong> el precio al que realmente se cierran las compraventas en tu distrito es una estimación. Todavía no tenemos acceso sistemático a precios escriturados. Para compensar, calibramos el descuento de negociación con los estudios más rigurosos disponibles (Tinsa y Fotocasa). Cada informe lo indica claramente.
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Qué estimamos</th><th>Cómo lo hacemos</th><th style="width:100px">Campo técnico</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Precio real de cierre por m²</strong><br>Lo que finalmente se paga — no lo que se pide.</td>
+        <td>Aplicamos un descuento calibrado al precio de oferta. El descuento varía por zona (3%–8%) según la presión de demanda del distrito.</td>
+        <td class="td-field">Precio_Transaccion_m2</td>
+      </tr>
+      <tr>
+        <td><strong>Descuento de negociación</strong><br>La diferencia habitual entre lo publicado y lo firmado.</td>
+        <td>Calibrado con Tinsa IMIE Q1-2026 (rango nacional 5%–7%) y Fotocasa Research 2025, ajustado por zona entre 3% y 8%.</td>
+        <td class="td-field">Descuento_Negociacion</td>
+      </tr>
+      <tr>
+        <td><strong>Compraventas por trimestre</strong><br>Cuántas operaciones se cierran en tu zona cada 3 meses.</td>
+        <td>Distribuimos las 2.580 operaciones trimestrales de Sevilla capital (Registradores Q4-2025) por proporción poblacional y demanda relativa de cada distrito.</td>
+        <td class="td-field">Volumen_Transacciones</td>
+      </tr>
+      <tr>
+        <td><strong>Días en el mercado</strong><br>Cuánto tarda en venderse una propiedad en tu zona.</td>
+        <td>Partimos de 52 días como media de Sevilla (Idealista Research Q1-2026) y ajustamos entre ±7 y ±14 días según si el distrito tiene más o menos demanda que la media.</td>
+        <td class="td-field">Dias_Mercado</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-sub">Resumen por distrito — valores aplicados</div>
+  <p>Esta tabla muestra los valores concretos que usamos para cada distrito de Sevilla. Los distritos marcados como "Piloto" están activos en producción; los demás se incorporarán progresivamente.</p>
+
+  <table>
+    <thead>
+      <tr><th>Distrito</th><th>Oferta €/m²</th><th>Descuento</th><th>Cierre est. €/m²</th><th>Tendencia</th><th>Estado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Casco Antiguo</td><td>4.236</td><td>5,5%</td><td>4.003</td><td>+9,6%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+      <tr><td>Los Remedios</td><td>3.891</td><td>4,5%</td><td>3.716</td><td>+7,5%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+      <tr><td>Triana</td><td>3.770</td><td>3,5%</td><td>3.638</td><td>+13,6%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+      <tr><td>Nervión</td><td>3.682</td><td>4,0%</td><td>3.535</td><td>+9,2%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+      <tr><td>Sur</td><td>2.744</td><td>5,0%</td><td>2.607</td><td>+8,2%</td><td>Datos al cierre de 2025</td></tr>
+      <tr><td>San Pablo-Santa Justa</td><td>2.720</td><td>5,0%</td><td>2.584</td><td>+10,2%*</td><td>Activo*</td></tr>
+       <tr><td>Bellavista-La Palmera</td><td>2.644</td><td>5,0%</td><td>2.512</td><td>+11,3%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+      <tr><td>Macarena</td><td>2.463</td><td>6,0%</td><td>2.315</td><td>+9,6%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+      <tr><td>Este-Alcosa-Torreblanca</td><td>1.855</td><td>7,0%</td><td>1.725</td><td>+7,4%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+      <tr><td>Norte</td><td>1.673</td><td>7,5%</td><td>1.548</td><td>+11,5%*</td><td>Activo*</td></tr>
+      <tr><td>Cerro-Amate</td><td>1.490</td><td>7,0%</td><td>1.386</td><td>+9,6%</td><td style="color:var(--green);font-weight:600;">Activo</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:var(--muted);font-family:Arial,sans-serif;">* Tendencia corregida por dato atípico — ver sección 3. Fuente precios: Brains RE Q1-2026 / Idealista May-2026.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-title">3. Correcciones que hemos aplicado</div>
+  <!-- ============================================================ -->
+
+  <p>En dos distritos, la tendencia anual publicada por Idealista mostraba subidas de más del 23%, muy por encima de cualquier otro distrito comparable. Esto puede ocurrir cuando la base de cálculo del portal es pequeña o cuando una promoción puntual distorsiona la media. En lugar de usar esos datos tal cual, los hemos corregido con fuentes adicionales.</p>
+
+  <table>
+    <thead>
+      <tr><th>Distrito</th><th>Dato original</th><th>Dato corregido</th><th>Por qué lo corregimos</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>San Pablo-Santa Justa</td>
+        <td style="color:var(--amber);font-weight:600;">+26,1%</td>
+        <td style="color:var(--green);font-weight:600;">+10,2%</td>
+        <td>Media ponderada Brains RE + Registradores Sevilla 2025. El valor original era un outlier estadístico.</td>
+      </tr>
+      <tr>
+        <td>Norte</td>
+        <td style="color:var(--amber);font-weight:600;">+23,9%</td>
+        <td style="color:var(--green);font-weight:600;">+11,5%</td>
+        <td>Mismo criterio. Tendencia corregida consistente con los distritos de rango similar.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Los valores originales quedan registrados en el dataset interno para trazabilidad. Cuando tengamos los datos de Registradores Q1-2026, podremos confirmar o ajustar estas correcciones.</p>
+
+  <!-- ============================================================ -->
+  <div class="section-title">4. Cómo vamos a mejorar estos datos</div>
+  <!-- ============================================================ -->
+
+  <p>Cada estimación que usamos hoy tiene un plan para ser reemplazada por un dato real. El objetivo es que en los próximos meses, la mayoría de los campos estimados se sustituyan por datos directos de fuentes primarias.</p>
+
+  <table>
+    <thead>
+      <tr><th>Dato que vamos a mejorar</th><th>De dónde vendrá</th><th>Cuándo</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Precio real de cierre</strong></td>
+        <td>Acuerdos con notarías piloto en Nervión y Centro + datos de clientes post-compra</td>
+        <td>Meses 6–8</td>
+      </tr>
+      <tr>
+        <td><strong>Descuento real de negociación</strong></td>
+        <td>Validación con agentes locales + datos directos de Registradores</td>
+        <td>Meses 4–6</td>
+      </tr>
+      <tr>
+        <td><strong>Compraventas reales por distrito</strong></td>
+        <td>Estadística Registral Inmobiliaria por distrito (acceso directo)</td>
+        <td>Meses 3–5</td>
+      </tr>
+      <tr>
+        <td><strong>Tiempo real de venta</strong></td>
+        <td>Acuerdos con Idealista Data y red de agentes locales</td>
+        <td>Meses 5–7</td>
+      </tr>
+      <tr>
+        <td><strong>Tendencias corregidas</strong></td>
+        <td>Confirmación con Registradores Q1-Q2 2026</td>
+        <td>Meses 3–4</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout-green">
+    <strong>El dato que más nos importa mejorar</strong> es el precio real de cierre. Cada cliente que comparte el resultado de su operación (mediante nuestro seguimiento post-compra) nos ayuda a calibrar mejor las estimaciones para el siguiente comprador. Es un proceso acumulativo: cuantos más informes vendamos, más precisos serán los datos.
+  </div>
+
+  <!-- ============================================================ -->
+  <div class="section-title">5. Fuentes utilizadas</div>
+  <!-- ============================================================ -->
+
+  <table>
+    <thead>
+      <tr><th>Fuente</th><th>Qué aporta</th><th>Período</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Brains RE</td><td>Precios de oferta y tendencias por distrito de Sevilla</td><td>Q1-2026</td></tr>
+      <tr><td>Idealista / Idealista Research</td><td>Precios de oferta, alquileres, tiempo de mercado</td><td>Dic-2025 y May-2026</td></tr>
+      <tr><td>Tinsa IMIE</td><td>Descuento de negociación a nivel nacional y por zona</td><td>Q1-2026</td></tr>
+      <tr><td>Fotocasa Research</td><td>Descuento de negociación complementario</td><td>2025</td></tr>
+      <tr><td>Colegio de Registradores</td><td>Volumen de compraventas trimestrales por provincia</td><td>Q4-2025</td></tr>
+      <tr><td>INE / Catastro</td><td>Valor de referencia catastral, datos censales</td><td>2025-2026</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Dictum Previo — Nota Metodológica v3.0</span>
+    <span>Junio 2026 · antesdelnotario.es</span>
+  </div>
+
+</div>
+</body>
+</html>
