@@ -1,12 +1,12 @@
-Distrito,Referencia_m2,Tendencia_Anual,Riesgo_Zonal,Alquiler_Medio_m2,Precio_Oferta_m2,Fuente
-Casco Antiguo,4236,9.6,Alto,14.6,4236,Brains RE Q1-2026 / Idealista May-2026
-Nervión,3682,9.2,Bajo,13.6,3682,Brains RE Q1-2026 / Idealista May-2026
-Triana,3770,13.6,Bajo,14.7,3770,Brains RE Q1-2026 / Idealista May-2026
-Los Remedios,3891,7.5,Bajo,14.5,3891,Brains RE Q1-2026 / Idealista May-2026
-Sur,2744,8.2,Bajo,12.4,2744,Brains RE Q1-2026 / Idealista Dic-2025
-San Pablo-Santa Justa,2720,26.1,Medio,12.4,2720,Brains RE Q1-2026 / Idealista May-2026
-Bellavista-La Palmera,2644,11.3,Bajo,11.8,2644,Brains RE Q1-2026 / Idealista May-2026
-Macarena,2463,9.6,Medio,11.9,2463,Brains RE Q1-2026 / Idealista May-2026
-Este-Alcosa-Torreblanca,1855,7.4,Medio,11.5,1855,Brains RE Q1-2026 / Idealista May-2026
-Norte,1673,23.9,Medio,11.2,1673,Brains RE Q1-2026 / Idealista May-2026
-Cerro-Amate,1490,9.6,Medio,11.8,1490,Brains RE Q1-2026 / Idealista May-2026
+Distrito,Oferta_m2,Descuento_Negociacion,Transaccion_Est_m2,Tinsa_Ref_Ciudad_m2,Tendencia_Anual,Perfil_Mercado,Alquiler_Medio_m2,Fuente_Oferta,Fuente_Descuento
+Casco Antiguo,4236,5.5,4003,2565,9.6,Presion,14.6,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Nervión,3682,4,3535,2565,9.2,Dinamico,13.6,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Triana,3770,3.5,3638,2565,13.6,Presion,14.7,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Los Remedios,3891,4.5,3716,2565,7.5,Dinamico,14.5,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Sur,2744,5,2607,2565,8.2,Consolidado,12.4,Brains RE Q1-2026 / Idealista Dic-2025,Tinsa IMIE Q1-2026 / Fotocasa 2025
+San Pablo-Santa Justa,2720,5,2584,2565,10.2,Consolidado,12.4,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Bellavista-La Palmera,2644,5,2512,2565,11.3,Dinamico,11.8,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Macarena,2463,6,2315,2565,9.6,Consolidado,11.9,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Este-Alcosa-Torreblanca,1855,7,1725,2565,7.4,Dinamico,11.5,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Norte,1673,7.5,1548,2565,11.5,Presion,11.2,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
+Cerro-Amate,1490,7,1386,2565,9.6,Dinamico,11.8,Brains RE Q1-2026 / Idealista May-2026,Tinsa IMIE Q1-2026 / Fotocasa 2025
