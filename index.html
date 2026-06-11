@@ -909,7 +909,7 @@
                     <div class="form-group-item">
                         <input type="number" id="precio" placeholder="Precio de Compra (€)" value="300000">
                     </div>
-                    <button class="cta-primary" onclick="abrirSimulador()">Ver cómo funciona</button>
+                    <button class="cta-primary" onclick="abrirSimulador()">Evalúa esta operación</button>
                 </div>
             </div>
         </div>
@@ -957,10 +957,6 @@
 </div>
 </div>
 
-            <div class="tech-notice-box">
-              <div class="tech-notice-text"><strong>Nota:</strong> En la fase actual del servicio, el precio de cierre por m² se estima a partir del precio de oferta publicado con descuentos calibrados por zona. No utilizamos precio escriturado directo hasta contar con acuerdos formales de datos con notarías y el Colegio de Registradores, actualmente en negociación. Cada informe lo indica de forma explícita.</div>
-            </div>
-
             <div class="tech-links-footer">
                 💡 Fichas de distrito analizadas: 
                 <a href="#nervion" style="color: var(--bb-accent); font-weight: 700; text-decoration: none; margin-left: 5px;">Nervión →</a>
@@ -973,7 +969,25 @@
           </div>
         </section>
 
+        <section class="informe-ejemplo-section" style="padding: 4rem 2rem; text-align: center;">
+            <div style="max-width: 1100px; margin: 0 auto;">
+                <h2>Así se ve el informe que recibirás</h2>
+                <p class="section-intro" style="max-width: 640px; margin-left: auto; margin-right: auto;">Seis páginas con diagnóstico ejecutivo, escenarios de estrés financiero, análisis de liquidez, contexto de zona y guía de negociación. Este es un ejemplo real generado por nuestro motor de análisis.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; justify-content: center; margin-top: 2.5rem;">
+                    <a href="ejemplo/Opinion_Tecnica_Ejemplo.pdf" target="_blank" rel="noopener" style="display: inline-block; max-width: 380px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-radius: 6px; overflow: hidden; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="img/informe_ejemplo_p1.png" alt="Primera página de un informe de ejemplo: diagnóstico ejecutivo con semáforo de viabilidad" style="width: 100%; height: auto; display: block;">
+                    </a>
+                    <div style="max-width: 380px; text-align: left;">
+                        <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">El ejemplo corresponde a un comprador de reposición evaluando un piso de 90 m² en Triana. El diagnóstico: precio favorable para la zona, pero esfuerzo hipotecario en zona de cautela y colchón de liquidez ajustado.</p>
+                        <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 2rem;">Exactamente el tipo de matiz que un comprador necesita conocer antes de firmar — y que ninguna calculadora hipotecaria le muestra.</p>
+                        <a href="ejemplo/Opinion_Tecnica_Ejemplo.pdf" target="_blank" rel="noopener" class="cta-primary" style="text-decoration: none; display: inline-block;">Ver informe completo de ejemplo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="plan-vuelo-section">
+            <p class="version" style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-accent); margin-bottom: 0.75rem;">El momento de revisar es antes de firmar las arras — no después</p>
             <h2>Elige el formato que se ajusta a tu situación</h2>
             <p class="section-intro">Tres formatos del mismo análisis técnico independiente. Cada uno pensado para un momento de decisión distinto.</p>
             
@@ -1002,28 +1016,6 @@
                     <div class="price">399 €</div>
                     <p class="price-ref">3 informes · ahorras 126 €</p>
                     <p class="subtitle">Compara hasta tres operaciones con los mismos criterios. ¿Más de tres? Consulta precios especiales.</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Lo que analizamos en cada operación</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <h4>¿Te están pidiendo demasiado?</h4>
-                    <p>Comparamos el precio de oferta con el valor de referencia catastral y las operaciones reales inscritas en la zona para saber si el precio está justificado.</p>
-                </div>
-                <div class="feature-item">
-                    <h4>¿Puedes pagarlo con tranquilidad?</h4>
-                    <p>Simulamos la hipoteca con los tipos de interés vigentes y calculamos qué porcentaje de tus ingresos se iría cada mes en la cuota.</p>
-                </div>
-                <div class="feature-item">
-                    <h4>¿Cuánto te queda después de firmar?</h4>
-                    <p>Calculamos el colchón económico real que te queda tras pagar la entrada, el ITP, los honorarios notariales y los gastos bancarios.</p>
-                </div>
-                <div class="feature-item">
-                    <h4>¿Qué deberías saber de la zona?</h4>
-                    <p>Identificamos factores que pueden afectarte: Inspección Técnica de Edificios pendiente, derramas previstas y densidad de viviendas turísticas en el entorno.</p>
                 </div>
             </div>
         </section>
@@ -1128,6 +1120,7 @@
             <div style="background: var(--bb-panel-bg); border-left: 4px solid var(--bb-accent); padding: 1.25rem; margin-bottom: 2rem; border-radius: 0 4px 4px 0; border-top: 1px solid var(--bb-border); border-right: 1px solid var(--bb-border); border-bottom: 1px solid var(--bb-border);">
                 <strong style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--bb-accent); display: block; margin-bottom: 4px; letter-spacing: 0.5px;">Principio de Honestidad Analítica</strong>
                 <p style="margin: 0; font-size: 14px; color: var(--bb-text); line-height: 1.5;">Todo supuesto aplicado en ausencia de datos de transacciones escrituradas directas se calibra basándose estrictamente en rangos empíricos e institucionales publicados.</p>
+                <p style="margin: 0.75rem 0 0 0; font-size: 14px; color: var(--bb-text); line-height: 1.5;">En la fase actual del servicio, el precio de cierre por m² se estima a partir del precio de oferta publicado con descuentos calibrados por zona. No utilizamos precio escriturado directo hasta contar con acuerdos formales de datos con notarías y el Colegio de Registradores, actualmente en negociación. Cada informe lo indica de forma explícita.</p>
             </div>
 
             <h3 class="section-title-internal">01. Parámetros de Oferta vs Transmisión Real</h3>
