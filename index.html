@@ -1645,8 +1645,8 @@
                     <input type="number" id="sim-deudas" value="0" step="50" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
                 <div class="sim-secondary-block">
-                    <label class="sim-label-muted">Entrada: <span id="sim-pct-label" style="color:var(--bb-orange);">20%</span></label>
-                    <input type="range" id="sim-pct-entrada" value="20" min="20" max="80" step="5" oninput="calcSimulador()" style="width:100%; accent-color:var(--bb-orange); cursor:pointer;">
+                    <label class="sim-label-muted">Entrada (€)</label>
+                    <input type="number" id="sim-entrada-eur" value="60000" min="60000" step="500" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
             </div>
 
@@ -1845,8 +1845,9 @@
         const euribor     = document.getElementById('sim-euribor')?.value || '3.7';
         const diferencial = document.getElementById('sim-dif')?.value || '0.8';
         const metros      = document.getElementById('sim-metros')?.value || '65';
-        const pctEntrada  = document.getElementById('sim-pct-entrada')?.value || '20';
-
+        const entradaEur  = document.getElementById('sim-entrada-eur')?.value || '60000';
+        const pctEntrada  = Math.round((parseFloat(entradaEur) / parseFloat(precio)) * 100);
+        
         const streamlitUrl = `https://dictum-previo.streamlit.app/?distrito=${encodeURIComponent(distrito)}&precio=${precio}&ahorros=${capital}&ingresos=${ingresos}&plazo=${plazo}&metros=${metros}&euribor=${euribor}&diferencial=${diferencial}&pct_entrada=${pctEntrada}`;    
         window.open(streamlitUrl, '_blank');
     }
@@ -1879,15 +1880,13 @@
         return hip * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
     }
 
-    // Llamada cuando cambia precio o capital: recalcula max del slider
+    // Llamada cuando cambia precio o capital    
     function syncEntradaYCalc() {
-        var precio  = parseFloat(document.getElementById('sim-precio').value) || 0;
-        var capital = parseFloat(document.getElementById('sim-capital').value) || 0;
-        var slider  = document.getElementById('sim-pct-entrada');
-
-        var pctMax = Math.max(20, Math.min(80, pctMaxCapital));
-        slider.max = pctMax;
-        slider.value = pctMax;
+        var precio = parseFloat(document.getElementById('sim-precio').value) || 0;
+        var entradaInput = document.getElementById('sim-entrada-eur');
+        var entradaMin = Math.round(precio * 0.20);
+        entradaInput.min = entradaMin;
+        entradaInput.value = entradaMin;
         calcSimulador();
     }
 
@@ -1900,23 +1899,15 @@
         var plazo    = parseInt(document.getElementById('sim-plazo').value) || 25;
         var deudas   = parseFloat(document.getElementById('sim-deudas').value) || 0;
 
-        var pctSlider  = document.getElementById('sim-pct-entrada');
-        var pctLabel   = document.getElementById('sim-pct-label');
+        var entradaInput = document.getElementById('sim-entrada-eur');
+        var entradaMin = Math.round(precio * 0.20);
+        entradaInput.min = entradaMin;
 
-        // Recalcular max (por si otro campo cambió) sin mover el slider
-        var pctMaxCapital = precio > 0 ? Math.floor((capital / precio) * 100 / 5) * 5 : 20;
-        var pctMax = Math.max(20, Math.min(80, pctMaxCapital));
-        pctSlider.max = pctMax;
+    var entrada = parseFloat(entradaInput.value) || entradaMin;
+    if (entrada < entradaMin) { entrada = entradaMin; entradaInput.value = entrada; }
+    if (entrada > capital)    { entrada = capital;    entradaInput.value = entrada; }
 
-        // Leer posición actual del slider (capear si excede max)
-        var pctEntrada = Math.max(20, Math.min(pctMax, parseFloat(pctSlider.value) || 20));
-        pctSlider.value = pctEntrada;
-
-        var entrada = precio * (pctEntrada / 100);
-        var hip     = precio - entrada;
-
-        // Label: muestra % actual, € de entrada, y max disponible
-        pctLabel.textContent = pctEntrada + '% · ' + fmtEur(entrada) + ' (máx ' + pctMax + '%)';
+        var hip = precio - entrada;
         var cuota   = calcCuotaSim(hip, euribor, dif, plazo);
         var esf     = (cuota + deudas) / ingresos;
         var mdsv    = 1 - esf;
