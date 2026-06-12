@@ -22,55 +22,58 @@
     </script>
 
     <style>
-        /* ===== BLOOMBERG HYBRID PALETTE (MODO CLARO) ===== */
+        /* ===== PALETA DICTUM PREVIO — "despacho patrimonial" (MODO CLARO) =====
+           Derivada del template del informe PDF: navy #0d1f3c, gold #b8832a.
+           Una sola identidad: landing → app Streamlit → PDF. */
         :root {
             --bb-bg: #FFFFFF;
-            --bb-panel-bg: #F4F5F7;
-            --bb-text: #11141A;
-            --bb-text-muted: #5C6470;
-            --bb-accent: #0055FF; /* Azul Bloomberg */
-            --bb-orange: #FF9900; /* Ámbar Bloomberg */
-            --bb-border: #E0E4EC;
+            --bb-panel-bg: #F7F3ED;
+            --bb-text: #1A1A2E;
+            --bb-text-muted: #6B7280;
+            --bb-accent: #0d1f3c; /* Navy Dictum Previo (PDF) */
+            --bb-orange: #b8832a; /* Gold Dictum Previo (PDF) */
+            --bb-border: #DDD8CF;
             --nav-bg: rgba(255, 255, 255, 0.96);
             
             /* Ancla Visual - Hero Navy Fijo y Potente */
-            --hero-bg: #0B1424; 
+            --hero-bg: #0d1f3c; 
             --hero-text: #FFFFFF;
             --hero-input-bg: #FFFFFF;
-            --hero-input-text: #11141A;
+            --hero-input-text: #1A1A2E;
 
-            /* Terminal Ticket (Fijo estilo monitor Bloomberg) */
-            --ticket-bg: #0B0E14;
+            /* Tarjetas de precio (navy de banca privada, no negro terminal) */
+            --ticket-bg: #0d1f3c;
             --ticket-text: #FFFFFF;
-            --ticket-muted: #8A94A6;
-            --ticket-border: #242933;
-            --ticket-price: #FF9900;
+            --ticket-muted: rgba(255,255,255,0.6);
+            --ticket-border: #1a3460;
+            --ticket-price: #f0e4c4;
 
             --font-sans: 'Inter', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
-            --shadow-md: 0 6px 20px rgba(0,0,0,0.08);
+            --shadow-md: 0 6px 20px rgba(13,31,60,0.10);
             --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             
-            --green: #0E7A4E;
-            --green-light: #E6F5EE;
-            --red: #C0392B;
+            --green: #1A7A4A;
+            --green-light: #E8F5EF;
+            --red: #B83232;
         }
 
-        /* ===== BLOOMBERG HYBRID PALETTE (MODO OSCURO) ===== */
+        /* ===== PALETA DICTUM PREVIO (MODO OSCURO) ===== */
         html[data-theme="dark"] {
             --bb-bg: #0B0E14; 
             --bb-panel-bg: #12161F; 
             --bb-text: #F5F7FA;
             --bb-text-muted: #8A94A6;
+            --bb-accent: #d9a849; /* Gold luminoso: el navy no contrasta en oscuro */
             --bb-border: #242933;
             --nav-bg: rgba(11, 14, 20, 0.96);
             
             --hero-bg: #070B12; /* Navy ultra oscuro en modo noche */
             --hero-input-bg: #12161F;
             --hero-input-text: #F5F7FA;
-            --ticket-bg: #161B26;
-            --green-light: rgba(14, 122, 78, 0.15);
+            --ticket-bg: #122441;
+            --green-light: rgba(26, 122, 74, 0.15);
         }
 
         /* ===== GLOBAL SETUP ===== */
@@ -115,7 +118,7 @@
             transition: var(--transition);
         }
         .topbar-interna .brand-title {
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -127,7 +130,7 @@
             color: var(--bb-accent);
             font-size: 0.85rem;
             font-weight: 600;
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             text-transform: uppercase;
             border-bottom: 1px solid transparent;
             transition: var(--transition);
@@ -247,7 +250,7 @@
         }
 
         nav .logo-text {
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             font-size: 1.05rem;
             color: var(--bb-text);
             font-weight: 700;
@@ -274,7 +277,7 @@
             color: var(--bb-text-muted);
             font-size: 0.85rem;
             font-weight: 600;
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             text-transform: uppercase;
             transition: var(--transition);
             letter-spacing: 0.5px;
@@ -290,7 +293,7 @@
             border: 1px solid var(--bb-border);
             color: var(--bb-text);
             padding: 0.4rem 0.9rem;
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             font-size: 0.75rem;
             text-transform: uppercase;
             cursor: pointer;
@@ -397,7 +400,7 @@
             border: none;
             font-size: 0.9rem;
             font-weight: 700;
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             text-transform: uppercase;
             cursor: pointer;
             transition: var(--transition);
@@ -405,7 +408,7 @@
         }
 
         .cta-primary:hover {
-            background: #0044CC;
+            background: #1a3460;
             box-shadow: inset 0 0 100px rgba(0,0,0,0.1);
         }
 
@@ -498,7 +501,7 @@
 
         .plan-vuelo-container p {
             color: var(--ticket-muted) !important;
-            font-family: var(--font-mono) !important;
+            font-family: var(--font-sans) !important;
             font-size: 0.85rem !important;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
@@ -612,7 +615,7 @@
         }
 
         .feature-item h4 {
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             font-size: 0.9rem;
             text-transform: uppercase;
             margin-bottom: 0.8rem;
@@ -711,7 +714,7 @@
             margin-bottom: 0.5rem;
         }
         .cf-label {
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
@@ -812,7 +815,7 @@
 
         footer .footer-links {
             margin-bottom: 2.5rem;
-            font-family: var(--font-mono);
+            font-family: var(--font-sans);
             text-transform: uppercase;
             font-size: 0.8rem;
             letter-spacing: 0.5px;
@@ -1001,7 +1004,7 @@
 </div>
 </div>
 
-<div style="margin-top: 2.5rem; padding: 1.5rem 2rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; background: rgba(11,20,36,0.5);">
+<div style="margin-top: 2.5rem; padding: 1.5rem 2rem; border: 1px solid var(--bb-border); border-radius: 6px; background: var(--bb-panel-bg);">
   <div style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-accent); margin-bottom: 1rem;">Índice DP · Escala de protección del comprador</div>
   <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 180px; padding: 0.75rem 1rem; border-left: 3px solid #2F855A; background: rgba(47,133,90,0.08); border-radius: 0 4px 4px 0;">
@@ -1332,22 +1335,22 @@
             <p style="color: var(--bb-text-muted); line-height: 1.7; margin-bottom: 1.5rem;">Análisis independientes de cuatro distritos. Demuestran la profundidad del análisis sin revelar la metodología completa del informe de propiedad individual.</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
                 <div style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 4px; padding: 1.5rem;">
-                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #FF9900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
                     <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Nervión</h4>
                     <a href="#nervion" style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.85rem; border-bottom: 1px solid var(--bb-accent);">Ver ficha →</a>
                 </div>
                 <div style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 4px; padding: 1.5rem;">
-                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #FF9900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
                     <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Triana</h4>
                     <a href="#triana" style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.85rem; border-bottom: 1px solid var(--bb-accent);">Ver ficha →</a>
                 </div>
                 <div style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 4px; padding: 1.5rem;">
-                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #FF9900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
                     <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Los Remedios</h4>
                     <a href="#los-remedios" style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.85rem; border-bottom: 1px solid var(--bb-accent);">Ver ficha →</a>
                 </div>
                 <div style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 4px; padding: 1.5rem;">
-                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #FF9900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
                     <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Casco Antiguo</h4>
                     <a href="#casco-antiguo" style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.85rem; border-bottom: 1px solid var(--bb-accent);">Ver ficha →</a>
                 </div>
