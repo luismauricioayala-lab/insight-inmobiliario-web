@@ -885,7 +885,7 @@
                 <div class="nav-links">
                     <a href="#inicio">Inicio</a>
                     <a href="#como-funciona">Cómo funciona</a>
-                    <a href="blog.html">Blog</a>
+                    <a href="blog.html" id="btn-nav-blog" style="display: inline-block;">Blog</a>
                     <a href="#contacto">Contacto</a>
                 </div>
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar modo de interfaz"></button>
@@ -1708,6 +1708,11 @@
     /* 2. ENRUTADOR DE ALTA FLUIDEZ SPA (INSIGHT ROUTER NATIVO) */
     function routerInsight() {
         const hash = window.location.hash || '#home';
+
+        // EXCEPCIÓN PARA EL BLOG: Si la URL o el destino es el blog, permitimos la navegación normal
+        if (window.location.pathname.endsWith('blog.html')) {
+        return;
+        }
         
         // Manejo adaptativo para anclas de la propia Home (Inicio, Cómo Funciona, Contacto)
         if (hash === '#home' || hash === '#inicio' || hash === '#como-funciona' || hash === '#contacto') {
