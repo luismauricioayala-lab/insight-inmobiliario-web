@@ -864,6 +864,7 @@
             .plan-vuelo-container { padding: 2.5rem 1.5rem; }
             .plan-vuelo-container h3 { font-size: 1.8rem; }
             .plan-vuelo-container .price { font-size: 3.2rem; }
+            .scope-grid { grid-template-columns: 1fr !important; }
         }
 
         @media (min-width: 769px) {
@@ -939,6 +940,41 @@
             </div>
         </div>
 
+        <!-- ALCANCE: QUÉ HACEMOS / QUÉ NO HACEMOS -->
+        <section style="padding: 4rem 10%; border-bottom: 1px solid var(--bb-border);">
+            <div style="max-width: 1100px; margin: 0 auto;">
+                <p style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-accent); margin-bottom: 0.75rem;">Alcance del servicio</p>
+                <h2 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; color: var(--bb-text); margin-bottom: 1rem;">Qué hace y qué no hace nuestro informe</h2>
+                <p class="section-intro" style="margin-bottom: 2.5rem;">La claridad sobre el alcance del análisis es parte de la protección al comprador. Saber exactamente qué estás recibiendo te permite usarlo mejor.</p>
+
+                <div class="scope-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 1000px;">
+                    <!-- LO QUE HACEMOS -->
+                    <div style="border-left: 3px solid var(--green); padding-left: 1.5rem;">
+                        <div style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 1rem; font-weight: 600;">Lo que hacemos</div>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6; color: var(--bb-text);">
+                            <p>Evaluamos si los parámetros financieros de la operación son prudentes para tu situación personal.</p>
+                            <p>Contrastamos el precio publicado contra referencias oficiales de mercado de la zona.</p>
+                            <p>Medimos tu liquidez post-firma y tu capacidad de absorción si cambian las condiciones.</p>
+                            <p>Analizamos la posición negociadora del vendedor a partir de datos registrales.</p>
+                            <p>Te entregamos un rango de negociación fundamentado con el que llegar a la mesa.</p>
+                        </div>
+                    </div>
+
+                    <!-- LO QUE NO HACEMOS -->
+                    <div style="border-left: 3px solid var(--red); padding-left: 1.5rem;">
+                        <div style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); margin-bottom: 1rem; font-weight: 600;">Lo que no hacemos</div>
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6; color: var(--bb-text);">
+                            <p>No recomendamos comprar ni dejar de comprar. La decisión es tuya.</p>
+                            <p>No realizamos tasaciones oficiales reguladas ni sustituimos la tasación bancaria.</p>
+                            <p>No ofrecemos asesoramiento jurídico ni sustituimos el estudio de un abogado.</p>
+                            <p>No intermediamos en la transacción ni percibimos comisión por cierre.</p>
+                            <p>No garantizamos resultados de negociación ni revalorización futura del activo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="metodologia-home" class="tech-transparency-section">
           <div class="tech-container">
             <div style="margin-bottom: 3rem;">
@@ -1000,7 +1036,7 @@
         <section class="informe-ejemplo-section" style="padding: 4rem 2rem; text-align: center;">
             <div style="max-width: 1100px; margin: 0 auto;">
                 <h2>Así se ve el informe que recibirás</h2>
-                <p class="section-intro" style="max-width: 640px; margin-left: auto; margin-right: auto;">Seis páginas con diagnóstico ejecutivo, escenarios de estrés financiero, análisis de liquidez, contexto de zona y guía de negociación. Este es un ejemplo real generado por nuestro motor de análisis.</p>
+                <p class="section-intro" style="max-width: 640px; margin-left: auto; margin-right: auto;">Siete páginas con diagnóstico ejecutivo, escenarios de estrés financiero, análisis de liquidez, contexto de zona, guía de negociación y análisis de la posición del vendedor. Este es un ejemplo real generado por nuestro motor de análisis.</p>
                 <div style="display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: center; justify-content: center; margin-top: 2.5rem;">
                     <a href="ejemplo/Opinion_Tecnica_Ejemplo.pdf" target="_blank" rel="noopener" style="display: inline-block; max-width: 380px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-radius: 6px; overflow: hidden; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                         <img src="img/informe_ejemplo_p1.png" alt="Primera página de un informe de ejemplo: diagnóstico ejecutivo con semáforo de viabilidad" style="width: 100%; height: auto; display: block;">
