@@ -68,6 +68,9 @@
     --hero-bg: #0B1424;
     --font-sans: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Definición de la variable de transición por si acaso */
+    --transition: all 0.2s ease-in-out;
   }
 
   /* ===== MODO OSCURO ===== */
@@ -132,14 +135,20 @@
     letter-spacing: 0.05em;
   }
 
-  .btn-retorno {
-    color: var(--bb-accent);
+  /* TUS ESTILOS EXACTOS ACTUALIZADOS */
+  .topbar-interna .btn-retorno {
     text-decoration: none;
+    color: var(--bb-accent);
+    font-size: 0.85rem;
     font-weight: 600;
-    transition: opacity 0.15s ease;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
   }
-  .btn-retorno:hover {
-    opacity: 0.8;
+  
+  .topbar-interna .btn-retorno:hover {
+    border-color: var(--bb-accent);
   }
 
   .wrapper-interior {
@@ -151,7 +160,7 @@
     background: var(--hero-bg);
     color: #fff;
     padding: 4rem 1.5rem 3.5rem;
-    text-align: left; /* Alineación técnica a la izquierda */
+    text-align: left;
   }
 
   .doc-header .doc-meta {
@@ -296,7 +305,7 @@
 <div id="view-metodologia" class="page-view">
   <div class="topbar-interna">
     <div class="brand-title">Dictum Previo // Biblioteca Técnica</div>
-    <a href="#home" class="btn-retorno">← Volver al inicio</a>
+    <a href="index.html" class="btn-retorno">← Volver al inicio</a>
   </div>
   
   <div class="wrapper-interior">
@@ -373,5 +382,8 @@
     <div class="article-footer">
       <p>Las cifras de este artículo son orientativas y corresponden a la normativa vigente en Andalucía en 2026. El ITP y las bonificaciones aplicables pueden cambiar y dependen de tu situación concreta. Este contenido es informativo y no constituye asesoramiento fiscal ni de inversión. Dictum Previo · antesdelnotario.es</p>
     </div>
-  </div> </div> </body>
+  </div>
+</div>
+
+</body>
 </html>
