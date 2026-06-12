@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Blog de Dictum Previo | Claridad antes de tu hipoteca</title>
+<meta name="description" content="Guías, consejos y análisis sin filtros para compradores de vivienda en Sevilla. Aprende a calcular tus gastos reales y tu verdadera capacidad de pago.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script>
+  /* SCRIPT CRÍTICO DE PRE-RENDERIZADO Y TEMA */
+  const savedTheme = localStorage.getItem('insight-theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  /* Sincroniza el cambio de tema en tiempo real si hay varias pestañas abiertas */
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'insight-theme') {
+      if (event.newValue === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    }
+  });
+
+  /* ENRUTADOR SPA INTERNO NATIVO */
+  function navegarA(idVista) {
+    // Ocultar todas las vistas
+    document.querySelectorAll('.page-view').forEach(view => {
+      view.classList.remove('active');
+    });
+    // Activar la vista seleccionada
+    const vistaDestino = document.getElementById(idVista);
+    if (vistaDestino) {
+      vistaDestino.classList.add('active');
+      window.scrollTo(0, 0); // Reset de scroll superior
+    }
+  }
+</script>
+
+<style>
+  /* ===== BLOOMBERG HYBRID PALETTE (MODO CLARO) ===== */
+  :root {
+    --bg:#FFFFFF;
+    --text:#1A1A2E;
+    --text-heading:#0A0A0F;
+    --muted:#5A5A7A;
+    --border:#D0D8F0;
+    --surface:#F7F9FF;
+    --blue:#0055FF;
+    --bb-bg: #FFFFFF;
+    --bb-panel-bg: #F4F5F7;
+    --bb-text: #11141A;
+    --bb-text-muted: #5C6470;
+    --bb-accent: #0055FF;
+    --bb-orange: #FF9900;
+    --bb-border: #E0E4EC;
+    --hero-bg: #0B1424;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --nav-bg: rgba(255, 255, 255, 0.96);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-md: 0 6px 20px rgba(0,0,0,0.06);
+  }
+
+  /* ===== BLOOMBERG HYBRID PALETTE (MODO OSCURO) ===== */
+  html[data-theme="dark"] {
+    --bg:#0B0E14;
+    --text:#E0E4EC;
+    --text-heading:#F5F7FA;
+    --muted:#8A94A6;
+    --border:#242933;
+    --surface:#12161F;
+    --bb-bg: #0B0E14;
+    --bb-panel-bg: #12161F;
+    --bb-text: #F5F7FA;
+    --bb-text-muted: #8A94A6;
+    --bb-border: #242933;
+    --nav-bg: rgba(11, 14, 20, 0.96);
+    --hero-bg: #070B12;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--bb-text);
+    background: var(--bb-bg);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* ===== ARQUITECTURA NATIVA SPA (VISTAS) ===== */
+  .page-view {
+    display: none;
+  }
+  .page-view.active {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ===== NAV BAR / TOPBAR REPORTES INTERNOS ===== */
+  .topbar-interna, nav {
+    position: sticky;
+    top: 0;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--bb-border);
+    padding: 1rem 10%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: var(--transition);
+  }
+  .logo-text, .topbar-interna .brand-title {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    color: var(--bb-text);
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .logo-text span { color: var(--bb-accent); }
+  
+  .btn-retorno {
+    text-decoration: none;
+    color: var(--bb-accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .btn-retorno:hover {
+    border-color: var(--bb-accent);
+  }
+
+  /* ===== ESTRUCTURA DE CONTENIDOS INTERIORES ===== */
+  .wrapper-interior {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    width: 100%;
+  }
+  .doc-header {
+    border-top: 4px solid var(--bb-accent);
+    padding-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .doc-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bb-accent);
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .doc-h1, .blog-title {
+    font-size: 32px; font-weight: 700; margin: 0 0 1rem 0; letter-spacing: -0.5px; color: var(--bb-text);
+    line-height: 1.2;
+  }
+  .section-title-internal {
+    font-size: 18px; font-weight: 700; margin: 2.5rem 0 1rem 0;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--bb-border);
+    color: var(--bb-text);
+  }
+
+  .article-body-content p { margin-bottom: 1.25rem; color: var(--bb-text); }
+  .article-body-content ul { margin: 0 0 1.25rem 1.5rem; }
+  .article-body-content li { margin-bottom: 0.5rem; }
+  .article-body-content h3 { font-size: 1.15rem; font-weight: 600; margin: 1.75rem 0 0.75rem; }
+  .article-body-content strong { font-weight: 600; }
+
+  .lead, .blog-subtitle {
+    font-size: 1.2rem;
+    color: var(--bb-text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* ===== FEED PRINCIPAL DEL BLOG ===== */
+  .blog-header {
+    margin-bottom: 4rem;
+  }
+  .blog-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--bb-accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .blog-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+  .post-article {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--bb-border);
+  }
+  .post-article:last-child { border-bottom: none; }
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--bb-text-muted);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .post-title-link {
+    text-decoration: none;
+    color: var(--bb-text);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .post-title-link h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+  .post-title-link:hover h2 { color: var(--bb-accent); }
+  .post-excerpt {
+    font-size: 1.05rem;
+    color: var(--bb-text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+  .read-more-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--bb-accent);
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+    width: fit-content;
+    cursor: pointer;
+  }
+  .read-more-link:hover { border-color: var(--bb-accent); }
+
+  /* ===== TABLAS ANALÍTICAS ===== */
+  .tabla-analitica {
+    width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 14px;
+  }
+  .tabla-analitica th {
+    background: var(--bb-panel-bg); color: var(--bb-text-muted);
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; padding: 14px 12px; text-align: left;
+    border-bottom: 2px solid var(--bb-border);
+    letter-spacing: 0.5px;
+  }
+  .tabla-analitica td {
+    padding: 14px 12px; border-bottom: 1px solid var(--bb-border); color: var(--bb-text);
+  }
+  .tabla-analitica td.num { font-family: var(--font-mono); text-align: right; }
+  .tabla-analitica tr.total td {
+    font-weight: 700;
+    border-top: 2px solid var(--bb-text);
+    border-bottom: none;
+    background: var(--bb-panel-bg);
+  }
+  .tabla-analitica tr:hover td { background: var(--bb-panel-bg); }
+  .td-mono { font-family: var(--font-mono); font-size: 13px; }
+
+  /* ===== COMPONENTES DE DISEÑO ===== */
+  .tech-callout-box {
+    background: var(--bb-panel-bg);
+    border-left: 4px solid var(--bb-orange);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .tech-callout-box strong {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bb-orange);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .article-cta-card {
+    background: var(--hero-bg);
+    color: #FFFFFF;
+    padding: 2.5rem;
+    border-radius: 4px;
+    margin: 3rem 0 1rem;
+    border: 1px solid var(--bb-border);
+  }
+  .article-cta-card h3 { color: #FFFFFF; font-size: 1.3rem; margin-bottom: 0.75rem; font-weight: 700; }
+  .article-cta-card p { color: var(--bb-text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .article-cta-card .btn-cta-link {
+    display: inline-block;
+    background: var(--bb-orange);
+    color: #0B1424;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transition: var(--transition);
+  }
+  .article-cta-card .btn-cta-link:hover { transform: translateY(-1px); }
+
+  .internal-article-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--bb-border);
+    font-size: 0.8rem;
+    color: var(--bb-text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) { nav, .topbar-interna { padding: 1rem 5%; } }
+  @media (max-width: 768px) { .wrapper-interior { padding: 3rem 1.25rem; } .doc-h1, .blog-title { font-size: 24px; } }
+</style>
+</head>
+<body>
+
+  <div id="view-blog-home" class="page-view active">
+    <nav>
+      <a href="https://antesdelnotario.es" class="logo-text">DICTUM PREVIO //<span> SEVILLA</span></a>
+      <a href="https://antesdelnotario.es" class="btn-retorno">← Volver al inicio</a>
+    </nav>
+
+    <div class="wrapper-interior">
+      <div class="blog-header">
+        <span class="blog-tag">Artículos y Lecturas</span>
+        <h1 class="blog-title">Antes del Notario</h1>
+        <p class="blog-subtitle">Guías independientes y análisis sin filtros para entender los números reales detrás de la compra de tu casa en Sevilla.</p>
+      </div>
+
+      <div class="blog-feed">
+        <article class="post-article">
+          <div class="post-date">Guía de Compra · Sevilla 2026</div>
+          <a onclick="navegarA('view-article-gastos')" class="post-title-link">
+            <h2>El precio del anuncio no es lo que vas a pagar: los gastos reales en Sevilla</h2>
+          </a>
+          <p class="post-excerpt">Encontrar un piso por 250.000 € y pensar que con tener el 20% de la entrada es suficiente es el error más común del comprador primerizo. En Andalucía, los impuestos y los aranceles suman entre un 10% y un 12% extra que nadie te explica en el portal inmobiliario. Hacemos las cuentas con números reales.</p>
+          <a onclick="navegarA('view-article-gastos')" class="read-more-link">Leer artículo completo →</a>
+        </article>
+
+        <article class="post-article">
+          <div class="post-date">Finanzas Personales · Ejercicio 2026</div>
+          <a onclick="navegarA('view-article-capacidad')" class="post-title-link">
+            <h2>La regla del 30% es mentira: cómo calcular cuánto puedes pagar de hipoteca sin ahogarte</h2>
+          </a>
+          <p class="post-excerpt">Dedicar un tercio de tu sueldo a la vivienda suena sensato sobre el papel, pero ignora la realidad del bolsillo del comprador. Analizamos por qué mirar solo la cuota pura es un error, el impacto oculto de la comunidad, y cómo calcular tu Margen de Seguridad de Estilo de Vida antes de comprometerte a 25 años.</p>
+          <a onclick="navegarA('view-article-capacidad')" class="read-more-link">Leer artículo completo →</a>
+        </article>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="view-article-gastos" class="page-view">
+    <div class="topbar-interna">
+      <div class="brand-title">Dictum Previo // Guía de compra</div>
+      <a onclick="navegarA('view-blog-home')" class="btn-retorno">← Volver al Blog</a>
+    </div>
+    
+    <div class="wrapper-interior">
+      <div class="doc-header">
+        <div class="doc-meta">Nota de Estimaciones de Datos — Sevilla Q1 2026</div>
+        <h1 class="doc-h1">Gastos de comprar vivienda en Sevilla 2026: cuánto pagas además del precio</h1>
+      </div>
+
+      <article class="article-body-content">
+        <p class="lead">Encuentras un piso en Triana por 250.000 €, tienes 60.000 € ahorrados, y haces la cuenta rápida: con la entrada del 20% me sobra para los gastos. Es el error más común del comprador primerizo en Sevilla. Los gastos de compra no son un detalle: suman entre el 10% y el 12% del precio, y casi nadie los presupuesta bien.</p>
+        <p>Vamos a desglosarlos con cifras reales para Andalucía en 2026, sobre un ejemplo concreto, para que sepas exactamente cuánto necesitas tener disponible antes de firmar.</p>
+
+        <div class="section-title-internal">Los cuatro gastos que pagas además del precio</div>
+        <h3>1. ITP — Impuesto de Transmisiones Patrimoniales</h3>
+        <p>Es, con diferencia, el gasto más grande. En Andalucía el tipo general es del <strong>7%</strong> sobre el valor de la vivienda de segunda mano. Es uno de los tipos más competitivos de España, pero sigue siendo el componente que más pesa.</p>
+        <p>Hay dos bonificaciones importantes que mucha gente desconoce:</p>
+        <ul>
+          <li><strong>Tipo reducido del 6%</strong> si la vivienda es tu residencia habitual y su valor no supera los 150.000 €.</li>
+          <li><strong>Tipo reducido del 3,5%</strong> para menores de 35 años, familias numerosas y personas con discapacidad, siempre que sea vivienda habitual y dentro del límite de valor.</li>
+        </ul>
+        <p>Sobre una vivienda de 250.000 € que no cumpla los requisitos de bonificación, el ITP al 7% son <strong>17.500 €</strong>.</p>
+
+        <h3>2. Notaría</h3>
+        <p>Los honorarios notariales están regulados por ley (Real Decreto 1426/1989) y se calculan según el valor escriturado. Para una vivienda de precio medio en Sevilla, suelen situarse entre <strong>600 y 1.200 €</strong>, dependiendo de la complejidad de la operación.</p>
+
+        <h3>3. Registro de la Propiedad</h3>
+        <p>Inscribir la vivienda a tu nombre también tiene aranceles regulados. El coste depende del valor escriturado y suele oscilar entre <strong>400 y 700 €</strong>. No es legalmente obligatorio, pero no inscribir te deja expuesto a disputas y problemas futuros si quieres vender o hipotecar.</p>
+
+        <h3>4. Gestoría</h3>
+        <p>Si hay hipoteca, normalmente el banco impone una gestoría para tramitar la liquidación de impuestos y la inscripción. El coste ronda los <strong>300 €</strong>. Si pagas al contado, puedes hacer los trámites tú mismo y ahorrarte esta partida.</p>
+
+        <h3>Si pides hipoteca: la tasación</h3>
+        <p>El banco exige una tasación oficial para conceder el préstamo. Cuesta entre <strong>250 y 600 €</strong> y la paga el comprador. Conviene saber que tienes derecho a encargarla de forma independiente y homologada, lo que te permite negociar con varios bancos sin atarte al primero.</p>
+
+        <div class="section-title-internal">El ejemplo completo: piso de 250.000 € en Sevilla</div>
+        <p>Supongamos una compra de segunda mano sin bonificaciones de ITP, con hipoteca:</p>
+
+        <table class="tabla-analitica">
+          <thead>
+            <tr><th>Concepto</th><th style="text-align:right;">Importe</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>ITP (7%)</td><td class="num td-mono">17.500 €</td></tr>
+            <tr><td>Notaría</td><td class="num td-mono">900 €</td></tr>
+            <tr><td>Registro</td><td class="num td-mono">550 €</td></tr>
+            <tr><td>Gestoría</td><td class="num td-mono">300 €</td></tr>
+            <tr><td>Tasación</td><td class="num td-mono">400 €</td></tr>
+            <tr class="total"><td>Total de gastos</td><td class="num td-mono">19.650 €</td></tr>
+          </tbody>
+        </table>
+
+        <p>Casi <strong>20.000 €</strong> que no aparecen en el anuncio. Si además aportas el 20% de entrada (50.000 €), el efectivo total que necesitas antes de firmar es de <strong>casi 70.000 €</strong> — no los 60.000 € que tenías ahorrados en el cálculo inicial.</p>
+
+        <div class="tech-callout-box">
+          <strong>El error de los 10.000 €</strong>
+          La diferencia entre "creo que me alcanza" y "sé exactamente cuánto necesito" suele ser de cinco cifras. Y el momento de descubrirlo no es en la notaría, con las arras ya firmadas y la fecha de escritura encima.
+        </div>
+
+        <div class="section-title-internal">Por qué esto importa más de lo que parece</div>
+        <p>El problema no es solo tener el dinero para los gastos. Es lo que te queda <em>después</em> de pagarlos. Si entre entrada, impuestos y gastos agotas tus ahorros, entras a una hipoteca de 25 años sin colchón de seguridad. Una derrama, una avería, o tres meses de imprevistos y la operación que parecía viable se convierte en una fuente de estrés permanente.</p>
+        <p>Por eso, antes de firmar, conviene responder tres preguntas que ninguna calculadora de gastos te contesta: ¿puedes sostener la cuota con holgura? ¿Cuánto colchón te queda después de firmar? ¿Qué pasa si el Euríbor sube? Esas son las preguntas que separan una buena compra de una decisión que pesará durante años.</p>
+
+        <div class="article-cta-card">
+          <h3>Evalúa tu compra antes de firmar</h3>
+          <p>Introduce los datos de la operación en nuestro simulador principal y obtén una lectura instantánea de tu esfuerzo hipotecario, liquidez y sensibilidad a subidas de tipos. Gratis, en dos minutos.</p>
+          <a href="https://antesdelnotario.es" class="btn-cta-link">Ir al simulador de portada</a>
+        </div>
+      </article>
+
+      <div class="internal-article-footer">
+        Las cifras de este artículo son orientativas y corresponden a la normativa vigente en Andalucía en 2026. El ITP y las bonificaciones aplicables pueden cambiar y dependen de tu situación concreta. Este contenido es informativo y no constituye asesoramiento fiscal ni de inversión. Dictum Previo · antesdelnotario.es
+      </div>
+    </div>
+  </div>
+
+
+  <div id="view-article-capacidad" class="page-view">
+    <div class="topbar-interna">
+      <div class="brand-title">Dictum Previo // Biblioteca Técnica</div>
+      <a onclick="navegarA('view-blog-home')" class="btn-retorno">← Volver al Blog</a>
+    </div>
+    
+    <div class="wrapper-interior">
+      <div class="doc-header">
+        <div class="doc-meta">Métricas de Sostenibilidad y Stress Test — Ejercicio 2026</div>
+        <h1 class="doc-h1">La verdad sobre tu capacidad de pago: por qué la cuota pura es una métrica incompleta</h1>
+      </div>
+
+      <article class="article-body-content">
+        <p class="lead">Cuando calculas cuánto puedes pagar por tu vivienda, el mayor peligro no es la aprobación del banco. El verdadero peligro es la asfixia por liquidez. Calcular lo que puedes permitirte mirando únicamente la cuota de la hipoteca ignora la fricción real de tu economía doméstica post-firma.</p>
+        <p>Para tener una lectura transparente, el análisis debe hacerse desde la perspectiva del comprador: evaluando los costes fijos obligatorios, la cobertura real de ingresos, la sensibilidad ante repuntes inflacionarios y los meses de vida que conservan tus ahorros residuales.</p>
+
+        <div class="section-title-internal">1. Esfuerzo Base vs. Esfuerzo Real</div>
+        <p>El primer error contable es aislar la amortización de la vivienda. El **Esfuerzo Base** mide la relación de la cuota hipotecaria pura frente a tus ingresos:</p>
+        <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+          Esfuerzo Base = (Cuota Mensual Hipoteca / Ingresos Netos Mensuales) × 100
+        </p>
+        <p>Para modelar la cuota base en 2026, asumimos un sistema de amortización francés estándar parametrizado bajo las condiciones actuales del mercado de crédito: una **tasa Euríbor variable del 3,7%**, un **spread bancario promedio del 0,8%** (tasa total contratada de 4,5%), un plazo de amortización de 25 años y aportando una entrada mínima del 20% del precio del inmueble.</p>
+        <p>Sin veredicto, esta métrica es incompleta. El indicador crítico que dicta el impacto real es el **Esfuerzo Real**, que incorpora la cuota de la comunidad de propietarios, un gasto fijo mensual indexado e inevitable:</p>
+        <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+          Esfuerzo Real = ((Cuota Hipoteca + Cuota Comunidad) / Ingresos Netos) × 100
+        </p>
+
+        <table class="tabla-analitica">
+          <thead>
+            <tr>
+              <th>Esfuerzo Real</th>
+              <th>Diagnóstico Interno</th>
+              <th style="text-align: right;">Estado de Vulnerabilidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-mono">&lt; 28%</td>
+              <td style="color: #1A5C35; font-weight: 600;">Óptimo</td>
+              <td class="td-mono" style="text-align: right;">Zona de total holgura</td>
+            </tr>
+            <tr>
+              <td class="td-mono">28% – 33%</td>
+              <td style="color: #1A5C35; font-weight: 600;">Prudente</td>
+              <td class="td-mono" style="text-align: right;">Zona de seguridad financiera</td>
+            </tr>
+            <tr>
+              <td class="td-mono">33% – 40%</td>
+              <td style="color: #9B2C2C; font-weight: 600;">Precaución</td>
+              <td class="td-mono" style="text-align: right; color: #9B2C2C; font-weight:600;">Alerta de prudencia (exige negociación)</td>
+            </tr>
+            <tr>
+              <td class="td-mono">≥ 40%</td>
+              <td style="color: #9B2C2C; font-weight: 600;">Insolvencia Técnico</td>
+              <td class="td-mono" style="text-align: right; color: #9B2C2C; font-weight:600;">Sobreendeudamiento detectado</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="section-title-internal">2. DSCR (Debt Service Coverage Ratio)</div>
+        <p>Inversamente proporcional al esfuerzo, el DSCR calcula cuántas veces cubren tus ingresos netos la cuota de la deuda. Es la métrica que evalúa tu nivel de apalancamiento relativo:</p>
+        <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+          DSCR = Ingresos Netos / Cuota Mensual
+        </p>
+        <ul>
+          <li><strong>DSCR ≥ 1,5x (Excelente):</strong> Indica una protección financiera robusta. Una tasa DSCR de 3,0x equivale a un esfuerzo muy controlado de aproximadamente el 33%.</li>
+          <li><strong>DSCR 1,25x – 1,5x (Aceptable):</strong> El rango normal de estabilidad. El comprador retiene tracción, pero con menor holgura ante variaciones macroeconómicas.</li>
+          <li><strong>DSCR &lt; 1,25x (Riesgo):</strong> Alarma de sobreapalancamiento. Una tasa DSCR de 1,0 implicaría destinar el 100% del sueldo a la cuota, un escenario insostenible.</li>
+        </ul>
+
+        <div class="section-title-internal">3. El Stress Test de Tipos (+200 pb)</div>
+        <p>Para comprobar la resistencia de tu estructura financiera, sometemos la operación a un escenario crítico de estrés: un incremento de **+200 puntos básicos** sobre la tasa contratada. Pasando de un tipo de interés base del 4,5% a un entorno simulado de **6,5%**.</p>
+        <p>El impacto matemático altera de inmediato las variables mensuales, incrementando de media unos **+286 € al mes** en una compra tipo en Triana:</p>
+        <p style="font-family: var(--font-mono); font-size: 14px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem; line-height: 1.9;">
+          • Cuota Stress = Capital Hipotecado × [tasa_stress × (1+tasa_stress)^n / ((1+tasa_stress)^n - 1)]<br>
+          • Diferencia Stress = Cuota Stress - Cuota Base<br>
+          • MDSV Stress = (1 - Cuota Stress / Ingresos Netos) × 100
+        </p>
+
+        <div class="section-title-internal">4. Margen de Seguridad de Estilo de Vida (MDSV)</div>
+        <p>El **MDSV** es el indicador definitivo de tu calidad de vida post-firma. Determina con exactitud el porcentaje de ingresos netos líquidos que te quedan disponibles cada mes una vez restados los costes fijos de la propiedad:</p>
+        <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+          MDSV = ((Ingresos Netos - Cuota Hipoteca - Cuota Comunidad) / Ingresos Netos) × 100
+        </p>
+        <ul>
+          <li><strong>MDSV &gt; 67% (Protección Robusta):</strong> El núcleo de tu estilo de vida permanece completamente a salvo. Tienes capacidad de ahorro, inversión y ocio sin restricciones.</li>
+          <li><strong>MDSV 60% – 67% (Adecuado):</strong> Conservas flexibilidad operativa, pero el presupuesto requiere cierta supervisión trimestral.</li>
+          <li><strong>MDSV &lt; 60% (Vulnerable):</strong> Entras en una zona expuesta. Cualquier shock inflacionario o imprevisto doméstico pondrá en jaque tu estabilidad mensual.</li>
+        </ul>
+
+        <div class="section-title-internal">5. Colchón de Liquidez post-firma</div>
+        <p>No importa lo baja que sea tu cuota si al salir de la notaría dejas tu cuenta a cero. El **Capital Residual** es el dinero en efectivo real que conservas en tu poder tras liquidar la entrada del 20% y todos los gastos asociados detallados en la guía de impuestos (ITP al 7% en Andalucía, notaría, registro y tasación):</p>
+        <p style="font-family: var(--font-mono); font-size: 14px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem; line-height: 1.9;">
+          • Capital Residual = Ahorros Totales - Entrada (20%) - Gastos Globales<br>
+          • Colchón (meses de vida) = Capital Residual / Gasto Mensual Total
+        </p>
+        <p>Un colchón **igual o superior a 12 meses** representa una cobertura excelente. Por el contrario, un colchón **inferior a 3 meses** sitúa al comprador en estado crítico, dejándolo incapacitado para absorber un trimestre de cese laboral o desempleo imprevisto.</p>
+
+        <div class="tech-callout-box">
+          <strong>⚠️ Alertas que degradan el veredicto (Incluso con Esfuerzo Real Verde)</strong>
+          Aunque tu esfuerzo financiero se sitúe por debajo del 33%, la operación se marcará bajo alerta si el algoritmo detecta alguno de los siguientes desajustes técnicos en la vivienda:
+          <br><br>
+          • <strong>Brecha catastral inversa:</strong> El valor de referencia oficial supera al precio pactado en más de un +3%, lo que provoca un sobrecoste fiscal inmediato al tener que liquidar el ITP sobre un valor superior.<br>
+          • <strong>Precio de oferta inflado:</strong> El precio por metro cuadrado excede en más de un +5% los testigos zonales de la zona.<br>
+          • <strong>Liquidez de alto riesgo:</strong> Un colchón post-firma inferior a 3 meses.<br>
+          • <strong>Riesgos técnicos latentes:</strong> Necesidad de reforma superior al 10% del precio del piso, edificaciones construidas entre 1960 y 1975 (riesgo de aluminosis), ITE desfavorable o Certificación de Eficiencia Energética deficiente (calificaciones E, F o G).
+        </div>
+
+        <div class="section-title-internal">El Índice Multivariable: Cómo se calcula tu DP Score</div>
+        <p>Para condensar de manera científica todas estas métricas de protección, estructuramos el **DP Score**, un índice multivariable ponderado sobre una puntuación máxima de **10 puntos**, basado en 4 pilares estratégicos:</p>
+        <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.5rem;">
+          DP Score = p_esf + p_liq + p_rea + p_zona
+        </p>
+        <p>Donde la distribución de pesos evalúa la resiliencia financiera de la siguiente manera:</p>
+        <ul>
+          <li><strong>p_esf (Esfuerzo, máx 4.0):</strong> 4,0 si esfuerzo &lt; 28%; 3,0 si &lt; 33%; 2,0 si &lt; 37%; 1,0 si &lt; 40%; 0 si ≥ 40%.</li>
+          <li><strong>p_liq (Liquidez, máx 3.0):</strong> 3,0 si colchón post-firma ≥ 12 meses; 2,0 si ≥ 6 meses; 1,0 si ≥ 3 meses; 0 si &lt; 3 meses.</li>
+          <li><strong>p_rea (Realismo de precio, máx 2.0):</strong> 2,0 si precio/ref &lt; 0,95; 1,5 si &lt; 1,00; 1,0 si &lt; 1,05; 0,5 si &lt; 1,15; 0 si ≥ 1,15.</li>
+          <li><strong>p_zona (Entorno, máx 1.0):</strong> 1,0 si es un entorno consolidado; 0,5 si es dinámico; 0 si está degradado o en declive.</li>
+        </ul>
+        <p>El resultado final clasifica tu compra en tres niveles de seguridad: un score <strong>igual o superior a 7,0</strong> garantiza una <strong>Protección Robusta (Verde)</strong>; una puntuación entre <strong>4,0 y 6,9</strong> ofrece una <strong>Protección Moderada (Amarillo)</strong>; y cualquier resultado <strong>por debajo de 4,0</strong> expone una <strong>Protección Insuficiente (Rojo)</strong> que desaconseja ejecutar la compra bajo los parámetros actuales.</p>
+
+        <div class="article-cta-card">
+          <h3>Calcula tu DP Score Gratuito</h3>
+          <p>Introduce las variables específicas de tu operación en el simulador de portada. Nuestro software procesará tus métricas de esfuerzo combinadas, ejecutará el Stress Test de tipos y emitirá tu diagnóstico con la ponderación exacta de los 4 pilares de seguridad.</p>
+          <a href="https://antesdelnotario.es" class="btn-cta-link">Calcular mi margen de seguridad</a>
+        </div>
+      </article>
+
+      <div class="internal-article-footer">
+        Las fórmulas, variables de ponderación y modelos de estrés matemático recogidos en esta nota técnica corresponden al modelo predictivo provisional de Dictum Previo para el ejercicio fiscal y macroeconómico 2026. Las proyecciones estimadas son herramientas de simulación de liquidez y no constituyen un compromiso contractual ni aval de crédito.
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

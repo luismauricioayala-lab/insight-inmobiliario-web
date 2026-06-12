@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cuánto puedo pagar de hipoteca? Capacidad de pago real | Dictum Previo</title>
+<meta name="description" content="Análisis de capacidad de pago e impacto en la liquidez personal. Calcula tu esfuerzo real, MDSV, colchón post-firma y el DP Score antes de comprar.">
+<meta name="keywords" content="capacidad pago hipoteca, esfuerzo real vivienda, MDSV, colchón liquidez post-firma, DP Score">
+
+<meta property="og:title" content="¿Cuánto puedo pagar de hipoteca? Tu salud financiera post-firma">
+<meta property="og:description" content="Olvida las reglas genéricas. Evaluamos tu margen de seguridad, el impacto de una subida de tipos y los pilares del DP Score.">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script>
+  /* Detecta tema guardado en la landing */
+  const savedTheme = localStorage.getItem('insight-theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  /* Sincroniza el cambio de tema en tiempo real si ambas pestañas están abiertas */
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'insight-theme') {
+      if (event.newValue === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    }
+  });
+</script>
+
+<style>
+  /* ===== BLOOMBERG HYBRID PALETTE (MODO CLARO) ===== */
+  :root {
+    --bg:#FFFFFF;
+    --text:#1A1A2E;
+    --text-heading:#0A0A0F;
+    --muted:#5A5A7A;
+    --border:#D0D8F0;
+    --surface:#F7F9FF;
+    --blue:#0055FF;
+    --blue-light:#E6EEFF;
+    --blue-callout-text:#0033AA;
+    --amber:#E8920A;
+    --amber-light:#FEF3DC;
+    --amber-callout-text:#7A4A00;
+    --green:#0E7A4E;
+    --green-light:#E6F5EE;
+    --green-callout-text:#065A30;
+    --th-bg:#0A0A0F;
+    --th-text:#FFFFFF;
+    --code-bg:#F7F9FF;
+
+    /* Variables del artículo */
+    --bb-bg: #FFFFFF;
+    --bb-panel-bg: #F4F5F7;
+    --bb-text: #11141A;
+    --bb-text-muted: #5C6470;
+    --bb-accent: #0055FF;
+    --bb-orange: #FF9900;
+    --bb-border: #E0E4EC;
+    --hero-bg: #0B1424;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    --nav-bg: rgba(255, 255, 255, 0.96);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ===== BLOOMBERG HYBRID PALETTE (MODO OSCURO) ===== */
+  html[data-theme="dark"] {
+    --bg:#0B0E14;
+    --text:#E0E4EC;
+    --text-heading:#F5F7FA;
+    --muted:#8A94A6;
+    --border:#242933;
+    --surface:#12161F;
+    --blue-light:rgba(0,85,255,0.12);
+    --blue-callout-text:#7EB3FF;
+    --amber-light:rgba(232,146,10,0.12);
+    --amber-callout-text:#FFD080;
+    --green-light:rgba(14,122,78,0.12);
+    --green-callout-text:#7EDCAA;
+    --th-bg:#161B26;
+    --th-text:#F5F7FA;
+    --code-bg:#161B26;
+
+    /* Variables sobreescritas */
+    --bb-bg: #0B0E14;
+    --bb-panel-bg: #12161F;
+    --bb-text: #F5F7FA;
+    --bb-text-muted: #8A94A6;
+    --bb-border: #242933;
+    --nav-bg: rgba(11, 14, 20, 0.96);
+    --hero-bg: #070B12;
+  }
+
+  /* ===== ESTILOS BASE ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--bb-text);
+    background: var(--bb-bg);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .page-view {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ===== TOPBAR REPORTES INTERNOS ===== */
+  .topbar-interna {
+    position: sticky;
+    top: 0;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--bb-border);
+    padding: 1rem 10%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: var(--transition);
+  }
+  .topbar-interna .brand-title {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--bb-text);
+  }
+  .topbar-interna .btn-retorno {
+    text-decoration: none;
+    color: var(--bb-accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition);
+  }
+  .topbar-interna .btn-retorno:hover {
+    border-color: var(--bb-accent);
+  }
+
+  /* ===== CONTENEDORES Y ESTRUCTURA ===== */
+  .wrapper-interior {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    width: 100%;
+  }
+  .doc-header {
+    border-top: 4px solid var(--bb-accent);
+    padding-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .doc-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bb-accent);
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .doc-h1 {
+    font-size: 32px; font-weight: 700; margin: 0 0 1rem 0; letter-spacing: -0.5px; color: var(--bb-text);
+    line-height: 1.2;
+  }
+  .section-title-internal {
+    font-size: 18px; font-weight: 700; margin: 2.5rem 0 1rem 0;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--bb-border);
+    color: var(--bb-text);
+  }
+
+  .article-body-content p { margin-bottom: 1.25rem; color: var(--bb-text); }
+  .article-body-content ul { margin: 0 0 1.25rem 1.5rem; }
+  .article-body-content li { margin-bottom: 0.5rem; }
+  .article-body-content strong { font-weight: 600; }
+
+  .lead {
+    font-size: 1.2rem;
+    color: var(--bb-text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* ===== TABLAS ANALÍTICAS ===== */
+  .tabla-analitica {
+    width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 14px;
+  }
+  .tabla-analitica th {
+    background: var(--bb-panel-bg); color: var(--bb-text-muted);
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; padding: 14px 12px; text-align: left;
+    border-bottom: 2px solid var(--bb-border);
+    letter-spacing: 0.5px;
+  }
+  .tabla-analitica td {
+    padding: 14px 12px; border-bottom: 1px solid var(--bb-border); color: var(--bb-text);
+  }
+  .tabla-analitica td.num {
+    font-family: var(--font-mono); text-align: right;
+  }
+  .tabla-analitica tr.total td {
+    font-weight: 700;
+    border-top: 2px solid var(--bb-text);
+    border-bottom: none;
+    background: var(--bb-panel-bg);
+  }
+  .tabla-analitica tr:hover td { background: var(--bb-panel-bg); }
+  .td-mono { font-family: var(--font-mono); font-size: 13px; }
+
+  /* ===== COMPONENTES DE DISEÑO ===== */
+  .tech-callout-box {
+    background: var(--bb-panel-bg);
+    border-left: 4px solid var(--bb-orange);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .tech-callout-box strong {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bb-orange);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .article-cta-card {
+    background: var(--hero-bg);
+    color: #FFFFFF;
+    padding: 2.5rem;
+    border-radius: 4px;
+    margin: 3rem 0 1rem;
+    border: 1px solid var(--bb-border);
+  }
+  .article-cta-card h3 { color: #FFFFFF; font-size: 1.3rem; margin-bottom: 0.75rem; font-weight: 700; }
+  .article-cta-card p { color: var(--bb-text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .article-cta-card .btn-cta-link {
+    display: inline-block;
+    background: var(--bb-orange);
+    color: #0B1424;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transition: var(--transition);
+  }
+  .article-cta-card .btn-cta-link:hover { transform: translateY(-1px); }
+
+  .internal-article-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--bb-border);
+    font-size: 0.8rem;
+    color: var(--bb-text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) { .topbar-interna { padding: 1rem 5%; } }
+  @media (max-width: 768px) { .wrapper-interior { padding: 3rem 1.25rem; } .doc-h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+
+<div class="page-view">
+  <div class="topbar-interna">
+    <div class="brand-title">Dictum Previo // Biblioteca Técnica</div>
+    <a href="https://antesdelnotario.es" class="btn-retorno">← Volver al inicio</a>
+  </div>
+  
+  <div class="wrapper-interior">
+    <div class="doc-header">
+      <div class="doc-meta">Métricas de Sostenibilidad y Stress Test — Ejercicio 2026</div>
+      <h1 class="doc-h1">La verdad sobre tu capacidad de pago: por qué la cuota pura es una métrica incompleta</h1>
+    </div>
+
+    <article class="article-body-content">
+      <p class="lead">Cuando calculas cuánto puedes pagar por tu vivienda, el mayor peligro no es la aprobación del banco. El verdadero peligro es la asfixia por liquidez. Calcular lo que puedes permitirte mirando únicamente la cuota de la hipoteca ignora la fricción real de tu economía doméstica post-firma.</p>
+
+      <p>Para tener una lectura transparente, el análisis debe hacerse desde la perspectiva del comprador: evaluando los costes fijos obligatorios, la cobertura real de ingresos, la sensibilidad ante repuntes inflacionarios y los meses de vida que conservan tus ahorros residuales.</p>
+
+      <div class="section-title-internal">1. Esfuerzo Base vs. Esfuerzo Real</div>
+      <p>El primer error contable es aislar la amortización de la vivienda. El **Esfuerzo Base** mide la relación de la cuota hipotecaria pura frente a tus ingresos:</p>
+      
+      <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+        Esfuerzo Base = (Cuota Mensual Hipoteca / Ingresos Netos Mensuales) × 100
+      </p>
+
+      <p>Para modelar la cuota base en 2026, asumimos un sistema de amortización francés estándar parametrizado bajo las condiciones actuales del mercado de crédito: una **tasa Euríbor variable del 3,7%**, un **spread bancario promedio del 0,8%** (tasa total contratada de 4,5%), un plazo de amortización de 25 años y aportando una entrada mínima del 20% del precio del inmueble.</p>
+      
+      <p>Sin veredicto, esta métrica es incompleta. El indicador crítico que dicta el impacto real es el **Esfuerzo Real**, que incorpora la cuota de la comunidad de propietarios, un gasto fijo mensual indexado e inevitable:</p>
+
+      <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+        Esfuerzo Real = ((Cuota Hipoteca + Cuota Comunidad) / Ingresos Netos) × 100
+      </p>
+
+      <table class="tabla-analitica">
+        <thead>
+          <tr>
+            <th>Esfuerzo Real</th>
+            <th>Diagnóstico Interno</th>
+            <th style="text-align: right;">Estado de Vulnerabilidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-mono">&lt; 28%</td>
+            <td style="color: #1A5C35; font-weight: 600;">Óptimo</td>
+            <td class="td-mono" style="text-align: right;">Zona de total holgura</td>
+          </tr>
+          <tr>
+            <td class="td-mono">28% – 33%</td>
+            <td style="color: #1A5C35; font-weight: 600;">Prudente</td>
+            <td class="td-mono" style="text-align: right;">Zona de seguridad financiera</td>
+          </tr>
+          <tr>
+            <td class="td-mono">33% – 40%</td>
+            <td style="color: #9B2C2C; font-weight: 600;">Precaución</td>
+            <td class="td-mono" style="text-align: right; color: #9B2C2C; font-weight:600;">Alerta de prudencia (exige negociación)</td>
+          </tr>
+          <tr>
+            <td class="td-mono">≥ 40%</td>
+            <td style="color: #9B2C2C; font-weight: 600;">Insolvencia Técnica</td>
+            <td class="td-mono" style="text-align: right; color: #9B2C2C; font-weight:600;">Sobreendeudamiento detectado</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="section-title-internal">2. DSCR (Debt Service Coverage Ratio)</div>
+      <p>Inversamente proporcional al esfuerzo, el DSCR calcula cuántas veces cubren tus ingresos netos la cuota de la deuda. Es la métrica que evalúa tu nivel de apalancamiento relativo:</p>
+      
+      <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+        DSCR = Ingresos Netos / Cuota Mensual
+      </p>
+      
+      <ul>
+        <li><strong>DSCR ≥ 1,5x (Excelente):</strong> Indica una protección financiera robusta. Una tasa DSCR de 3,0x equivale a un esfuerzo muy controlado de aproximadamente el 33%.</li>
+        <li><strong>DSCR 1,25x – 1,5x (Aceptable):</strong> El rango normal de estabilidad. El comprador retiene tracción, pero con menor holgura ante variaciones macroeconómicas.</li>
+        <li><strong>DSCR &lt; 1,25x (Riesgo):</strong> Alarma de sobreapalancamiento. Una tasa DSCR de 1,0 implicaría destinar el 100% del sueldo a la cuota, un escenario insostenible.</li>
+      </ul>
+
+      <div class="section-title-internal">3. El Stress Test de Tipos (+200 pb)</div>
+      <p>Para comprobar la resistencia de tu estructura financiera, sometemos la operación a un escenario crítico de estrés: un incremento de **+200 puntos básicos** sobre la tasa contratada. Pasando de un tipo de interés base del 4,5% a un entorno simulado de **6,5%**.</p>
+      
+      <p>El impacto matemático altera de inmediato las variables mensuales, incrementando de media unos **+286 € al mes** en una compra tipo en Triana:</p>
+
+      <p style="font-family: var(--font-mono); font-size: 14px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem; line-height: 1.9;">
+        • Cuota Stress = Capital Hipotecado × [tasa_stress × (1+tasa_stress)^n / ((1+tasa_stress)^n - 1)]<br>
+        • Diferencia Stress = Cuota Stress - Cuota Base<br>
+        • MDSV Stress = (1 - Cuota Stress / Ingresos Netos) × 100
+      </p>
+
+      <div class="section-title-internal">4. Margen de Seguridad de Estilo de Vida (MDSV)</div>
+      <p>El **MDSV** es el indicador definitivo de tu calidad de vida post-firma. Determina con exactitud el porcentaje de ingresos netos líquidos que te quedan disponibles cada mes una vez restados los costes fijos de la propiedad:</p>
+
+      <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem;">
+        MDSV = ((Ingresos Netos - Cuota Hipoteca - Cuota Comunidad) / Ingresos Netos) × 100
+      </p>
+
+      <ul>
+        <li><strong>MDSV &gt; 67% (Protección Robusta):</strong> El núcleo de tu estilo de vida permanece completamente a salvo. Tienes capacidad de ahorro, inversión y ocio sin restricciones.</li>
+        <li><strong>MDSV 60% – 67% (Adecuado):</strong> Conservas flexibilidad operativa, pero el presupuesto requiere cierta supervisión trimestral.</li>
+        <li><strong>MDSV &lt; 60% (Vulnerable):</strong> Entras en una zona expuesta. Cualquier shock inflacionario o imprevisto doméstico pondrá en jaque tu estabilidad mensual.</li>
+      </ul>
+
+      <div class="section-title-internal">5. Colchón de Liquidez post-firma</div>
+      <p>No importa lo baja que sea tu cuota si al salir de la notaría dejas tu cuenta a cero. El **Capital Residual** es el dinero en efectivo real que conservas en tu poder tras liquidar la entrada del 20% y todos los gastos asociados detallados en la guía de impuestos (ITP al 7% en Andalucía, notaría, registro y tasación):</p>
+
+      <p style="font-family: var(--font-mono); font-size: 14px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.25rem; line-height: 1.9;">
+        • Capital Residual = Ahorros Totales - Entrada (20%) - Gastos Globales<br>
+        • Colchón (meses de vida) = Capital Residual / Gasto Mensual Total
+      </p>
+
+      <p>Un colchón **igual o superior a 12 meses** representa una cobertura excelente. Por el contrario, un colchón **inferior a 3 meses** sitúa al comprador en estado crítico, dejándolo incapacitado para absorber un trimestre de cese laboral o desempleo imprevisto.</p>
+
+      <div class="tech-callout-box">
+        <strong>⚠️ Alertas que degradan el veredicto (Incluso con Esfuerzo Real Verde)</strong>
+        Aunque tu esfuerzo financiero se sitúe por debajo del 33%, la operación se marcará bajo alerta si el algoritmo detecta alguno de los siguientes desajustes técnicos en la vivienda:
+        <br><br>
+        • <strong>Brecha catastral inversa:</strong> El valor de referencia oficial supera al precio pactado en más de un +3%, lo que provoca un sobrecoste fiscal inmediato al tener que liquidar el ITP sobre un valor superior.<br>
+        • <strong>Precio de oferta inflado:</strong> El precio por metro cuadrado excede en más de un +5% los testigos zonales de la zona.<br>
+        • <strong>Liquidez de alto riesgo:</strong> Un colchón post-firma inferior a 3 meses.<br>
+        • <strong>Riesgos técnicos latentes:</strong> Necesidad de reforma superior al 10% del precio del piso, edificaciones construidas entre 1960 y 1975 (riesgo de aluminosis), ITE desfavorable o Certificación de Eficiencia Energética deficiente (calificaciones E, F o G).
+      </div>
+
+      <div class="section-title-internal">El Índice Multivariable: Cómo se calcula tu DP Score</div>
+      <p>Para condensar de manera científica todas estas métricas de protección, estructuramos el **DP Score**, un índice multivariable ponderado sobre una puntuación máxima de **10 puntos**, basado en 4 pilares estratégicos:</p>
+
+      <p style="font-family: var(--font-mono); font-size: 15px; background: var(--bb-panel-bg); padding: 1rem; border-radius: 4px; border: 1px solid var(--bb-border); margin-bottom: 1.5rem;">
+        DP Score = p_esf + p_liq + p_rea + p_zona
+      </p>
+
+      <p>Donde la distribución de pesos evalúa la resiliencia financiera de la siguiente manera:</p>
+      <ul>
+        <li><strong>p_esf (Esfuerzo, máx 4.0):</strong> 4,0 si esfuerzo &lt; 28%; 3,0 si &lt; 33%; 2,0 si &lt; 37%; 1,0 si &lt; 40%; 0 si ≥ 40%.</li>
+        <li><strong>p_liq (Liquidez, máx 3.0):</strong> 3,0 si colchón post-firma ≥ 12 meses; 2,0 si ≥ 6 meses; 1,0 si ≥ 3 meses; 0 si &lt; 3 meses.</li>
+        <li><strong>p_rea (Realismo de precio, máx 2.0):</strong> 2,0 si precio/ref &lt; 0,95; 1,5 si &lt; 1,00; 1,0 si &lt; 1,05; 0,5 si &lt; 1,15; 0 si ≥ 1,15.</li>
+        <li><strong>p_zona (Entorno, máx 1.0):</strong> 1,0 si es un entorno consolidado; 0,5 si es dinámico; 0 si está degradado o en declive.</li>
+      </ul>
+
+      <p>El resultado final clasifica tu compra en tres niveles de seguridad: un score <strong>igual o superior a 7,0</strong> garantiza una <strong>Protección Robusta (Verde)</strong>; una puntuación entre <strong>4,0 y 6,9</strong> ofrece una <strong>Protección Moderada (Amarillo)</strong>; y cualquier resultado <strong>por debajo de 4,0</strong> expone una <strong>Protección Insuficiente (Rojo)</strong> que desaconseja ejecutar la compra bajo los parámetros actuales.</p>
+
+      <div class="article-cta-card">
+        <h3>Calcula tu DP Score Gratuito</h3>
+        <p>Introduce las variables específicas de tu operación en el simulador de portada. Nuestro software procesará tus métricas de esfuerzo combinadas, ejecutará el Stress Test de tipos y emitirá tu diagnóstico con la ponderación exacta de los 4 pilares de seguridad.</p>
+        <a href="https://antesdelnotario.es" class="btn-cta-link">Calcular mi margen de seguridad</a>
+      </div>
+    </article>
+
+    <div class="internal-article-footer">
+      Las fórmulas, variables de ponderación y modelos de estrés matemático recogidos en esta nota técnica corresponden al modelo predictivo provisional de Dictum Previo para el ejercicio fiscal y macroeconómico 2026. Las proyecciones estimadas son herramientas de simulación de liquidez y no constituyen un compromiso contractual ni aval de crédito.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
