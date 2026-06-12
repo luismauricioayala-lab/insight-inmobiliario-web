@@ -1885,15 +1885,7 @@
         var capital = parseFloat(document.getElementById('sim-capital').value) || 0;
         var slider  = document.getElementById('sim-pct-entrada');
 
-        // Max por capital bruto
-        var pctMaxCapital = precio > 0 ? Math.floor((capital / precio) * 100 / 5) * 5 : 20;
-
-        // Max seguro: reservar para gastos (ITP ~8% + notaría + tasación)
-        var gastosAprox = precio * 0.08 + 2300;
-        var entradaMaxSafe = Math.max(0, capital - gastosAprox);
-        var pctMaxSafe = precio > 0 ? Math.floor((entradaMaxSafe / precio) * 100 / 5) * 5 : 20;
-
-        var pctMax = Math.max(20, Math.min(80, Math.min(pctMaxCapital, pctMaxSafe)));
+        var pctMax = Math.max(20, Math.min(80, pctMaxCapital));
         slider.max = pctMax;
         slider.value = pctMax;
         calcSimulador();
@@ -1913,10 +1905,7 @@
 
         // Recalcular max (por si otro campo cambió) sin mover el slider
         var pctMaxCapital = precio > 0 ? Math.floor((capital / precio) * 100 / 5) * 5 : 20;
-        var gastosAprox = precio * 0.08 + 2300;
-        var entradaMaxSafe = Math.max(0, capital - gastosAprox);
-        var pctMaxSafe = precio > 0 ? Math.floor((entradaMaxSafe / precio) * 100 / 5) * 5 : 20;
-        var pctMax = Math.max(20, Math.min(80, Math.min(pctMaxCapital, pctMaxSafe)));
+        var pctMax = Math.max(20, Math.min(80, pctMaxCapital));
         pctSlider.max = pctMax;
 
         // Leer posición actual del slider (capear si excede max)
