@@ -22,6 +22,16 @@
   if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
+
+  window.addEventListener('storage', (event) => {
+  if (event.key === 'insight-theme') {
+    if (event.newValue === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }
+});
 </script>
 
 <style>
@@ -78,6 +88,12 @@
     --font-sans: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
+
+  /* Añade estas para que el cuerpo cambie de color: */
+  --bb-bg: #0B0E14;          /* Igual a tu --bg oscuro */
+  --bb-text: #E0E4EC;        /* Igual a tu --text oscuro */
+  --bb-panel-bg: #161B26;    /* Fondo para tablas/callouts en modo oscuro */
+  --bb-text-muted: #8A94A6;
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
