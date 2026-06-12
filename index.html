@@ -1612,7 +1612,7 @@
 
                 <div class="sim-input-block">
                     <label class="sim-label-accent">Capital que aportas <span style="color:var(--bb-orange)">*</span></label>
-                    <input type="number" id="sim-capital" value="60000" min="0" step="1000" oninput="syncEntradaYCalc()" class="sim-field">
+                    <input type="number" id="sim-capital" value="60000" min="0" step="1000" oninput="calcSimulador()" class="sim-field">
                     <span class="sim-field-desc">Ahorros totales (Mínimo 20% del precio para la entrada)</span>    
                 </div>
 
@@ -1857,6 +1857,7 @@
             abrirSimulador();
         }
     });
+            syncEntradaYCalc();
     </script>
 
 <script>
