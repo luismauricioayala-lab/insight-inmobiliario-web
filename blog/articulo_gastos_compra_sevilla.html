@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,19 +21,20 @@
     document.documentElement.setAttribute('data-theme', 'dark');
   }
 
+  /* Escuchar cambios en tiempo real desde la landing */
   window.addEventListener('storage', (event) => {
-  if (event.key === 'insight-theme') {
-    if (event.newValue === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
+    if (event.key === 'insight-theme') {
+      if (event.newValue === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
     }
-  }
-});
+  });
 </script>
 
 <style>
-   /* ===== MODO CLARO ===== */
+  /* ===== MODO CLARO ===== */
   :root {
     --bg:#FFFFFF;
     --text:#1A1A2E;
@@ -55,6 +54,18 @@
     --th-bg:#0A0A0F;
     --th-text:#FFFFFF;
     --code-bg:#F7F9FF;
+
+    /* Variables base del artículo (Modo Claro) */
+    --bb-bg: #FFFFFF;
+    --bb-panel-bg: #F4F5F7;
+    --bb-text: #11141A;
+    --bb-text-muted: #5C6470;
+    --bb-accent: #0055FF;
+    --bb-orange: #FF9900;
+    --bb-border: #E0E4EC;
+    --hero-bg: #0B1424;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
 
   /* ===== MODO OSCURO ===== */
@@ -74,27 +85,17 @@
     --th-bg:#161B26;
     --th-text:#F5F7FA;
     --code-bg:#161B26;
+
+    /* Variables del artículo sobreescritas para Modo Oscuro */
+    --bb-bg: #0B0E14;
+    --bb-panel-bg: #12161F;
+    --bb-text: #E0E4EC;
+    --bb-text-muted: #8A94A6;
+    --bb-border: #242933;
+    --hero-bg: #060A12; 
   }
 
-  :root {
-    --bb-bg: #FFFFFF;
-    --bb-panel-bg: #F4F5F7;
-    --bb-text: #11141A;
-    --bb-text-muted: #5C6470;
-    --bb-accent: #0055FF;
-    --bb-orange: #FF9900;
-    --bb-border: #E0E4EC;
-    --hero-bg: #0B1424;
-    --font-sans: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
-
-  /* Añade estas para que el cuerpo cambie de color: */
-  --bb-bg: #0B0E14;          /* Igual a tu --bg oscuro */
-  --bb-text: #E0E4EC;        /* Igual a tu --text oscuro */
-  --bb-panel-bg: #161B26;    /* Fondo para tablas/callouts en modo oscuro */
-  --bb-text-muted: #8A94A6;
-
+  /* ===== ESTILOS BASE Y CLASES DEL ARTÍCULO ===== */
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -253,6 +254,8 @@
 </style>
 </head>
 <body>
+
+  <a href="#home" class="btn-retorno">← Volver al inicio</a>
 
 <div class="article-hero">
   <div class="kicker">Guía para compradores · Sevilla 2026</div>
