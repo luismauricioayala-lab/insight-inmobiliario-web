@@ -1681,59 +1681,22 @@
                 </div>
             </div>
 
-            <div id="sim-ahorro-box" style="background: rgba(0, 85, 255, 0.08); border: 1px solid var(--bb-accent); border-radius: 4px; padding: 1.25rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: var(--font-sans);">
-                <div>
-                    <span style="font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--bb-accent); display: block; letter-spacing: 0.05em;">Potencial de Ahorro por Negociación Estimado</span>
-                    <span style="font-size: 0.88rem; color: var(--bb-text); margin-top: 3px; display: block; line-height: 1.4;">Basado en la diferencia habitual entre lo que se pide en portales y lo que finalmente se paga en esta zona de Sevilla.</span>
-                </div>
-                <div id="sim-ahorro-valor" style="font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--bb-accent); white-space: nowrap;">—</div>
-            </div>
 
             <div id="sim-diag" style="border-radius:4px; padding:1.25rem; margin-bottom:2rem; display:flex; align-items:flex-start; gap:0.75rem; font-family:var(--font-sans); font-size:0.95rem; line-height:1.6; border:1px solid transparent;">
                 <span id="sim-diag-icon" style="font-size:1rem; flex-shrink:0; margin-top:2px;">⬤</span>
                 <span id="sim-diag-text">Calculando diagnóstico...</span>
             </div>
 
-            <h3 class="section-title-internal">Escenarios de estrés Euríbor</h3>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:2rem;">
-                <div style="background:var(--bb-panel-bg); border:1px solid var(--bb-border); border-radius:4px; padding:1.25rem;">
-                    <div style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; color:var(--bb-text-muted); margin-bottom:0.5rem; font-weight:500; letter-spacing:0.5px;">Base · Euríbor actual</div>
-                    <div style="font-size:1.6rem; font-weight:700; color:var(--bb-text);" id="ss-base">—</div>
-                    <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--bb-text-muted); margin-top:4px;" id="ss-base-mdsv">MDSV —</div>
-                </div>
-                <div style="background:var(--bb-panel-bg); border:1px solid var(--bb-orange); border-radius:4px; padding:1.25rem;">
-                    <div style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; color:var(--bb-orange); margin-bottom:0.5rem; font-weight:700; letter-spacing:0.5px;">Estrés moderado · +100pb</div>
-                    <div style="font-size:1.6rem; font-weight:700; color:var(--bb-orange);" id="ss-mod">—</div>
-                    <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--bb-text-muted); margin-top:4px;" id="ss-mod-mdsv">MDSV —</div>
-                </div>
-                <div style="background:var(--bb-panel-bg); border:1px solid #C0392B; border-radius:4px; padding:1.25rem;">
-                    <div style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; color:#C0392B; margin-bottom:0.5rem; font-weight:700; letter-spacing:0.5px;">Estrés severo · +200pb</div>
-                    <div style="font-size:1.6rem; font-weight:700; color:#C0392B;" id="ss-sev">—</div>
-                    <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--bb-text-muted); margin-top:4px;" id="ss-sev-mdsv">MDSV —</div>
-                </div>
-            </div>
-
-            <h3 class="section-title-internal">Escenario crítico — pérdida del 20% de ingresos + Euríbor +200pb</h3>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:2.5rem;">
-                <div class="kpi-card-internal">
-                    <div class="kpi-label-internal">Cuota +200pb</div>
-                    <div class="kpi-value-internal" id="sc-cuota" style="color:#C0392B">—</div>
-                </div>
-                <div class="kpi-card-internal">
-                    <div class="kpi-label-internal">Ingresos −20%</div>
-                    <div class="kpi-value-internal" id="sc-ing" style="color:var(--bb-orange)">—</div>
-                </div>
-                <div class="kpi-card-internal">
-                    <div class="kpi-label-internal">Esfuerzo extremo</div>
-                    <div class="kpi-value-internal" id="sc-esf">—</div>
-                    <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--bb-text-muted); margin-top:6px; font-weight:500;">Umbral ROJO: 40%</div>
-                </div>
+            <!-- PREMIUM TEASER: lo que el simulador no cubre -->
+            <div style="background:var(--bb-panel-bg); border:1px solid var(--bb-border); border-left:4px solid var(--bb-orange); border-radius:0 4px 4px 0; padding:1.5rem; margin-bottom:2rem;">
+                <div style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--bb-orange); margin-bottom:0.75rem; font-weight:600;">Lo que este simulador no te muestra</div>
+                <p style="font-size:0.92rem; color:var(--bb-text); line-height:1.65; margin:0;">Qué pasa si suben los tipos de interés o bajan tus ingresos. Cuánto colchón te queda después de pagar entrada, impuestos y gastos. Si el precio que te piden está por encima o por debajo de lo que realmente se paga en tu zona. Y cuánto margen de negociación podrías tener antes de firmar.</p>
             </div>
 
             <div class="plan-vuelo-container" style="padding:2.5rem;">
-                <p class="version" style="color:var(--bb-orange) !important; font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px;">Este simulador identifica señales preliminares</p>
-                <h3 style="color:#FFFFFF !important; font-size:1.6rem; font-weight:700; margin:0.5rem 0; letter-spacing:-0.5px;">¿Quieres una segunda opinión antes de firmar?</h3>
-                <p style="color:var(--ticket-muted) !important; font-family:var(--font-sans) !important; text-transform:none !important; font-size:0.95rem !important; margin:0.75rem 0 1.5rem; line-height:1.6;">El informe completo analiza si el precio es razonable, qué margen de negociación podría existir, cómo afectará la compra a tu patrimonio y qué aspectos conviene revisar antes de asumir un compromiso económico relevante.</p>
+                <p class="version" style="color:var(--bb-orange) !important; font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px;">El simulador es solo el primer paso</p>
+                <h3 style="color:#FFFFFF !important; font-size:1.6rem; font-weight:700; margin:0.5rem 0; letter-spacing:-0.5px;">¿Quieres saber si esta operación es segura?</h3>
+                <p style="color:var(--ticket-muted) !important; font-family:var(--font-sans) !important; text-transform:none !important; font-size:0.95rem !important; margin:0.75rem 0 1.5rem; line-height:1.6;">Siete páginas con escenarios de estrés financiero, análisis de liquidez post-firma, contraste del precio con testigos reales de tu zona, evaluación de la posición del vendedor y un rango de negociación fundamentado.</p>
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; border-top:1px solid var(--ticket-border); padding-top:1.5rem;">
                     <div style="font-family:var(--font-mono); font-size:1.8rem; font-weight:700; color:var(--bb-orange);">175 € <span style="font-size:12px; font-family:var(--font-sans); color:var(--ticket-muted); font-weight:400; margin-left:8px; letter-spacing:0;">· Entrega en 48h garantizada</span></div>
                     <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
@@ -1864,7 +1827,6 @@
             abrirSimulador();
         }
     });
-            syncEntradaYCalc();
     </script>
 
 <script>
