@@ -2038,6 +2038,16 @@ function destacarPlan(planSeleccionado) {
         btn.style.color = '#0B1424';
     }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+        if (window.location.hash === '#seccion-tarifas') {
+            setTimeout(() => {
+                const elemento = document.getElementById('seccion-tarifas');
+                if (elemento) elemento.scrollIntoView({ behavior: 'smooth' });
+            }, 300); // Pequeña pausa de 300ms para garantizar que la web ha cargado
+        }
+    });
+    
 </script>
 
 </body>
