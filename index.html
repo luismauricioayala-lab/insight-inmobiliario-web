@@ -1053,10 +1053,8 @@
                 </div>
             </div>
         </section>
-        
-        <a id="seccion-tarifas" style="display: block; position: relative; top: -40px; visibility: hidden;"></a>
 
-        <section class="plan-vuelo-section">
+        <section id="formatos" class="plan-vuelo-section">
             <p class="version" style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-accent); margin-bottom: 0.75rem;">El momento de revisar es antes de firmar las arras — no después</p>
             <h2>Elige el formato que se ajusta a tu situación</h2>
             <p class="section-intro">Tres formatos del mismo análisis técnico independiente. Cada uno pensado para un momento de decisión distinto.</p>
@@ -2038,16 +2036,6 @@ function destacarPlan(planSeleccionado) {
         btn.style.color = '#0B1424';
     }
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-        if (window.location.hash === '#seccion-tarifas') {
-            setTimeout(() => {
-                const elemento = document.getElementById('seccion-tarifas');
-                if (elemento) elemento.scrollIntoView({ behavior: 'smooth' });
-            }, 300); // Pequeña pausa de 300ms para garantizar que la web ha cargado
-        }
-    });
-    
 </script>
 
 </body>
