@@ -1058,33 +1058,39 @@
             <h2>Elige el formato que se ajusta a tu situación</h2>
             <p class="section-intro">Tres formatos del mismo análisis técnico independiente. Cada uno pensado para un momento de decisión distinto.</p>
             
-            <div class="pricing-grid">
-                <div class="plan-vuelo-container plan-card">
-                    <p class="version">Cuando ya tienes una propiedad en mente</p>
-                    <h3>Informe individual</h3>
-                    <p class="card-desc">Análisis completo de una propiedad: viabilidad financiera, impacto patrimonial, riesgos identificados y guía de negociación.</p>
-                    <div class="price">175 €</div>
-                    <p class="subtitle">Entrega garantizada en 48 horas.</p>
-                </div>
+        <div class="pricing-grid" id="pricing-grid-master">
+    <div class="plan-vuelo-container plan-card" id="card-individual" onclick="destacarPlan('individual')">
+        <p class="version">Cuando ya tienes una propiedad en mente</p>
+        <h3>Informe individual</h3>
+        <p class="card-desc">Análisis completo de una propiedad: viabilidad financiera, impacto patrimonial, riesgos identificados y guía de negociación.</p>
+        <div class="price">175 €</div>
+        <p class="subtitle" style="margin-bottom: 1.5rem;">Entrega garantizada en 48 horas.</p>
+        
+        <a href="https://buy.stripe.com/test_fZuaEZ42o0yS2O0aGSbo400" target="_blank" rel="noopener" class="cta-primary btn-plan" style="text-decoration:none; display:block; text-align:center; width:100%; border-radius:3px; background: var(--ticket-bg); color: #FFFFFF;">Contratar Informe</a>
+    </div>
 
-                <div class="plan-vuelo-container plan-card plan-card-featured">
-                    <p class="version">Cuando vendes para comprar</p>
-                    <h3>Pack Reposición</h3>
-                    <p class="card-desc">Dos informes para quien vende su vivienda actual y compra otra: análisis del precio de venta razonable + evaluación completa de la nueva.</p>
-                    <div class="price">299 €</div>
-                    <p class="price-ref">2 informes · ahorras 51 €</p>
-                    <p class="subtitle">Vender bien y comprar bien forman parte de la misma decisión patrimonial.</p>
-                </div>
+        <div class="plan-vuelo-container plan-card plan-card-featured" id="card-reposicion" onclick="destacarPlan('reposicion')">
+        <p class="version">Cuando vendes para comprar</p>
+        <h3>Pack Reposición</h3>
+        <p class="card-desc">Dos informes para quien vende su vivienda actual y compra otra: análisis del precio de venta razonable + evaluación completa de la nueva.</p>
+        <div class="price">299 €</div>
+        <p class="price-ref">2 informes · ahorras 51 €</p>
+        <p class="subtitle" style="margin-bottom: 1.5rem;">Vender bien y comprar bien forman parte de la misma decisión patrimonial.</p>
+        
+        <a href="https://buy.stripe.com/test_5kQ7sN9mI81k3S42ambo403" target="_blank" rel="noopener" class="cta-primary btn-plan" style="text-decoration:none; display:block; text-align:center; width:100%; border-radius:3px; background: var(--bb-orange); color: #0B1424;">Contratar Pack</a>
+    </div>
 
-                <div class="plan-vuelo-container plan-card">
-                    <p class="version">Cuando comparas varias opciones</p>
-                    <h3>Pack Explorador</h3>
-                    <p class="card-desc">Análisis comparativo de hasta tres propiedades. Decides con datos en la mano, no con intuición.</p>
-                    <div class="price">399 €</div>
-                    <p class="price-ref">3 informes · ahorras 126 €</p>
-                    <p class="subtitle">Compara hasta tres operaciones con los mismos criterios. ¿Más de tres? Consulta precios especiales.</p>
-                </div>
-            </div>
+    <div class="plan-vuelo-container plan-card" id="card-explorador" onclick="destacarPlan('explorador')">
+        <p class="version">Cuando comparas varias opciones</p>
+        <h3>Pack Explorador</h3>
+        <p class="card-desc">Análisis comparativo de hasta tres propiedades. Decides con datos en la mano, no con intuición.</p>
+        <div class="price">399 €</div>
+        <p class="price-ref">3 informes · ahorras 126 €</p>
+        <p class="subtitle" style="margin-bottom: 1.5rem;">Compara hasta tres operaciones con los mismos criterios. ¿Más de tres? Consulta precios especiales.</p>
+        
+        <a href="https://buy.stripe.com/test_dRm5kFdCYchAbkw6qCbo404" target="_blank" rel="noopener" class="cta-primary btn-plan" style="text-decoration:none; display:block; text-align:center; width:100%; border-radius:3px; background: var(--ticket-bg); color: #FFFFFF;">Contratar Pack</a>
+    </div>
+        </div>
         </section>
 
         <section id="como-funciona">
@@ -2030,6 +2036,43 @@
             status.style.color = 'var(--bb-text-muted)';
         });
     }
+
+    // ... Código anterior (como el selector de tema o abrir modal) ...
+
+    // MANEJO SELECCIÓN DINÁMICA DE PLANES DE PAGO
+function destacarPlan(planSeleccionado) {
+    const cardInd = document.getElementById('card-individual');
+    const cardRep = document.getElementById('card-reposicion');
+    const cardExp = document.getElementById('card-explorador');
+    
+    cardInd.classList.remove('plan-card-featured');
+    cardRep.classList.remove('plan-card-featured');
+    cardExp.classList.remove('plan-card-featured');
+    
+    cardInd.querySelector('.btn-plan').style.background = 'var(--ticket-bg)';
+    cardInd.querySelector('.btn-plan').style.color = '#FFFFFF';
+    cardRep.querySelector('.btn-plan').style.background = 'var(--ticket-bg)';
+    cardRep.querySelector('.btn-plan').style.color = '#FFFFFF';
+    cardExp.querySelector('.btn-plan').style.background = 'var(--ticket-bg)';
+    cardExp.querySelector('.btn-plan').style.color = '#FFFFFF';
+    
+    if (planSeleccionado === 'individual') {
+        cardInd.classList.add('plan-card-featured');
+        const btn = cardInd.querySelector('.btn-plan');
+        btn.style.background = 'var(--bb-orange)';
+        btn.style.color = '#0B1424';
+    } else if (planSeleccionado === 'reposicion') {
+        cardRep.classList.add('plan-card-featured');
+        const btn = cardRep.querySelector('.btn-plan');
+        btn.style.background = 'var(--bb-orange)';
+        btn.style.color = '#0B1424';
+    } else if (planSeleccionado === 'explorador') {
+        cardExp.classList.add('plan-card-featured');
+        const btn = cardExp.querySelector('.btn-plan');
+        btn.style.background = 'var(--bb-orange)';
+        btn.style.color = '#0B1424';
+    }
+}
 </script>
 
 </body>
