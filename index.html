@@ -884,7 +884,7 @@
     <div id="view-home" class="page-view">
         <nav>
             <div class="logo-group">
-                <span class="logo-text">DICTUM PREVIO //<span> SEVILLA</span></span>
+                <span class="logo-text">DICTUM PREVIO //<span id="logo-ciudad"> SEVILLA</span></span>
             </div>
             <div class="nav-right-container">
                 <div class="nav-links">
@@ -904,19 +904,16 @@
                 
                 <div class="form-container">
                     <div class="form-group-item">
+                        <select id="ciudad" onchange="cambiarCiudad()">
+                            <option value="Sevilla">Sevilla</option>
+                            <option value="Zaragoza">Zaragoza</option>
+                            <option value="Oviedo">Oviedo</option>
+                            <option value="Toledo">Toledo</option>
+                        </select>
+                    </div>
+                    <div class="form-group-item">
                         <select id="distrito">
-                            <option value="">Distrito de Sevilla</option>
-                            <option value="bellavista">Bellavista-La Palmera</option>                            
-                            <option value="casco-antiguo">Casco Antiguo</option>
-                            <option value="cerro-amate">Cerro-Amate</option>
-                            <option value="este-alcosa">Este-Alcosa-Torreblanca</option>
-                            <option value="los-remedios">Los Remedios</option>
-                            <option value="macarena">Macarena</option>
-                            <option value="nervion">Nervión</option>
-                            <option value="norte">Norte</option>
-                            <option value="san-pablo">San Pablo-Santa Justa</option>
-                            <option value="sur">Sur</option>
-                            <option value="triana">Triana</option>         
+                            <option value="">Selecciona distrito</option>
                         </select>
                     </div>
                     <div class="form-group-item">
@@ -1024,7 +1021,7 @@
 </div>
 
             <div class="tech-links-footer">
-                💡 Fichas de distrito analizadas: 
+                💡 Fichas de distrito analizadas (Sevilla): 
                 <a href="#nervion" style="color: var(--bb-accent); font-weight: 700; text-decoration: none; margin-left: 5px;">Nervión →</a>
                 <a href="#triana" style="color: var(--bb-accent); font-weight: 700; text-decoration: none; margin-left: 15px;">Triana →</a>
                 <a href="#los-remedios" style="color: var(--bb-accent); font-weight: 700; text-decoration: none; margin-left: 15px;">Los Remedios →</a>
@@ -1332,14 +1329,17 @@
                 </div>
                 <div style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 4px; padding: 1.5rem;">
                     <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--bb-accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Conjunto de datos</div>
-                    <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">CSV — 11 Distritos Sevilla Capital</h4>
+                    <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">CSV — Distritos por Ciudad</h4>
                     <p style="font-size: 0.9rem; color: var(--bb-text-muted); line-height: 1.6; margin-bottom: 1.25rem;">Dataset completo: precios, descuentos, volúmenes, tendencias corregidas y metodología por campo.</p>
-                    <a href="ine_sevilla_distritos_2026_actualizado.csv" download style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--bb-accent);">Descargar CSV →</a>
+                    <a href="ine_sevilla_distritos.csv" download style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--bb-accent);">Sevilla →</a>&ensp;
+                    <a href="ine_zaragoza_distritos_2026.csv" download style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--bb-accent);">Zaragoza →</a>&ensp;
+                    <a href="ine_oviedo_distritos_2026.csv" download style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--bb-accent);">Oviedo →</a>&ensp;
+                    <a href="ine_toledo_distritos_2026.csv" download style="display: inline-block; color: var(--bb-accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--bb-accent);">Toledo →</a>
                 </div>
             </div>
 
             <h3 class="section-title-internal">05. Estudios de Distrito</h3>
-            <p style="color: var(--bb-text-muted); line-height: 1.7; margin-bottom: 1.5rem;">Análisis independientes de cuatro distritos. Demuestran la profundidad del análisis sin revelar la metodología completa del informe de propiedad individual.</p>
+            <p style="color: var(--bb-text-muted); line-height: 1.7; margin-bottom: 1.5rem;">Análisis independientes de cuatro distritos de Sevilla. Demuestran la profundidad del análisis que aplicamos en cada ciudad cubierta.</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
                 <div style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 4px; padding: 1.5rem;">
                     <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Estudio de Distrito</div>
@@ -1818,9 +1818,81 @@
         const entradaEur  = document.getElementById('sim-entrada-eur')?.value || '60000';
         const pctEntrada  = Math.round((parseFloat(entradaEur) / parseFloat(precio)) * 100);
         
-        const streamlitUrl = `https://dictum-previo.streamlit.app/?distrito=${encodeURIComponent(distrito)}&precio=${precio}&ahorros=${capital}&ingresos=${ingresos}&plazo=${plazo}&metros=${metros}&euribor=${euribor}&diferencial=${diferencial}&pct_entrada=${pctEntrada}`;    
+        const streamlitUrl = `https://dictum-previo.streamlit.app/?ciudad=${encodeURIComponent(document.getElementById('ciudad').value)}&distrito=${encodeURIComponent(distrito)}&precio=${precio}&ahorros=${capital}&ingresos=${ingresos}&plazo=${plazo}&metros=${metros}&euribor=${euribor}&diferencial=${diferencial}&pct_entrada=${pctEntrada}`;    
         window.open(streamlitUrl, '_blank');
     }
+
+    /* 4. SELECTOR MULTICIUDAD — Distritos dinámicos */
+    const CITY_DATA = {
+        "Sevilla": [
+            {v: "bellavista", t: "Bellavista-La Palmera"},
+            {v: "casco-antiguo", t: "Casco Antiguo"},
+            {v: "cerro-amate", t: "Cerro-Amate"},
+            {v: "este-alcosa", t: "Este-Alcosa-Torreblanca"},
+            {v: "los-remedios", t: "Los Remedios"},
+            {v: "macarena", t: "Macarena"},
+            {v: "nervion", t: "Nervión"},
+            {v: "norte", t: "Norte"},
+            {v: "san-pablo", t: "San Pablo-Santa Justa"},
+            {v: "sur", t: "Sur"},
+            {v: "triana", t: "Triana"},
+        ],
+        "Zaragoza": [
+            {v: "actur-rey-fernando", t: "Actur-Rey Fernando"},
+            {v: "casablanca", t: "Casablanca"},
+            {v: "casco-historico", t: "Casco Histórico"},
+            {v: "centro", t: "Centro"},
+            {v: "delicias", t: "Delicias"},
+            {v: "distrito-rural", t: "Distrito Rural"},
+            {v: "el-rabal", t: "El Rabal"},
+            {v: "la-almozara", t: "La Almozara"},
+            {v: "las-fuentes", t: "Las Fuentes"},
+            {v: "miralbueno", t: "Miralbueno"},
+            {v: "oliver-valdefierro", t: "Oliver-Valdefierro"},
+            {v: "san-jose", t: "San José"},
+            {v: "santa-isabel", t: "Santa Isabel"},
+            {v: "sur", t: "Sur"},
+            {v: "torrero", t: "Torrero"},
+            {v: "universidad", t: "Universidad"},
+        ],
+        "Oviedo": [
+            {v: "d1-centro-casco-historico", t: "D1 Centro y Casco Histórico"},
+            {v: "d2-naranco-vallobin-florida", t: "D2 Ciudad Naranco-Vallobín-La Florida-Las Campas"},
+            {v: "d3-monxina-guillen-corredoria", t: "D3 La Monxina-Guillén-La Corredoria"},
+            {v: "d4-san-lazaro-otero-tenderina", t: "D4 San Lázaro-Otero-Tenderina-Ventanielles-Colloto"},
+            {v: "d5-arganosa-eria-buenavista", t: "D5 La Argañosa-Ería-Buenavista-El Cristo-Montecerrao"},
+            {v: "d6-pumarin-teatinos-pando", t: "D6 Pumarín-Teatinos-Pando-Pontón Vaqueros"},
+            {v: "d-rural", t: "D Rural"},
+        ],
+        "Toledo": [
+            {v: "d1-casco-historico", t: "D1 Casco Histórico"},
+            {v: "d2-santa-barbara", t: "D2 Santa Bárbara"},
+            {v: "d3-santa-maria-benquerencia", t: "D3 Santa María de Benquerencia"},
+            {v: "d4-centro", t: "D4 Centro"},
+            {v: "d5-norte", t: "D5 Norte"},
+        ],
+    };
+
+    function cambiarCiudad() {
+        const ciudad = document.getElementById('ciudad').value;
+        const selectDist = document.getElementById('distrito');
+        const logoCiudad = document.getElementById('logo-ciudad');
+
+        // Actualizar logo
+        if (logoCiudad) logoCiudad.textContent = ' ' + ciudad.toUpperCase();
+
+        // Repoblar distritos
+        selectDist.innerHTML = '<option value="">Selecciona distrito</option>';
+        (CITY_DATA[ciudad] || []).forEach(d => {
+            const opt = document.createElement('option');
+            opt.value = d.v;
+            opt.textContent = d.t;
+            selectDist.appendChild(opt);
+        });
+    }
+
+    // Inicializar distritos de Sevilla al cargar
+    document.addEventListener('DOMContentLoaded', cambiarCiudad);
 
     document.getElementById('precio').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
