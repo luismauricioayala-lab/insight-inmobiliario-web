@@ -378,7 +378,7 @@
         </article>
 
 
-        
+
 
         <article class="post-article">
           <div class="post-date">Finanzas Personales · Ejercicio 2026</div>
@@ -665,7 +665,7 @@
     </div>
   </div>
 
-  <div id="view-article-reposicion" class="page-view">
+<div id="view-article-reposicion" class="page-view">
     <div class="topbar-interna">
       <div class="brand-title">Dictum Previo // Biblioteca Técnica</div>
       <a onclick="navegarA('view-blog-home')" class="btn-retorno">&larr; Volver al Blog</a>
@@ -681,6 +681,65 @@
             <p class="lead">Cambiar de vivienda no es una compra — son dos operaciones simultáneas con un resultado neto que muy pocos calculan antes de firmar.</p>
 
             <p>Cuando vendes tu vivienda actual para comprar otra, no tienes un presupuesto — tienes una ecuación. Lo que recibes de la venta menos impuestos, comisiones y cancelación hipotecaria te deja un neto. Ese neto, confrontado con el coste real de la nueva compra (precio más ITP, notaría, registro, gestoría), produce un saldo que puede ser positivo, negativo, o justo. Y de ese saldo depende cuánta hipoteca necesitas pedir, cuánto esfuerzo mensual asumes, y si la operación tiene sentido o te deja más vulnerable de lo que estabas.</p>
+
+            <div class="calculator-container" style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 6px; margin: 2rem 0;">
+                <h3 style="margin-top: 0; margin-bottom: 1rem; font-family: var(--font-mono); font-size: 1rem; text-transform: uppercase; color: var(--bb-accent);">🧪 Simulador de Reposición Estático</h3>
+                
+                <div class="calc-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="margin: 0 0 0.75rem 0; font-size: 0.9rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.25rem;">1. Operación de Venta</h4>
+                        <div style="margin-bottom: 0.75rem;">
+                            <label style="display:block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem;">Precio estimado de venta (€):</label>
+                            <input type="text" id="p_venta" class="calc-input" value="230.000" style="width:100%; padding: 0.5rem; background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-mono);">
+                        </div>
+                        <div style="margin-bottom: 0.75rem;">
+                            <label style="display:block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem;">Hipoteca pendiente (€):</label>
+                            <input type="text" id="h_pendiente" class="calc-input" value="80.000" style="width:100%; padding: 0.5rem; background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-mono);">
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem;">Comisión agencia inmobiliaria (%):</label>
+                            <input type="number" id="c_agencia" value="3" step="0.5" style="width:100%; padding: 0.5rem; background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-mono);">
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="margin: 0 0 0.75rem 0; font-size: 0.9rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.25rem;">2. Operación de Compra</h4>
+                        <div style="margin-bottom: 0.75rem;">
+                            <label style="display:block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem;">Precio de la nueva vivienda (€):</label>
+                            <input type="text" id="p_compra" class="calc-input" value="280.000" style="width:100%; padding: 0.5rem; background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-mono);">
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.25rem;">Impuesto ITP aplicable (%):</label>
+                            <input type="number" id="i_itp" value="7" step="0.5" style="width:100%; padding: 0.5rem; background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-mono);">
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="ejecutarCalculoReposicion()" style="background: var(--bb-orange); color: #0B1424; border: none; padding: 0.75rem 1.5rem; font-family: var(--font-mono); font-weight: bold; cursor: pointer; width: 100%; border-radius: 3px;">
+                    ⚡ CALCULAR EQUACIÓN NETAS DE REPOSICIÓN
+                </button>
+
+                <div id="resultados_reposicion" style="display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--border-color);">
+                    <div style="margin-bottom: 1rem; text-align: center;">
+                        <span id="r_diagnosis" style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 3px;"></span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; font-family: var(--font-mono); font-size: 0.9rem;">
+                        <div style="background: var(--bg-main); padding: 0.75rem; border-left: 3px solid #6b7280;">
+                            <span style="color: var(--text-muted); font-size: 0.75rem; display:block;">Neto estimado venta:</span>
+                            <strong id="r_neto_venta" style="font-size:1.1rem; color: var(--text-main);">0 €</strong>
+                        </div>
+                        <div style="background: var(--bg-main); padding: 0.75rem; border-left: 3px solid #e11d48;">
+                            <span style="color: var(--text-muted); font-size: 0.75rem; display:block;">Coste total compra:</span>
+                            <strong id="r_coste_compra" style="font-size:1.1rem; color: var(--text-main);">0 €</strong>
+                        </div>
+                        <div style="background: var(--bg-main); padding: 0.75rem; border-left: 3px solid var(--bb-orange); grid-column: span 1;">
+                            <span style="color: var(--text-muted); font-size: 0.75rem; display:block;">Necesidad de financiación (GAP):</span>
+                            <strong id="r_gap" style="font-size:1.1rem; color: var(--bb-orange);">0 €</strong>
+                        </div>
+                    </div>
+                    <p id="r_cuota" style="margin: 1rem 0 0 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;"></p>
+                </div>
+            </div>
 
             <p>El problema es que la mayoría de los compradores de reposición estiman ese saldo de forma intuitiva, y suelen sobreestimarlo. Suman el precio al que creen que venderán, restan "más o menos lo que deben", y asumen que les sobra. No descuentan la plusvalía municipal, ni la comisión del agente, ni el coste de cancelación registral. Y en el lado de la compra, subestiman los gastos — que en una operación de 250.000 € pueden superar los 25.000 €.</p>
 
@@ -730,6 +789,113 @@
         </div>
     </div>
 </div>
+
+<script>
+function parseNum(id) {
+    const raw = document.getElementById(id).value.replace(/[^\d]/g, '');
+    return raw ? parseInt(raw) : 0;
+}
+ 
+function fmt(n) {
+    return n.toLocaleString('es-ES', { maximumFractionDigits: 0 }) + ' \u20AC';
+}
+ 
+function fmtSign(n) {
+    const prefix = n < 0 ? '-' : '+';
+    return prefix + Math.abs(n).toLocaleString('es-ES', { maximumFractionDigits: 0 }) + ' \u20AC';
+}
+ 
+function calcular() {
+    const pventa = parseNum('precioVenta');
+    const hipPendiente = parseNum('hipotecaPendiente');
+    const pcompra = parseNum('precioCompra');
+    const plusvalia = parseNum('plusvalia');
+    const itpRate = parseFloat(document.getElementById('ccaa').value);
+    const plazo = parseInt(document.getElementById('plazoHipoteca').value);
+ 
+    if (!pventa || !pcompra) {
+        alert('Introduce al menos el precio de venta y el de compra.');
+        return;
+    }
+ 
+    // === VENTA ===
+    const comisionAgencia = Math.round(pventa * 0.03 * 1.21); // 3% + 21% IVA
+    const cancelacionRegistral = hipPendiente > 0 ? 1000 : 0;
+    const netoVenta = pventa - hipPendiente - comisionAgencia - plusvalia - cancelacionRegistral;
+ 
+    // === COMPRA ===
+    const itp = Math.round(pcompra * itpRate);
+    const gastosEscritura = Math.round(pcompra * 0.018); // ~1.8% (notaría + registro + gestoría)
+    const costeCompra = pcompra + itp + gastosEscritura;
+ 
+    // === GAP ===
+    const gap = costeCompra - netoVenta;
+ 
+    // === CUOTA HIPOTECA ===
+    const tipoAnual = 0.03; // 3% referencia mixta
+    const tipoMensual = tipoAnual / 12;
+    const meses = plazo * 12;
+    let cuotaMensual = 0;
+    if (gap > 0) {
+        cuotaMensual = gap * (tipoMensual * Math.pow(1 + tipoMensual, meses)) /
+                       (Math.pow(1 + tipoMensual, meses) - 1);
+    }
+ 
+    // === RENDER ===
+    document.getElementById('r_pventa').textContent = fmt(pventa);
+    document.getElementById('r_hipoteca').textContent = '- ' + fmt(hipPendiente);
+    document.getElementById('r_comision').textContent = '- ' + fmt(comisionAgencia);
+    document.getElementById('r_plusvalia').textContent = '- ' + fmt(plusvalia);
+    document.getElementById('r_cancelacion').textContent = cancelacionRegistral > 0 ? '- ' + fmt(cancelacionRegistral) : '—';
+ 
+    const netoEl = document.getElementById('r_neto_venta');
+    netoEl.textContent = fmt(netoVenta);
+    netoEl.className = 'value ' + (netoVenta >= 0 ? 'positive' : 'negative');
+ 
+    document.getElementById('r_pcompra').textContent = fmt(pcompra);
+    document.getElementById('r_itp').textContent = fmt(itp) + ' (' + (itpRate * 100).toFixed(0) + '%)';
+    document.getElementById('r_gastos_escritura').textContent = '~' + fmt(gastosEscritura);
+    document.getElementById('r_coste_compra').textContent = fmt(costeCompra);
+ 
+    const gapEl = document.getElementById('r_gap');
+    if (gap <= 0) {
+        gapEl.textContent = '0 \u20AC';
+        document.getElementById('r_cuota').textContent =
+            'No necesitas hipoteca nueva. Tu neto cubre la compra y te quedan ' + fmt(Math.abs(gap)) + ' de remanente.';
+    } else {
+        gapEl.textContent = fmt(gap);
+        document.getElementById('r_cuota').textContent =
+            'Cuota estimada: ' + Math.round(cuotaMensual).toLocaleString('es-ES') + ' \u20AC/mes a ' + plazo +
+            ' años (tipo fijo 3% referencia). Esfuerzo hipotecario a validar con tus ingresos reales.';
+    }
+ 
+    // Diagnosis
+    const diagEl = document.getElementById('r_diagnosis');
+    const esfuerzo = gap > 0 ? gap / pcompra : 0;
+    if (gap <= 0) {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-green">Operación autofinanciada</span>';
+    } else if (esfuerzo < 0.6) {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-green">Financiación moderada</span>';
+    } else if (esfuerzo < 0.8) {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-amber">Financiación elevada</span>';
+    } else {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-red">Financiación máxima — requiere revisión</span>';
+    }
+ 
+    document.getElementById('resultados').classList.add('visible');
+    document.getElementById('resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+ 
+// Auto-format inputs with thousands separator
+document.querySelectorAll('.calc-input').forEach(input => {
+    input.addEventListener('blur', function() {
+        const raw = this.value.replace(/[^\d]/g, '');
+        if (raw) {
+            this.value = parseInt(raw).toLocaleString('es-ES');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
