@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tres alternativas con datos a los barrios más demandados de Zaragoza | Dictum Previo</title>
+<meta name="description" content="¿Buscas piso en Romareda, Centro o Actur? Te mostramos tres barrios alternativos en Zaragoza con datos reales: mismo nivel de servicios, menor precio por metro cuadrado.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:#FFFFFF; --text:#1A1A2E; --muted:#6B7280; --border:#DDD8CF;
+    --surface:#F7F3ED; --navy:#0d1f3c; --gold:#b8832a;
+    --green:#1A7A4A; --amber:#C05621; --red:#B83232;
+    --green-light:rgba(26,122,74,0.08); --amber-light:rgba(192,86,33,0.08);
+    --red-light:rgba(184,50,50,0.08); --gold-light:rgba(184,131,42,0.08);
+    --nav-bg:rgba(255,255,255,0.96);
+    --font-sans:'Inter',-apple-system,sans-serif; --font-mono:'JetBrains Mono',monospace;
+  }
+  html[data-theme="dark"] {
+    --bg:#0B0E14; --text:#F5F7FA; --muted:#8A94A6; --border:#242933;
+    --surface:#12161F; --gold:#d9a849; --nav-bg:rgba(11,14,20,0.96);
+    --green-light:rgba(26,122,74,0.12); --amber-light:rgba(192,86,33,0.12);
+    --red-light:rgba(184,50,50,0.12); --gold-light:rgba(217,168,73,0.1);
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font-sans); color:var(--text); background:var(--bg); line-height:1.7; font-size:17px; -webkit-font-smoothing:antialiased; }
+
+  .topbar { position:sticky; top:0; z-index:1000; background:var(--nav-bg); border-bottom:1px solid var(--border); padding:1rem 10%; display:flex; justify-content:space-between; align-items:center; backdrop-filter:blur(8px); }
+  .topbar .brand { font-size:0.85rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; }
+  .topbar .back { text-decoration:none; color:var(--gold); font-size:0.85rem; font-weight:600; }
+
+  .wrapper { max-width:900px; margin:0 auto; padding:3rem 2rem 4rem; }
+  .doc-header { border-top:4px solid var(--navy); padding-top:1.5rem; margin-bottom:2.5rem; }
+  .doc-eyebrow { font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--gold); letter-spacing:1.5px; margin-bottom:0.5rem; font-weight:600; }
+  .doc-title { font-size:28px; font-weight:800; letter-spacing:-0.5px; line-height:1.2; margin-bottom:0.75rem; }
+  .doc-subtitle { font-size:1.05rem; color:var(--muted); line-height:1.6; }
+
+  .section-title { font-size:18px; font-weight:700; margin:2.5rem 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border); }
+  p.body-text { margin-bottom:1.25rem; line-height:1.7; }
+
+  /* PAIR COMPARISON */
+  .pair-block { margin:2rem 0 2.5rem; }
+  .pair-header { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap; }
+  .pair-label-popular { font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); background:var(--surface); border:1px solid var(--border); padding:3px 10px; border-radius:3px; }
+  .pair-arrow { font-size:1.2rem; color:var(--gold); }
+  .pair-label-alt { font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.5px; color:#fff; background:var(--gold); padding:3px 10px; border-radius:3px; }
+  .pair-saving { font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:var(--green); margin-left:auto; }
+
+  .pair-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .pair-col { padding:1.25rem; }
+  .pair-col:first-child { background:var(--surface); border-right:1px solid var(--border); }
+  .pair-col:last-child { background:var(--gold-light); }
+  .pair-col-title { font-weight:700; font-size:1rem; margin-bottom:0.75rem; }
+  .pair-col-title .price { font-family:var(--font-mono); font-size:0.85rem; color:var(--muted); font-weight:500; margin-left:0.5rem; }
+
+  .pair-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(0,0,0,0.04); font-size:0.88rem; }
+  .pair-row:last-child { border:none; }
+  .pair-row .metric-name { color:var(--muted); }
+  .pair-row .metric-val { font-family:var(--font-mono); font-weight:600; font-size:0.85rem; }
+  .pair-row .metric-val.better { color:var(--green); }
+  .pair-row .metric-val.worse { color:var(--red); }
+  .pair-row .metric-val.neutral { color:var(--text); }
+
+  .pair-verdict { margin-top:1rem; padding:1rem 1.25rem; background:var(--surface); border-left:4px solid var(--gold); border-radius:0 6px 6px 0; font-size:0.9rem; line-height:1.6; color:var(--text); }
+
+  /* CTA */
+  .cta-block { background:var(--navy); color:#FFFFFF; padding:2.5rem; border-radius:6px; margin:2.5rem 0 1rem; text-align:center; }
+  .cta-block h3 { color:#FFFFFF; font-size:1.3rem; margin-bottom:0.75rem; }
+  .cta-block p { color:rgba(255,255,255,0.7); font-size:0.92rem; margin-bottom:1.5rem; max-width:550px; margin-left:auto; margin-right:auto; line-height:1.6; }
+  .cta-btn { display:inline-block; background:var(--gold); color:#0d1f3c; font-weight:700; text-decoration:none; padding:0.8rem 2rem; border-radius:4px; font-size:0.9rem; }
+
+  .doc-footer { margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.78rem; color:var(--muted); line-height:1.6; }
+
+  @media (max-width:768px) {
+    .wrapper { padding:2rem 1.25rem; }
+    .pair-grid { grid-template-columns:1fr; }
+    .pair-col:first-child { border-right:none; border-bottom:1px solid var(--border); }
+    .pair-header { flex-direction:column; align-items:flex-start; }
+    .pair-saving { margin-left:0; }
+  }
+</style>
+
+<script>
+  const t = localStorage.getItem('insight-theme');
+  if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme:dark)').matches)) document.documentElement.setAttribute('data-theme','dark');
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Dictum Previo // Análisis de Zonas</div>
+  <a href="https://antesdelnotario.es" class="back">← Volver al inicio</a>
+</div>
+
+<div class="wrapper">
+  <div class="doc-header">
+    <div class="doc-eyebrow">Análisis comparativo · Zaragoza · Junio 2026</div>
+    <h1 class="doc-title">Tres alternativas con datos a los barrios más demandados de Zaragoza</h1>
+    <p class="doc-subtitle">Si el barrio que te gusta se sale de tu presupuesto, estos datos te muestran dónde encontrar un nivel de servicios comparable a menor precio — y qué estás ganando y perdiendo con el cambio.</p>
+  </div>
+
+  <p class="body-text">Zaragoza tiene 12,88 leads por anuncio publicado — la segunda presión de demanda más alta de España. En los barrios consolidados, esa presión se traduce en precios de oferta que se pagan casi íntegros. Pero no todos los distritos se mueven al mismo ritmo ni al mismo precio. Estos son tres pares donde la alternativa ofrece un ahorro verificable sin sacrificar lo esencial.</p>
+
+  <!-- ═══ PAR 1: ROMAREDA → DELICIAS ═══ -->
+  <div class="pair-block">
+    <div class="pair-header">
+      <span class="pair-label-popular">Romareda · 3.200 €/m²</span>
+      <span class="pair-arrow">→</span>
+      <span class="pair-label-alt">Delicias · 2.200 €/m²</span>
+      <span class="pair-saving">Ahorro: 31% · ~85.000 € en un piso de 85 m²</span>
+    </div>
+
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="pair-col-title">Romareda <span class="price">3.200 €/m²</span></div>
+        <div class="pair-row"><span class="metric-name">Tendencia 12m</span><span class="metric-val neutral">+12,0%</span></div>
+        <div class="pair-row"><span class="metric-name">Transporte</span><span class="metric-val neutral">Tranvía L1 directo</span></div>
+        <div class="pair-row"><span class="metric-name">Tiempo al centro</span><span class="metric-val neutral">10 min tranvía</span></div>
+        <div class="pair-row"><span class="metric-name">Hospital</span><span class="metric-val neutral">Miguel Servet (5 min)</span></div>
+        <div class="pair-row"><span class="metric-name">Educación</span><span class="metric-val neutral">Alta oferta pública + concertada</span></div>
+        <div class="pair-row"><span class="metric-name">Yield bruto</span><span class="metric-val neutral">4,1%</span></div>
+      </div>
+      <div class="pair-col">
+        <div class="pair-col-title">Delicias <span class="price">2.200 €/m²</span></div>
+        <div class="pair-row"><span class="metric-name">Tendencia 12m</span><span class="metric-val better">+17,0% ▲</span></div>
+        <div class="pair-row"><span class="metric-name">Transporte</span><span class="metric-val neutral">Estación AVE Delicias</span></div>
+        <div class="pair-row"><span class="metric-name">Tiempo al centro</span><span class="metric-val neutral">12 min bus</span></div>
+        <div class="pair-row"><span class="metric-name">Hospital</span><span class="metric-val neutral">Clínico Lozano Blesa (10 min)</span></div>
+        <div class="pair-row"><span class="metric-name">Educación</span><span class="metric-val better">8 públicos + 3 concertados ▲</span></div>
+        <div class="pair-row"><span class="metric-name">Yield bruto</span><span class="metric-val better">5,7% ▲</span></div>
+      </div>
+    </div>
+
+    <div class="pair-verdict"><strong>Lectura:</strong> Delicias no es una versión inferior de Romareda — es un barrio con más vitalidad comercial, mejor cobertura educativa y una estación AVE que Romareda no tiene. La diferencia de precio refleja antigüedad del parque inmobiliario (edificios de los 60-70 que pueden necesitar reforma), no inferioridad de ubicación. El yield superior (5,7% vs 4,1%) confirma que el mercado todavía infravalora Delicias respecto a su nivel de servicio. La tendencia +17% dice que eso está cambiando.</div>
+  </div>
+
+  <!-- ═══ PAR 2: CENTRO → LA ALMOZARA ═══ -->
+  <div class="pair-block">
+    <div class="pair-header">
+      <span class="pair-label-popular">Centro · 3.110 €/m²</span>
+      <span class="pair-arrow">→</span>
+      <span class="pair-label-alt">La Almozara · 2.720 €/m²</span>
+      <span class="pair-saving">Ahorro: 12,5% · ~33.000 € en un piso de 85 m²</span>
+    </div>
+
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="pair-col-title">Centro <span class="price">3.110 €/m²</span></div>
+        <div class="pair-row"><span class="metric-name">Tendencia 12m</span><span class="metric-val neutral">+15,5%</span></div>
+        <div class="pair-row"><span class="metric-name">Transporte</span><span class="metric-val neutral">Tranvía L1 (varias paradas)</span></div>
+        <div class="pair-row"><span class="metric-name">Tiempo al centro</span><span class="metric-val neutral">Es el centro</span></div>
+        <div class="pair-row"><span class="metric-name">Riesgo</span><span class="metric-val worse">Alto — edificios históricos</span></div>
+        <div class="pair-row"><span class="metric-name">Parques</span><span class="metric-val neutral">Bruil · cerca Labordeta</span></div>
+        <div class="pair-row"><span class="metric-name">Yield bruto</span><span class="metric-val neutral">5,2%</span></div>
+      </div>
+      <div class="pair-col">
+        <div class="pair-col-title">La Almozara <span class="price">2.720 €/m²</span></div>
+        <div class="pair-row"><span class="metric-name">Tendencia 12m</span><span class="metric-val neutral">+13,0%</span></div>
+        <div class="pair-row"><span class="metric-name">Transporte</span><span class="metric-val neutral">Bus Pza Aragón–Almozara</span></div>
+        <div class="pair-row"><span class="metric-name">Tiempo al centro</span><span class="metric-val neutral">8 min bus · 20 min a pie</span></div>
+        <div class="pair-row"><span class="metric-name">Riesgo</span><span class="metric-val better">Bajo — residencial consolidado ▲</span></div>
+        <div class="pair-row"><span class="metric-name">Parques</span><span class="metric-val better">Parque del Agua · ribera Ebro ▲</span></div>
+        <div class="pair-row"><span class="metric-name">Yield bruto</span><span class="metric-val neutral">4,8%</span></div>
+      </div>
+    </div>
+
+    <div class="pair-verdict"><strong>Lectura:</strong> La Almozara es la alternativa para quien quiere centralidad sin el riesgo de los edificios históricos del Centro. A 20 minutos a pie de la Plaza del Pilar, con parque de vivienda más reciente y menor exposición a derramas de rehabilitación. El ahorro es más moderado (12,5%) porque el mercado ya reconoce su valor. Pero la diferencia clave está en el riesgo: comprar en el Centro sin verificar el estado del edificio puede convertir una buena ubicación en una trampa financiera.</div>
+  </div>
+
+  <!-- ═══ PAR 3: ACTUR → LAS FUENTES ═══ -->
+  <div class="pair-block">
+    <div class="pair-header">
+      <span class="pair-label-popular">Actur-Rey Fernando · 2.700 €/m²</span>
+      <span class="pair-arrow">→</span>
+      <span class="pair-label-alt">Las Fuentes · 2.100 €/m²</span>
+      <span class="pair-saving">Ahorro: 22% · ~51.000 € en un piso de 85 m²</span>
+    </div>
+
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="pair-col-title">Actur <span class="price">2.700 €/m²</span></div>
+        <div class="pair-row"><span class="metric-name">Tendencia 12m</span><span class="metric-val neutral">+10,0%</span></div>
+        <div class="pair-row"><span class="metric-name">Transporte</span><span class="metric-val better">Tranvía L1 (varias paradas)</span></div>
+        <div class="pair-row"><span class="metric-name">Tiempo al centro</span><span class="metric-val neutral">12 min tranvía</span></div>
+        <div class="pair-row"><span class="metric-name">Campus</span><span class="metric-val neutral">Río Ebro (Universidad)</span></div>
+        <div class="pair-row"><span class="metric-name">Perfil</span><span class="metric-val neutral">Familiar consolidado</span></div>
+        <div class="pair-row"><span class="metric-name">Yield bruto</span><span class="metric-val neutral">4,6%</span></div>
+      </div>
+      <div class="pair-col">
+        <div class="pair-col-title">Las Fuentes <span class="price">2.100 €/m²</span></div>
+        <div class="pair-row"><span class="metric-name">Tendencia 12m</span><span class="metric-val better">+25,7% ▲</span></div>
+        <div class="pair-row"><span class="metric-name">Transporte</span><span class="metric-val neutral">Bus · futura L2 tranvía</span></div>
+        <div class="pair-row"><span class="metric-name">Tiempo al centro</span><span class="metric-val neutral">15 min bus</span></div>
+        <div class="pair-row"><span class="metric-name">Población</span><span class="metric-val neutral">43.000 hab · barrio grande</span></div>
+        <div class="pair-row"><span class="metric-name">Perfil</span><span class="metric-val neutral">En transición · revalorizando</span></div>
+        <div class="pair-row"><span class="metric-name">Yield bruto</span><span class="metric-val better">5,5% ▲</span></div>
+      </div>
+    </div>
+
+    <div class="pair-verdict"><strong>Lectura:</strong> Las Fuentes es la apuesta más agresiva de las tres. La revalorización del +25,7% dice que el mercado lo está descubriendo, y la futura L2 del tranvía (Delicias–Las Fuentes–San José, en estudio) sería un catalizador importante. Pero "en transición" también significa heterogeneidad: hay calles excelentes y calles que no. Aquí la diferencia entre una buena compra y una mala no es el barrio — es la microlocalización. Un análisis a nivel de calle importa más que en Actur, donde el parque es más homogéneo.</div>
+  </div>
+
+  <!-- ═══ ADVERTENCIA ═══ -->
+  <div class="section-title">Lo que estos datos no te dicen</div>
+  <p class="body-text">Los promedios de distrito son exactamente eso — promedios. Dentro de Delicias hay calles a 1.800 €/m² y calles a 2.600 €/m². Dentro de Las Fuentes hay edificios rehabilitados y edificios que necesitan 30.000 € de reforma. El distrito te dice dónde mirar; la evaluación de la operación concreta te dice si firmar.</p>
+  <p class="body-text">Estos datos tampoco te dicen cuánto puedes pagar sin ahogarte, cuánto colchón te queda después de la compra, ni si el vendedor tiene presión para bajar. Eso es lo que analiza una Opinión Técnica de Compra — operación por operación, no barrio por barrio.</p>
+
+  <!-- ═══ CTA ═══ -->
+  <div class="cta-block">
+    <h3>¿Has encontrado un piso en alguno de estos barrios?</h3>
+    <p>Prueba el simulador con los datos de tu operación y descubre si los números funcionan para tu situación. Gratis, sin registro.</p>
+    <a href="https://antesdelnotario.es" class="cta-btn">Ir al simulador</a>
+  </div>
+
+  <div class="doc-footer">
+    <p><strong>Fuentes:</strong> Precios de oferta y tendencias: Idealista (mayo 2026), Propiso (Q1 2026). Servicios y transporte: Ayuntamiento de Zaragoza, Tranvías de Zaragoza. Yields calculados sobre alquiler medio por m² / precio de referencia. Tiempos de transporte aproximados en hora punta.</p>
+    <p style="margin-top:0.75rem;">Este contenido es informativo y no constituye recomendación de compra ni asesoramiento de inversión. Dictum Previo · antesdelnotario.es</p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitor del Comprador · Sevilla T1 2026 | Dictum Previo</title>
+<meta name="description" content="¿Estás pensando comprar vivienda en Sevilla? Análisis trimestral independiente del mercado: gap oferta-cierre por distrito, precios reales y qué significa para tu operación.">
+<meta name="keywords" content="comprar vivienda Sevilla 2026, precio piso Sevilla, mercado inmobiliario Sevilla, gap oferta cierre Sevilla, análisis comprador Sevilla">
+
+<meta property="og:title" content="Monitor del Comprador · Sevilla T1 2026">
+<meta property="og:description" content="En Sevilla, las viviendas se cierran un 16% por debajo del anuncio. ¿Sabes hasta dónde apretar tu oferta?">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #6B7280;
+    --border: #DDD8CF;
+    --surface: #F7F3ED;
+    --navy: #0d1f3c;
+    --gold: #b8832a;
+    --gold-light: rgba(184, 131, 42, 0.08);
+    --green: #1A7A4A;
+    --green-light: rgba(26, 122, 74, 0.08);
+    --amber: #C05621;
+    --amber-light: rgba(192, 86, 33, 0.08);
+    --red: #B83232;
+    --red-light: rgba(184, 50, 50, 0.08);
+    --nav-bg: rgba(255, 255, 255, 0.96);
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html[data-theme="dark"] {
+    --bg: #0B0E14;
+    --text: #F5F7FA;
+    --muted: #8A94A6;
+    --border: #242933;
+    --surface: #12161F;
+    --gold: #d9a849;
+    --gold-light: rgba(217, 168, 73, 0.1);
+    --green-light: rgba(26, 122, 74, 0.12);
+    --amber-light: rgba(192, 86, 33, 0.12);
+    --red-light: rgba(184, 50, 50, 0.12);
+    --nav-bg: rgba(11, 14, 20, 0.96);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    position: sticky; top: 0; z-index: 1000;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 10%;
+    display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(8px);
+  }
+  .topbar .brand { font-family: var(--font-sans); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text); }
+  .topbar .back { text-decoration: none; color: var(--gold); font-size: 0.85rem; font-weight: 600; font-family: var(--font-sans); }
+  .topbar .back:hover { text-decoration: underline; }
+
+  /* WRAPPER */
+  .wrapper { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+  /* HEADER */
+  .doc-header { border-top: 4px solid var(--navy); padding-top: 1.5rem; margin-bottom: 2.5rem; }
+  .doc-eyebrow { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--gold); letter-spacing: 1.5px; margin-bottom: 0.5rem; font-weight: 600; }
+  .doc-title { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1.2; margin-bottom: 0.75rem; }
+  .doc-subtitle { font-size: 1.1rem; color: var(--muted); line-height: 1.6; }
+
+  /* SECTION TITLES */
+  .section-title { font-size: 18px; font-weight: 700; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--text); }
+
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0 2rem; }
+  .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; }
+  .kpi-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; }
+  .kpi-value { font-family: var(--font-mono); font-size: 1.8rem; font-weight: 700; color: var(--text); }
+  .kpi-context { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
+  .kpi-card.highlight { border-left: 4px solid var(--gold); }
+
+  /* DISTRICT TABLE */
+  .district-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 14px; }
+  .district-table th {
+    background: var(--navy); color: #FFFFFF;
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; padding: 12px 10px; text-align: left;
+    letter-spacing: 0.5px;
+  }
+  .district-table th:nth-child(n+2) { text-align: right; }
+  .district-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
+  .district-table td:nth-child(n+2) { text-align: right; font-family: var(--font-mono); font-size: 13px; }
+  .district-table tr:hover td { background: var(--surface); }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; font-family: var(--font-mono); }
+  .tag-hot { background: var(--red-light); color: var(--red); }
+  .tag-warm { background: var(--amber-light); color: var(--amber); }
+  .tag-stable { background: var(--green-light); color: var(--green); }
+
+  /* CALLOUT */
+  .callout { background: var(--surface); border-left: 4px solid var(--gold); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0; }
+  .callout-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; letter-spacing: 0.5px; font-weight: 600; display: block; }
+  .callout p { font-size: 0.92rem; line-height: 1.6; color: var(--text); margin: 0; }
+
+  /* TAKEAWAY LIST */
+  .takeaway { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 0.75rem 0; }
+  .takeaway-title { font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+  .takeaway p { font-size: 0.92rem; color: var(--muted); margin: 0; line-height: 1.6; }
+
+  /* CTA */
+  .cta-block {
+    background: var(--navy); color: #FFFFFF; padding: 2.5rem; border-radius: 6px; margin: 2.5rem 0 1rem; text-align: center;
+  }
+  .cta-block h3 { color: #FFFFFF; font-size: 1.3rem; margin-bottom: 0.75rem; font-weight: 700; }
+  .cta-block p { color: rgba(255,255,255,0.7); font-size: 0.92rem; margin-bottom: 1.5rem; line-height: 1.6; max-width: 550px; margin-left: auto; margin-right: auto; }
+  .cta-btn {
+    display: inline-block; background: var(--gold); color: #0d1f3c; font-weight: 700;
+    text-decoration: none; padding: 0.8rem 2rem; border-radius: 4px;
+    font-family: var(--font-sans); font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 0.5px; transition: transform 0.2s;
+  }
+  .cta-btn:hover { transform: translateY(-1px); }
+
+  /* FOOTER */
+  .doc-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .wrapper { padding: 2rem 1.25rem 3rem; }
+    .doc-title { font-size: 24px; }
+    .kpi-grid { grid-template-columns: 1fr; }
+    .topbar { padding: 1rem 5%; }
+    .district-table { font-size: 13px; }
+  }
+</style>
+
+<script>
+  const savedTheme = localStorage.getItem('insight-theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Dictum Previo // Monitor del Comprador</div>
+  <a href="https://antesdelnotario.es" class="back">← Volver al inicio</a>
+</div>
+
+<div class="wrapper">
+  <div class="doc-header">
+    <div class="doc-eyebrow">Monitor del Comprador · Sevilla · Primer trimestre 2026</div>
+    <h1 class="doc-title">En Sevilla, las viviendas se cierran un 16% por debajo del anuncio. ¿Sabes hasta dónde apretar tu oferta?</h1>
+    <p class="doc-subtitle">Análisis trimestral independiente del mercado de compraventa residencial en Sevilla, escrito para el comprador. Datos de Idealista, Brains RE, UVE Valoraciones y Colegio de Registradores.</p>
+  </div>
+
+  <!-- ═══ TERMÓMETRO ═══ -->
+  <div class="section-title">Termómetro del mercado</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card highlight">
+      <div class="kpi-label">Gap oferta-cierre</div>
+      <div class="kpi-value">16,3%</div>
+      <div class="kpi-context">Diferencia media entre el precio de anuncio y el precio que se firma ante notario. Por cada 100 € que pide el vendedor, las operaciones se cierran en torno a 84 €. Es uno de los mercados con más margen real de negociación de España.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Precio medio de oferta</div>
+      <div class="kpi-value">2.834 €/m²</div>
+      <div class="kpi-context">Media de los 11 distritos de la capital (Brains RE, Idealista, mayo 2026). Un piso de 85 m² se publica en torno a 241.000 €. Aplicando el gap medio, el cierre típico ronda los 202.000 €.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Variación interanual media</div>
+      <div class="kpi-value">+12,3%</div>
+      <div class="kpi-context">Subida media del precio de oferta en los 11 distritos. Hay zonas por encima del +25%. Lo que hoy se publica a 200.000 €, hace un año se publicaba en torno a 178.000 €.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Spread entre distritos</div>
+      <div class="kpi-value">2,8x</div>
+      <div class="kpi-context">El distrito más caro (Casco Antiguo, 4.236 €/m²) cuesta 2,8 veces más que el más barato (Cerro-Amate, 1.490 €/m²). En Sevilla, el distrito determina la operación más que la marca de la ciudad.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Lo que esto te dice como comprador</span>
+    <p>Sevilla es de los pocos mercados grandes españoles donde el precio del anuncio todavía no es el precio de cierre. El gap del 16% no es regalo del vendedor: es información asimétrica. El que sabe cuánto se está cerrando en su distrito tiene 30.000-40.000 € de margen real sobre una operación media. El que no, paga el anuncio. La diferencia entre "negociar bien" y "no negociar" en Sevilla son cinco cifras.</p>
+  </div>
+
+  <!-- ═══ MAPA DE CALOR ═══ -->
+  <div class="section-title">Mapa de calor por distrito</div>
+
+  <p style="margin-bottom: 1rem; color: var(--muted); font-size: 0.92rem;">Los 11 distritos de Sevilla ordenados por precio de oferta, con su tendencia y clasificación de temperatura. Los distritos "calientes" son donde el precio sube más rápido que la media de la ciudad (+12,3%).</p>
+
+  <table class="district-table">
+    <thead>
+      <tr>
+        <th>Distrito</th>
+        <th>€/m²</th>
+        <th>Var. 12m</th>
+        <th>Temperatura</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Casco Antiguo</td><td>4.236</td><td>+9,6%</td><td><span class="tag tag-warm">Cálido</span></td></tr>
+      <tr><td>Los Remedios</td><td>3.891</td><td>+7,5%</td><td><span class="tag tag-stable">Estable</span></td></tr>
+      <tr><td>Triana</td><td>3.770</td><td>+13,6%</td><td><span class="tag tag-hot">Caliente</span></td></tr>
+      <tr><td>Nervión</td><td>3.682</td><td>+9,2%</td><td><span class="tag tag-warm">Cálido</span></td></tr>
+      <tr><td>Sur</td><td>2.744</td><td>+8,2%</td><td><span class="tag tag-warm">Cálido</span></td></tr>
+      <tr><td>San Pablo-Santa Justa</td><td>2.720</td><td>+26,1%</td><td><span class="tag tag-hot">Caliente</span></td></tr>
+      <tr><td>Bellavista-La Palmera</td><td>2.644</td><td>+11,3%</td><td><span class="tag tag-warm">Cálido</span></td></tr>
+      <tr><td>Macarena</td><td>2.463</td><td>+9,6%</td><td><span class="tag tag-warm">Cálido</span></td></tr>
+      <tr><td>Este-Alcosa-Torreblanca</td><td>1.855</td><td>+7,4%</td><td><span class="tag tag-stable">Estable</span></td></tr>
+      <tr><td>Norte</td><td>1.673</td><td>+23,9%</td><td><span class="tag tag-hot">Caliente</span></td></tr>
+      <tr><td>Cerro-Amate</td><td>1.490</td><td>+9,6%</td><td><span class="tag tag-warm">Cálido</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <span class="callout-label">Distritos a vigilar</span>
+    <p><strong>San Pablo-Santa Justa (+26,1%)</strong> y <strong>Norte (+23,9%)</strong> están subiendo al doble de la media de Sevilla. Son barrios en proceso de revalorización desde precios bajos, lo que los hace atractivos pero volátiles. Si estás evaluando una compra ahí, conviene verificar el precio contra transacciones recientes, no contra anuncios vigentes — el riesgo de pagar el precio de mañana con los servicios de ayer es real. <strong>Triana (+13,6%)</strong> también merece atención: el precio sube en una zona ya consolidada, lo que comprime el margen de negociación que históricamente tenía.</p>
+  </div>
+
+  <!-- ═══ QUÉ SIGNIFICA ═══ -->
+  <div class="section-title">Tres cosas que deberías saber antes de hacer una oferta en Sevilla</div>
+
+  <div class="takeaway">
+    <div class="takeaway-title">1. El precio del anuncio no es lo que vas a pagar — pero solo si sabes hasta dónde apretar</div>
+    <p>El gap medio del 16% no se reparte por igual entre distritos. En zonas calientes como San Pablo o Norte, el margen real de negociación se está estrechando porque la demanda absorbe la oferta rápido. En distritos consolidados como Nervión, Los Remedios o Casco Antiguo, el margen sigue vivo y suele estar entre el 10% y el 18% sobre el anuncio. Sin saber el cierre típico de tu distrito, negocias a ciegas — y los vendedores no negocian a ciegas.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-title">2. En Sevilla, el distrito determina más que la marca de la ciudad</div>
+    <p>Hay 2,8x de diferencia entre el €/m² más alto y el más bajo. Comprar en Cerro-Amate y comprar en Casco Antiguo son dos operaciones distintas, con dos perfiles de demanda distintos, dos niveles de liquidez al revender y dos riesgos zonales distintos. La comparación entre distritos es lo que protege especialmente al comprador de reposición — el que está vendiendo en un distrito para comprar en otro, normalmente con valor distinto, y se enfrenta a dos operaciones simultáneas en mercados que no se mueven al mismo ritmo.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-title">3. El ITP del 7% en Andalucía es competitivo, pero los gastos totales no bajan del 10%</div>
+    <p>El ITP andaluz es de los más bajos de España y baja al 3,5% para menores de 35 años en vivienda habitual hasta 150.000 €. Aun así, sobre una vivienda de 250.000 € los gastos totales (ITP, notaría, registro, gestoría, tasación) rondan los 20.000 €. Si financias al 80% y agotas el ahorro entre entrada y gastos, entras a 25 años de hipoteca sin colchón. Una avería o tres meses de imprevistos y la operación que parecía viable se vuelve estructuralmente frágil.</p>
+  </div>
+
+  <!-- ═══ CTA ═══ -->
+  <div class="cta-block">
+    <h3>¿Estás evaluando una compra en Sevilla?</h3>
+    <p>Introduce los datos de la operación en nuestro simulador y obtén una lectura instantánea de tu esfuerzo hipotecario, tu liquidez post-firma y las señales de tu distrito. Gratis, en dos minutos.</p>
+    <a href="https://antesdelnotario.es" class="cta-btn">Ir al simulador</a>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="doc-footer">
+    <p><strong>Metodología:</strong> Los precios de oferta proceden de Brains RE (Q1 2026) cruzados con Idealista (mayo 2026). El gap oferta-cierre del 16,3% se estima a partir del cruce entre la oferta agregada (Idealista) y el precio medio registrado (Estadística Registral Inmobiliaria del Colegio de Registradores, T1 2026), consistente con el rango publicado por UVE Valoraciones para mercados secundarios españoles. La clasificación de temperatura usa como umbral la media de la ciudad (+12,3%): "Caliente" >12,3%, "Cálido" 8-12,3%, "Estable" <8%.</p>
+    <p style="margin-top: 0.75rem;">Este documento es informativo y no constituye asesoramiento de inversión ni recomendación de compra. Dictum Previo es una plataforma independiente de evaluación de riesgo de activos. No representamos a compradores ni vendedores, y no percibimos comisión por transacciones.</p>
+    <p style="margin-top: 0.75rem;">Dictum Previo · antesdelnotario.es · Monitor del Comprador · Edición T1 2026</p>
+  </div>
+</div>
+
+</body>
+</html>

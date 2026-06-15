@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitor del Comprador · España T1 2026 | Dictum Previo</title>
+<meta name="description" content="Análisis trimestral independiente del mercado de compraventa en las 10 ciudades con mayor presión para el comprador en España. Datos de Idealista, INE y Registradores.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FFFFFF; --text: #1A1A2E; --muted: #6B7280; --border: #DDD8CF;
+    --surface: #F7F3ED; --navy: #0d1f3c; --gold: #b8832a;
+    --green: #1A7A4A; --amber: #C05621; --red: #B83232;
+    --green-light: rgba(26,122,74,0.08); --amber-light: rgba(192,86,33,0.08);
+    --red-light: rgba(184,50,50,0.08); --gold-light: rgba(184,131,42,0.08);
+    --nav-bg: rgba(255,255,255,0.96);
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  html[data-theme="dark"] {
+    --bg: #0B0E14; --text: #F5F7FA; --muted: #8A94A6; --border: #242933;
+    --surface: #12161F; --gold: #d9a849; --nav-bg: rgba(11,14,20,0.96);
+    --green-light: rgba(26,122,74,0.12); --amber-light: rgba(192,86,33,0.12);
+    --red-light: rgba(184,50,50,0.12); --gold-light: rgba(217,168,73,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); color: var(--text); background: var(--bg); line-height: 1.7; font-size: 17px; -webkit-font-smoothing: antialiased; }
+
+  .topbar { position: sticky; top: 0; z-index: 1000; background: var(--nav-bg); border-bottom: 1px solid var(--border); padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(8px); }
+  .topbar .brand { font-family: var(--font-sans); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text); }
+  .topbar .back { text-decoration: none; color: var(--gold); font-size: 0.85rem; font-weight: 600; }
+
+  .wrapper { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+  .doc-header { border-top: 4px solid var(--navy); padding-top: 1.5rem; margin-bottom: 2.5rem; }
+  .doc-eyebrow { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--gold); letter-spacing: 1.5px; margin-bottom: 0.5rem; font-weight: 600; }
+  .doc-title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1.2; margin-bottom: 0.75rem; }
+  .doc-subtitle { font-size: 1.05rem; color: var(--muted); line-height: 1.6; }
+  .section-title { font-size: 18px; font-weight: 700; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+
+  /* NATIONAL KPIs */
+  .nat-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1.5rem 0 2rem; }
+  .nat-kpi { background: var(--navy); color: #fff; padding: 1rem 1.25rem; border-radius: 6px; text-align: center; }
+  .nat-kpi .label { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.6; margin-bottom: 0.4rem; }
+  .nat-kpi .value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; }
+  .nat-kpi .sub { font-size: 0.75rem; opacity: 0.5; margin-top: 0.25rem; }
+
+  /* CITY CARDS */
+  .city-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .city-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; position: relative; }
+  .city-card.featured { border-left: 5px solid var(--gold); }
+  .city-name { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+  .city-region { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; }
+  .city-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; margin-bottom: 0.75rem; }
+  .city-metric .m-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.3px; }
+  .city-metric .m-value { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--text); }
+  .city-read { font-size: 0.85rem; color: var(--muted); line-height: 1.5; border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.5rem; }
+  .temp-tag { position: absolute; top: 1rem; right: 1rem; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 3px; }
+  .temp-hot { background: var(--red-light); color: var(--red); }
+  .temp-warm { background: var(--amber-light); color: var(--amber); }
+  .temp-stable { background: var(--green-light); color: var(--green); }
+
+  /* CALLOUT */
+  .callout { background: var(--surface); border-left: 4px solid var(--gold); padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0; }
+  .callout-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; letter-spacing: 0.5px; font-weight: 600; display: block; }
+  .callout p { font-size: 0.92rem; line-height: 1.6; color: var(--text); margin: 0; }
+
+  /* CTA */
+  .cta-block { background: var(--navy); color: #FFFFFF; padding: 2.5rem; border-radius: 6px; margin: 2.5rem 0 1rem; text-align: center; }
+  .cta-block h3 { color: #FFFFFF; font-size: 1.3rem; margin-bottom: 0.75rem; }
+  .cta-block p { color: rgba(255,255,255,0.7); font-size: 0.92rem; margin-bottom: 1.5rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--gold); color: #0d1f3c; font-weight: 700; text-decoration: none; padding: 0.8rem 2rem; border-radius: 4px; font-size: 0.9rem; }
+
+  .doc-footer { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .wrapper { padding: 2rem 1.25rem; }
+    .nat-kpi-row { grid-template-columns: 1fr 1fr; }
+    .city-grid { grid-template-columns: 1fr; }
+    .topbar { padding: 1rem 5%; }
+  }
+</style>
+
+<script>
+  const savedTheme = localStorage.getItem('insight-theme');
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Dictum Previo // Monitor del Comprador</div>
+  <a href="https://antesdelnotario.es" class="back">← Volver al inicio</a>
+</div>
+
+<div class="wrapper">
+  <div class="doc-header">
+    <div class="doc-eyebrow">Monitor del Comprador · España · Primer trimestre 2026</div>
+    <h1 class="doc-title">10 ciudades donde comprar vivienda requiere más cautela que nunca</h1>
+    <p class="doc-subtitle">Ranking trimestral de las capitales españolas con mayor presión para el comprador. Datos de Idealista, INE y Colegio de Registradores. Lectura: 4 minutos.</p>
+  </div>
+
+  <!-- ═══ KPIs NACIONALES ═══ -->
+  <div class="section-title">España en cuatro cifras</div>
+  <div class="nat-kpi-row">
+    <div class="nat-kpi">
+      <div class="label">Precio medio</div>
+      <div class="value">2.795 €</div>
+      <div class="sub">por m² · mayo 2026</div>
+    </div>
+    <div class="nat-kpi">
+      <div class="label">Var. interanual</div>
+      <div class="value">+16,9%</div>
+      <div class="sub">16 meses seguidos a doble dígito</div>
+    </div>
+    <div class="nat-kpi">
+      <div class="label">Demanda media</div>
+      <div class="value">4,48</div>
+      <div class="sub">leads/anuncio compraventa</div>
+    </div>
+    <div class="nat-kpi">
+      <div class="label">Stock disponible</div>
+      <div class="value">3,28%</div>
+      <div class="sub">del parque · mínimo histórico</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Contexto para el comprador</span>
+    <p>El mercado español encadena 16 meses consecutivos de subidas interanuales de doble dígito. El stock disponible para compra es el más bajo de la serie histórica (3,28% del parque). La demanda de alquiler (39,76 leads/anuncio) multiplica por 9 la de compraventa — lo que empuja a más inquilinos a intentar comprar, alimentando el ciclo. Este no es un mercado donde improvisar. Es un mercado donde prepararse marca la diferencia entre una buena compra y un compromiso financiero que pesa durante décadas.</p>
+  </div>
+
+  <!-- ═══ 10 CIUDADES ═══ -->
+  <div class="section-title">Las 10 capitales con mayor presión para el comprador</div>
+
+  <p style="margin-bottom:1rem; color:var(--muted); font-size:0.92rem;">Ordenadas por presión de demanda (leads por anuncio). Cada ficha incluye el precio medio de oferta, la variación interanual y una lectura para el comprador.</p>
+
+  <div class="city-grid">
+
+    <!-- 1. MADRID -->
+    <div class="city-card featured">
+      <span class="temp-tag temp-hot">Caliente</span>
+      <div class="city-name">1. Madrid</div>
+      <div class="city-region">Comunidad de Madrid</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Demanda</div><div class="m-value">14,99</div></div>
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">5.984 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+7,4%</div></div>
+        <div class="city-metric"><div class="m-label">ITP</div><div class="m-value">6%</div></div>
+      </div>
+      <div class="city-read">La mayor presión de demanda del país en la ciudad más cara. La subida interanual es "moderada" (+7,4%) solo porque la base ya es extrema. Un piso de 80 m² en Madrid supera los 478.000 € de media. La brecha entre ingresos y precio de acceso se amplía cada trimestre.</div>
+    </div>
+
+    <!-- 2. ZARAGOZA -->
+    <div class="city-card featured">
+      <span class="temp-tag temp-hot">Caliente</span>
+      <div class="city-name">2. Zaragoza</div>
+      <div class="city-region">Aragón · ITP 8%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Demanda</div><div class="m-value">12,88</div></div>
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">2.287 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+14,8%</div></div>
+        <div class="city-metric"><div class="m-label">Transacción</div><div class="m-value">2.306 €/m²</div></div>
+      </div>
+      <div class="city-read">Segunda mayor presión de demanda de España con precios que suben al doble de la media madrileña. Zonas como Las Fuentes (+25,7%) y Arrabal (+24,4%) lideran un proceso de revalorización acelerada. El gap entre oferta y transacción es casi nulo — señal de que se paga lo que se pide.</div>
+    </div>
+
+    <!-- 3. PAMPLONA -->
+    <div class="city-card">
+      <span class="temp-tag temp-warm">Cálido</span>
+      <div class="city-name">3. Pamplona</div>
+      <div class="city-region">Navarra · ITP 6%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Demanda</div><div class="m-value">11,79</div></div>
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">2.680 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--amber);">+9,8%</div></div>
+        <div class="city-metric"><div class="m-label">Stock</div><div class="m-value">0,88%</div></div>
+      </div>
+      <div class="city-read">El stock más bajo entre las grandes capitales del norte (0,88%). La combinación de alta demanda con oferta mínima crea un mercado donde el comprador tiene muy pocas opciones y escasa capacidad de negociación. El ITP navarro del 6% es una ventaja fiscal.</div>
+    </div>
+
+    <!-- 4. TOLEDO -->
+    <div class="city-card">
+      <span class="temp-tag temp-hot">Caliente</span>
+      <div class="city-name">4. Toledo</div>
+      <div class="city-region">Castilla-La Mancha · ITP 9%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Demanda</div><div class="m-value">11,24</div></div>
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">1.835 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+15,1%</div></div>
+        <div class="city-metric"><div class="m-label">ITP</div><div class="m-value">9%</div></div>
+      </div>
+      <div class="city-read">Efecto desbordamiento de Madrid: compradores que no pueden acceder a la capital buscan en Toledo con presupuestos madrileños, empujando los precios de una ciudad históricamente accesible. El ITP del 9% — el más alto de esta lista — agrava la carga de gastos.</div>
+    </div>
+
+    <!-- 5. LAS PALMAS -->
+    <div class="city-card">
+      <span class="temp-tag temp-warm">Cálido</span>
+      <div class="city-name">5. Las Palmas de Gran Canaria</div>
+      <div class="city-region">Canarias · IGIC 6,5%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Demanda</div><div class="m-value">10,95</div></div>
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">2.475 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--amber);">+8,0%</div></div>
+        <div class="city-metric"><div class="m-label">Impuesto</div><div class="m-value">IGIC 6,5%</div></div>
+      </div>
+      <div class="city-read">Mercado insular con oferta estructuralmente limitada por la geografía. La presión del nómada digital y el teletrabajador europeo compite directamente con el comprador local. El régimen fiscal canario (IGIC en lugar de ITP) introduce diferencias que conviene entender antes de firmar.</div>
+    </div>
+
+    <!-- 6. MÁLAGA -->
+    <div class="city-card">
+      <span class="temp-tag temp-hot">Caliente</span>
+      <div class="city-name">6. Málaga</div>
+      <div class="city-region">Andalucía · ITP 7%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">3.561 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+18,3%</div></div>
+        <div class="city-metric"><div class="m-label">Stock</div><div class="m-value">3,85%</div></div>
+        <div class="city-metric"><div class="m-label">Alquiler</div><div class="m-value">16,5 €/m²</div></div>
+      </div>
+      <div class="city-read">La capital andaluza que más sube y que ya supera a Bilbao en precio absoluto. El mercado está desdoblado: un centro turístico y tecnológico con precios de capital europea, y una periferia que absorbe al comprador local desplazado. El alquiler a 16,5 €/m² empuja a comprar aunque los precios sean prohibitivos.</div>
+    </div>
+
+    <!-- 7. SEVILLA -->
+    <div class="city-card">
+      <span class="temp-tag temp-hot">Caliente</span>
+      <div class="city-name">7. Sevilla</div>
+      <div class="city-region">Andalucía · ITP 7%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">2.920 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Transacción</div><div class="m-value">2.430 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+18,3%</div></div>
+        <div class="city-metric"><div class="m-label">Ops 12m</div><div class="m-value">26.691</div></div>
+      </div>
+      <div class="city-read">El gap entre precio de oferta (2.920 €/m²) y transacción real (2.430 €/m²) es del 17% — uno de los más amplios entre las grandes capitales. Eso significa que hay margen de negociación real, pero solo si sabes leerlo. La dispersión entre distritos (Casco Antiguo a 4.236 vs Cerro-Amate a 1.490) exige análisis zonal, no municipal.</div>
+    </div>
+
+    <!-- 8. VALENCIA -->
+    <div class="city-card">
+      <span class="temp-tag temp-hot">Caliente</span>
+      <div class="city-name">8. Valencia</div>
+      <div class="city-region">Comunitat Valenciana · ITP 10%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">3.340 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+14,7%</div></div>
+        <div class="city-metric"><div class="m-label">Alquiler</div><div class="m-value">14,8 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">ITP</div><div class="m-value">10%</div></div>
+      </div>
+      <div class="city-read">Valencia combina el ITP más alto de la península (10%) con subidas del +14,7%. Los gastos de compra aquí superan el 12% del precio — sobre un piso de 250.000 €, son más de 30.000 € que no aparecen en el anuncio. El efecto post-DANA en algunas zonas introduce un factor de riesgo adicional que conviene evaluar.</div>
+    </div>
+
+    <!-- 9. MURCIA -->
+    <div class="city-card">
+      <span class="temp-tag temp-hot">Caliente</span>
+      <div class="city-name">9. Murcia</div>
+      <div class="city-region">Región de Murcia · ITP 8%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">1.680 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+24,6%</div></div>
+        <div class="city-metric"><div class="m-label">ITP</div><div class="m-value">8%</div></div>
+        <div class="city-metric"><div class="m-label">Alquiler</div><div class="m-value">10,2 €/m²</div></div>
+      </div>
+      <div class="city-read">La comunidad autónoma con mayor subida interanual de España (+24,6%). Desde una base de precios baja, Murcia está experimentando una revalorización explosiva impulsada por compradores de la Comunidad Valenciana que buscan precios más accesibles. El riesgo: comprar al ritmo del FOMO en un mercado que históricamente ha sido uno de los más volátiles del país.</div>
+    </div>
+
+    <!-- 10. OVIEDO -->
+    <div class="city-card">
+      <span class="temp-tag temp-warm">Cálido</span>
+      <div class="city-name">10. Oviedo</div>
+      <div class="city-region">Asturias · ITP 8%</div>
+      <div class="city-metrics">
+        <div class="city-metric"><div class="m-label">Precio oferta</div><div class="m-value">2.150 €/m²</div></div>
+        <div class="city-metric"><div class="m-label">Var. 12m</div><div class="m-value" style="color:var(--red);">+17,1%</div></div>
+        <div class="city-metric"><div class="m-label">ITP</div><div class="m-value">8%</div></div>
+        <div class="city-metric"><div class="m-label">Alquiler</div><div class="m-value">9,8 €/m²</div></div>
+      </div>
+      <div class="city-read">Asturias es la cuarta comunidad con mayor subida (+17,1%), un dato que sorprende en una región tradicionalmente estable. Oviedo combina precios aún accesibles con una calidad de vida que atrae a teletrabajadores y jubilados del norte de Europa. El mercado está cambiando de perfil — conviene verificar si los precios actuales reflejan la demanda real o la expectativa.</div>
+    </div>
+
+  </div>
+
+  <!-- ═══ LECTURA FINAL ═══ -->
+  <div class="callout">
+    <span class="callout-label">La pregunta que ninguna de estas cifras responde</span>
+    <p>Saber que los precios suben un 16,9% en España o un 24,6% en Murcia es información de mercado. Pero la pregunta que importa cuando estás a punto de firmar no es "¿cómo va el mercado?" sino "¿es <em>esta</em> operación concreta prudente para <em>mi</em> situación?" Eso depende de tu esfuerzo hipotecario, tu colchón post-firma, la posición del vendedor frente a ti, y si el precio que te piden se sostiene con datos reales de la zona — no con la media de la ciudad.</p>
+  </div>
+
+  <!-- ═══ CTA ═══ -->
+  <div class="cta-block">
+    <h3>¿Estás evaluando una compra?</h3>
+    <p>Introduce los datos de tu operación y obtén una lectura instantánea de tu esfuerzo hipotecario y las señales de tu zona. Gratis, sin registro, en dos minutos.</p>
+    <a href="https://antesdelnotario.es" class="cta-btn">Ir al simulador</a>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="doc-footer">
+    <p><strong>Fuentes:</strong> Precios de oferta: Idealista (mayo 2026). Precios de transacción: Estadística Registral Inmobiliaria, Colegio de Registradores (T1 2026). Presión de demanda: Idealista/data (mayo 2026). Variaciones interanuales: Idealista/Bankinter (mayo 2026). ITP: normativa autonómica vigente a junio 2026. Datos de Pamplona (stock) del informe Idealista/data mayo 2026.</p>
+    <p style="margin-top:0.75rem;">Este documento es informativo y no constituye asesoramiento de inversión ni recomendación de compra. Dictum Previo · antesdelnotario.es · Monitor del Comprador · Edición T1 2026</p>
+  </div>
+</div>
+
+</body>
+</html>
