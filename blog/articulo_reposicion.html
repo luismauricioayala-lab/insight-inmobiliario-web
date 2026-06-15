@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendes para comprar: los números reales antes de decidir — Dictum Previo</title>
+    <meta name="description" content="Guía completa para el comprador de reposición en España. Calcula cuánto te queda después de vender, cuánto cuesta la nueva compra, y si los números funcionan. Con calculadora interactiva.">
+    <meta name="keywords" content="vender para comprar vivienda, comprador reposición, gastos vender y comprar casa, reinversión vivienda habitual, plusvalía municipal, cambio de vivienda España, calculadora reposición">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        const savedTheme = localStorage.getItem('insight-theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+
+    <style>
+        :root {
+            --bb-bg: #FFFFFF;
+            --bb-panel-bg: #F7F3ED;
+            --bb-text: #1A1A2E;
+            --bb-text-muted: #6B7280;
+            --bb-accent: #0d1f3c;
+            --bb-orange: #b8832a;
+            --bb-border: #DDD8CF;
+            --nav-bg: rgba(255, 255, 255, 0.96);
+            --hero-bg: #0d1f3c;
+            --hero-text: #FFFFFF;
+            --ticket-bg: #0d1f3c;
+            --ticket-text: #FFFFFF;
+            --ticket-muted: rgba(255,255,255,0.6);
+            --ticket-border: #1a3460;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-md: 0 6px 20px rgba(13,31,60,0.10);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --green: #1A7A4A;
+            --green-light: #E8F5EF;
+            --amber: #92680A;
+            --amber-light: #FFF8E7;
+            --red: #B83232;
+            --red-light: #FFF0F0;
+        }
+
+        html[data-theme="dark"] {
+            --bb-bg: #0B0E14;
+            --bb-panel-bg: #12161F;
+            --bb-text: #F5F7FA;
+            --bb-text-muted: #8A94A6;
+            --bb-accent: #d9a849;
+            --bb-border: #242933;
+            --nav-bg: rgba(11, 14, 20, 0.96);
+            --hero-bg: #070B12;
+            --ticket-bg: #122441;
+            --green-light: rgba(26, 122, 74, 0.12);
+            --amber-light: rgba(146, 104, 10, 0.12);
+            --red-light: rgba(184, 50, 50, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--bb-text);
+            background: var(--bb-bg);
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* === NAV === */
+        .topbar {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--bb-border);
+            padding: 1rem 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        .topbar .brand {
+            font-family: var(--font-sans); font-size: 0.82rem;
+            font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+            color: var(--bb-text); text-decoration: none;
+        }
+        .topbar .nav-link {
+            text-decoration: none; color: var(--bb-accent);
+            font-size: 0.82rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+
+        /* === ARTICLE LAYOUT === */
+        .article-wrapper {
+            max-width: 760px; margin: 0 auto; padding: 3rem 2rem 5rem;
+        }
+
+        .article-eyebrow {
+            font-family: var(--font-mono); font-size: 11px;
+            text-transform: uppercase; color: var(--bb-orange);
+            letter-spacing: 1.5px; font-weight: 600; margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: clamp(1.75rem, 4vw, 2.4rem);
+            font-weight: 700; letter-spacing: -0.5px;
+            line-height: 1.15; color: var(--bb-text);
+            margin-bottom: 1rem;
+        }
+
+        .article-subtitle {
+            font-size: 1.1rem; line-height: 1.65;
+            color: var(--bb-text-muted); margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .article-meta {
+            font-family: var(--font-mono); font-size: 11px;
+            color: var(--bb-text-muted); text-transform: uppercase;
+            letter-spacing: 0.5px; padding-bottom: 2rem;
+            border-bottom: 1px solid var(--bb-border);
+            margin-bottom: 2.5rem;
+        }
+
+        /* === PROSE === */
+        .prose p {
+            font-size: 1rem; line-height: 1.75; margin-bottom: 1.25rem;
+            color: var(--bb-text);
+        }
+
+        .prose h2 {
+            font-size: 1.35rem; font-weight: 700; margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--bb-border);
+            color: var(--bb-text); letter-spacing: -0.3px;
+        }
+
+        .prose h3 {
+            font-size: 1.1rem; font-weight: 700; margin: 2rem 0 0.75rem;
+            color: var(--bb-text);
+        }
+
+        .prose strong { color: var(--bb-text); font-weight: 600; }
+
+        .prose .highlight-box {
+            background: var(--bb-panel-bg); border-left: 3px solid var(--bb-orange);
+            padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0;
+            font-size: 0.95rem; line-height: 1.7;
+        }
+
+        .prose .num-label {
+            font-family: var(--font-mono); font-size: 12px;
+            color: var(--bb-orange); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            display: block; margin-bottom: 0.25rem;
+        }
+
+        /* === CALCULATOR === */
+        .calc-section {
+            background: var(--bb-panel-bg);
+            border: 1px solid var(--bb-border);
+            border-radius: 6px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .calc-section h2 {
+            font-size: 1.2rem; font-weight: 700;
+            margin: 0 0 0.5rem 0; padding: 0; border: none;
+            color: var(--bb-text);
+        }
+
+        .calc-section .calc-desc {
+            font-size: 0.9rem; color: var(--bb-text-muted);
+            margin-bottom: 1.75rem; line-height: 1.6;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .calc-group { display: flex; flex-direction: column; }
+
+        .calc-group.full-width { grid-column: 1 / -1; }
+
+        .calc-label {
+            font-size: 0.8rem; font-weight: 600; color: var(--bb-text-muted);
+            margin-bottom: 0.35rem; text-transform: uppercase;
+            font-family: var(--font-mono); letter-spacing: 0.5px;
+            font-size: 10.5px;
+        }
+
+        .calc-input {
+            font-family: var(--font-mono); font-size: 1rem;
+            padding: 0.7rem 0.85rem;
+            border: 1px solid var(--bb-border); border-radius: 4px;
+            background: var(--bb-bg); color: var(--bb-text);
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+        .calc-input:focus {
+            outline: none; border-color: var(--bb-orange);
+        }
+
+        .calc-select {
+            font-family: var(--font-sans); font-size: 0.9rem;
+            padding: 0.7rem 0.85rem;
+            border: 1px solid var(--bb-border); border-radius: 4px;
+            background: var(--bb-bg); color: var(--bb-text);
+            cursor: pointer;
+        }
+        .calc-select:focus { outline: none; border-color: var(--bb-orange); }
+
+        .calc-btn {
+            grid-column: 1 / -1;
+            margin-top: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: var(--ticket-bg); color: var(--ticket-text);
+            border: none; border-radius: 4px; cursor: pointer;
+            font-family: var(--font-sans); font-size: 0.95rem;
+            font-weight: 600; letter-spacing: 0.3px;
+            transition: opacity 0.2s;
+        }
+        .calc-btn:hover { opacity: 0.9; }
+
+        /* === RESULTS === */
+        .results-panel {
+            display: none;
+            margin-top: 2rem;
+            border-top: 2px solid var(--bb-accent);
+            padding-top: 1.5rem;
+        }
+
+        .results-panel.visible { display: block; }
+
+        .results-title {
+            font-family: var(--font-mono); font-size: 11px;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--bb-orange); font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        .result-block {
+            margin-bottom: 1.5rem;
+        }
+
+        .result-block h4 {
+            font-size: 0.85rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--bb-text-muted); margin-bottom: 0.75rem;
+            font-family: var(--font-mono); font-size: 10.5px;
+        }
+
+        .result-row {
+            display: flex; justify-content: space-between;
+            align-items: baseline;
+            padding: 0.4rem 0;
+            font-size: 0.92rem;
+        }
+        .result-row .label { color: var(--bb-text); }
+        .result-row .value {
+            font-family: var(--font-mono); font-weight: 600;
+            color: var(--bb-text); font-size: 0.9rem;
+        }
+        .result-row .value.negative { color: var(--red); }
+        .result-row .value.positive { color: var(--green); }
+
+        .result-row.subtotal {
+            border-top: 1px solid var(--bb-border);
+            padding-top: 0.65rem; margin-top: 0.35rem;
+            font-weight: 600;
+        }
+        .result-row.subtotal .value { font-size: 1.05rem; }
+
+        .result-summary {
+            background: var(--ticket-bg); color: var(--ticket-text);
+            border-radius: 4px; padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-summary .summary-label {
+            font-family: var(--font-mono); font-size: 10.5px;
+            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--ticket-muted); margin-bottom: 0.25rem;
+        }
+
+        .result-summary .summary-value {
+            font-family: var(--font-mono); font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .result-summary .summary-detail {
+            font-size: 0.85rem; color: var(--ticket-muted);
+            margin-top: 0.75rem; line-height: 1.6;
+        }
+
+        .result-diagnosis {
+            display: inline-block; padding: 0.3rem 0.75rem;
+            border-radius: 3px; font-family: var(--font-mono);
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; margin-top: 0.5rem;
+        }
+        .diag-green { background: var(--green-light); color: var(--green); }
+        .diag-amber { background: var(--amber-light); color: var(--amber); }
+        .diag-red { background: var(--red-light); color: var(--red); }
+
+        /* === CTA BLOCK === */
+        .cta-block {
+            border: 2px solid var(--bb-orange);
+            border-radius: 6px; padding: 2rem;
+            margin: 3rem 0; text-align: center;
+        }
+
+        .cta-block h3 {
+            font-size: 1.2rem; font-weight: 700;
+            margin: 0 0 0.5rem; color: var(--bb-text);
+        }
+
+        .cta-block p {
+            font-size: 0.95rem; color: var(--bb-text-muted);
+            margin-bottom: 1.25rem; line-height: 1.6;
+        }
+
+        .cta-block .cta-link {
+            display: inline-block; padding: 0.8rem 2rem;
+            background: var(--bb-orange); color: #FFFFFF;
+            text-decoration: none; border-radius: 4px;
+            font-weight: 600; font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+        .cta-block .cta-link:hover { opacity: 0.9; }
+
+        /* === FOOTER === */
+        .article-footer {
+            border-top: 1px solid var(--bb-border);
+            padding-top: 2rem; margin-top: 3rem;
+            font-size: 0.82rem; color: var(--bb-text-muted);
+            line-height: 1.7;
+        }
+        .article-footer a { color: var(--bb-accent); text-decoration: none; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .topbar { padding: 1rem 5%; }
+            .article-wrapper { padding: 2rem 1.25rem 3rem; }
+            .calc-grid { grid-template-columns: 1fr; }
+            .calc-section { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="/" class="brand">Dictum Previo // Sevilla</a>
+    <a href="/blog.html" class="nav-link">&larr; Blog</a>
+</div>
+
+<article class="article-wrapper">
+
+    <header>
+        <div class="article-eyebrow">Guía para el comprador de reposición</div>
+        <h1 class="article-title">Vendes para comprar: los números reales antes de decidir</h1>
+        <p class="article-subtitle">Cambiar de vivienda no es una compra — son dos operaciones simultáneas con un resultado neto que muy pocos calculan antes de firmar.</p>
+        <div class="article-meta">Dictum Previo &middot; Junio 2026 &middot; Lectura: 8 min</div>
+    </header>
+
+    <div class="prose">
+
+        <p>Cuando vendes tu vivienda actual para comprar otra, no tienes un presupuesto — tienes una ecuación. Lo que recibes de la venta menos impuestos, comisiones y cancelación hipotecaria te deja un neto. Ese neto, confrontado con el coste real de la nueva compra (precio más ITP, notaría, registro, gestoría), produce un saldo que puede ser positivo, negativo, o justo. Y de ese saldo depende cuánta hipoteca necesitas pedir, cuánto esfuerzo mensual asumes, y si la operación tiene sentido o te deja más vulnerable de lo que estabas.</p>
+
+        <p>El problema es que la mayoría de los compradores de reposición estiman ese saldo de forma intuitiva, y suelen sobreestimarlo. Suman el precio al que creen que venderán, restan "más o menos lo que deben", y asumen que les sobra. No descuentan la plusvalía municipal, ni la comisión del agente, ni el coste de cancelación registral. Y en el lado de la compra, subestiman los gastos — que en una operación de €250.000 pueden superar los €25.000.</p>
+
+        <p>Esta guía recorre la operación completa de reposición, paso a paso, con los números reales. Al final encontrarás una calculadora que hace el cálculo por ti.</p>
+
+        <h2>Lo que recibes: el neto real de la venta</h2>
+
+        <p>El precio al que vendes tu vivienda no es lo que te llega al bolsillo. Entre la firma de la escritura y el ingreso en tu cuenta hay varias deducciones obligatorias que reducen el neto entre un 8% y un 15% del precio de venta, según tu situación.</p>
+
+        <h3>Cancelación de hipoteca pendiente</h3>
+        <p>Si tu vivienda actual tiene hipoteca, lo primero que sale del precio de venta es el capital pendiente. A eso se suma la comisión por amortización anticipada (entre 0% y 2%, dependiendo de si es fija o variable y de cuándo la contrataste) y el coste de cancelación registral, que ronda los 1.000 € entre notaría y registro.</p>
+
+        <h3>Comisión del agente inmobiliario</h3>
+        <p>Si vendes a través de un agente, la comisión habitual en España oscila entre el 3% y el 5% del precio de venta, más IVA. En una venta de €250.000, eso son entre €7.500 y €12.500. Es el coste individual más grande de la venta, después de la hipoteca, y muchos vendedores lo olvidan al calcular su neto.</p>
+
+        <h3>Plusvalía municipal (IIVTNU)</h3>
+        <p>El Impuesto sobre el Incremento de Valor de los Terrenos de Naturaleza Urbana lo paga el vendedor y depende del valor catastral del suelo y los años de tenencia. Tras la sentencia del Tribunal Constitucional de 2021 y la reforma posterior, el cálculo puede hacerse por dos métodos (el real y el objetivo) y se aplica el más favorable. En la práctica, para una vivienda mantenida 10-15 años, la plusvalía municipal suele estar entre 1.000 y 4.000 € dependiendo del municipio.</p>
+
+        <h3>IRPF sobre la ganancia patrimonial</h3>
+        <p>Aquí está la partida que puede ser cero o puede ser muy significativa. Si vendes tu vivienda habitual y reinviertes la totalidad del importe obtenido en otra vivienda habitual dentro de los 2 años siguientes (o anteriores), la ganancia queda exenta. Esta es la exención por reinversión del artículo 38 de la LIRPF, y es el beneficio fiscal más importante para el comprador de reposición.</p>
+
+        <div class="highlight-box">
+            <span class="num-label">Dato clave</span>
+            Si reinviertes la totalidad del importe en la nueva vivienda habitual, la ganancia patrimonial de la venta queda totalmente exenta de IRPF. Si reinviertes solo una parte, la exención es proporcional. El plazo es de 2 años antes o después de la venta. Si no reinviertes, los tramos de IRPF en 2026 van del 19% al 28% sobre la ganancia.
+        </div>
+
+        <h2>Lo que pagas: el coste real de la nueva compra</h2>
+
+        <p>El precio de la vivienda que compras es solo el punto de partida. A ese precio hay que sumar un conjunto de gastos e impuestos que, en vivienda de segunda mano (que es lo que compra el 73% de los compradores), representan entre el 10% y el 13% del precio según la comunidad autónoma.</p>
+
+        <h3>Impuesto de Transmisiones Patrimoniales (ITP)</h3>
+        <p>Es el gasto más grande de la compra. Los tipos varían significativamente entre comunidades autónomas: Andalucía aplica un 7% (reducido desde octubre 2021), Aragón un 8% general, Castilla-La Mancha un 9%, y hay bonificaciones en muchas comunidades para menores de 35 años, familias numerosas, o vivienda habitual de bajo precio. En una compra de €250.000 en Andalucía, el ITP es de €17.500; en Castilla-La Mancha, €22.500 — una diferencia de €5.000 que pocos compradores anticipan.</p>
+
+        <h3>Notaría, registro y gestoría</h3>
+        <p>La notaría se rige por un arancel regulado y depende del precio de escritura: para una operación de €250.000, ronda los €800-1.200. El registro de la propiedad cuesta aproximadamente la mitad que la notaría. Y la gestoría, que coordina el trámite de liquidación fiscal e inscripción, cobra entre €400 y €600. En conjunto, estos tres conceptos suman entre 1.800 y 2.500 € en una operación de tamaño medio.</p>
+
+        <h3>Hipoteca nueva (si aplica)</h3>
+        <p>Si el neto de la venta no cubre el coste total de la nueva compra, necesitas una hipoteca. Los gastos de constitución (tasación, notaría, registro, gestoría) son mayoritariamente a cargo del banco desde la ley de 2019, pero la tasación la paga el comprador — entre 300 y 500 €. Lo más relevante es que el banco no te financia el 100%: lo habitual es un máximo del 80% del valor de tasación. Si la nueva vivienda tasa a €260.000, el banco te prestará hasta €208.000. Si necesitas más, tienes un problema de fondos propios.</p>
+
+        <h2>La ecuación: ¿cuánto necesitas realmente?</h2>
+
+        <p>Juntando los dos lados, la ecuación de la reposición es sencilla en estructura pero sorprendente en resultado. Para una pareja que vende un piso por €230.000 con €80.000 de hipoteca pendiente y compra otro por €280.000 en Andalucía, la aritmética es aproximadamente esta: el neto de la venta, después de cancelar la hipoteca, pagar al agente (3%), cubrir plusvalía municipal y costes de cancelación, queda en torno a €138.000. El coste total de la nueva compra, con ITP al 7% y gastos de escritura, ronda €310.000. El gap entre ambos es de €172.000 — que es lo que necesitan financiar con hipoteca nueva.</p>
+
+        <p>Muchas parejas en esta situación asumen que "les sobra" porque venden por €230.000 y compran por €280.000, una diferencia de solo €50.000. Pero cuando suman todos los costes transaccionales, descubren que necesitan una hipoteca de €172.000, no de €50.000. La diferencia entre la percepción y la realidad es más de €120.000.</p>
+
+        <div class="highlight-box">
+            <span class="num-label">El error más común</span>
+            Restar mentalmente el precio de venta del precio de compra y asumir que esa diferencia es lo que necesitas pedir de hipoteca. La realidad incluye 10-15% de costes transaccionales en cada lado que pueden duplicar o triplicar la financiación necesaria.
+        </div>
+
+    </div>
+
+    <!-- ======================== CALCULADORA ======================== -->
+    <div class="calc-section" id="calculadora">
+        <h2>Calculadora de reposición</h2>
+        <p class="calc-desc">Introduce los datos de tu venta y tu compra. El cálculo asume reinversión en vivienda habitual (exención de IRPF) y comisión de agencia del 3%.</p>
+
+        <div class="calc-grid">
+            <div class="calc-group">
+                <label class="calc-label">Precio de venta (€)</label>
+                <input type="text" class="calc-input" id="precioVenta" placeholder="230.000" inputmode="numeric">
+            </div>
+            <div class="calc-group">
+                <label class="calc-label">Hipoteca pendiente (€)</label>
+                <input type="text" class="calc-input" id="hipotecaPendiente" placeholder="80.000" inputmode="numeric">
+            </div>
+            <div class="calc-group">
+                <label class="calc-label">Precio de compra (€)</label>
+                <input type="text" class="calc-input" id="precioCompra" placeholder="280.000" inputmode="numeric">
+            </div>
+            <div class="calc-group">
+                <label class="calc-label">Comunidad autónoma</label>
+                <select class="calc-select" id="ccaa">
+                    <option value="0.07" selected>Andalucía (7%)</option>
+                    <option value="0.08">Aragón (8%)</option>
+                    <option value="0.08">Asturias (8%)</option>
+                    <option value="0.08">Baleares (8%)</option>
+                    <option value="0.065">Canarias (6,5%)</option>
+                    <option value="0.10">Cantabria (10%)</option>
+                    <option value="0.08">Castilla y León (8%)</option>
+                    <option value="0.09">Castilla-La Mancha (9%)</option>
+                    <option value="0.10">Cataluña (10%)</option>
+                    <option value="0.10">C. Valenciana (10%)</option>
+                    <option value="0.08">Extremadura (8%)</option>
+                    <option value="0.09">Galicia (9%)</option>
+                    <option value="0.06">Madrid (6%)</option>
+                    <option value="0.08">Murcia (8%)</option>
+                    <option value="0.06">Navarra (6%)</option>
+                    <option value="0.04">País Vasco (4%)</option>
+                    <option value="0.07">La Rioja (7%)</option>
+                </select>
+            </div>
+            <div class="calc-group">
+                <label class="calc-label">Plusvalía municipal estimada (€)</label>
+                <input type="text" class="calc-input" id="plusvalia" placeholder="2.000" inputmode="numeric">
+            </div>
+            <div class="calc-group">
+                <label class="calc-label">Plazo hipoteca nueva (años)</label>
+                <select class="calc-select" id="plazoHipoteca">
+                    <option value="15">15 años</option>
+                    <option value="20" selected>20 años</option>
+                    <option value="25">25 años</option>
+                    <option value="30">30 años</option>
+                </select>
+            </div>
+            <button class="calc-btn" onclick="calcular()">Calcular resultado neto</button>
+        </div>
+
+        <div class="results-panel" id="resultados">
+            <div class="results-title">Resultado de la reposición</div>
+
+            <div class="result-block">
+                <h4>Neto de la venta</h4>
+                <div class="result-row">
+                    <span class="label">Precio de venta</span>
+                    <span class="value" id="r_pventa"></span>
+                </div>
+                <div class="result-row">
+                    <span class="label">Cancelación hipoteca</span>
+                    <span class="value negative" id="r_hipoteca"></span>
+                </div>
+                <div class="result-row">
+                    <span class="label">Comisión agencia (3% + IVA)</span>
+                    <span class="value negative" id="r_comision"></span>
+                </div>
+                <div class="result-row">
+                    <span class="label">Plusvalía municipal</span>
+                    <span class="value negative" id="r_plusvalia"></span>
+                </div>
+                <div class="result-row">
+                    <span class="label">Cancelación registral</span>
+                    <span class="value negative" id="r_cancelacion"></span>
+                </div>
+                <div class="result-row subtotal">
+                    <span class="label">Neto disponible</span>
+                    <span class="value" id="r_neto_venta"></span>
+                </div>
+            </div>
+
+            <div class="result-block">
+                <h4>Coste total de la compra</h4>
+                <div class="result-row">
+                    <span class="label">Precio de compra</span>
+                    <span class="value" id="r_pcompra"></span>
+                </div>
+                <div class="result-row">
+                    <span class="label">ITP</span>
+                    <span class="value" id="r_itp"></span>
+                </div>
+                <div class="result-row">
+                    <span class="label">Notaría + registro + gestoría</span>
+                    <span class="value" id="r_gastos_escritura"></span>
+                </div>
+                <div class="result-row subtotal">
+                    <span class="label">Coste total</span>
+                    <span class="value" id="r_coste_compra"></span>
+                </div>
+            </div>
+
+            <div class="result-summary" id="summary_box">
+                <div class="summary-label">Financiación necesaria</div>
+                <div class="summary-value" id="r_gap"></div>
+                <div class="summary-detail" id="r_cuota"></div>
+                <div id="r_diagnosis"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="prose">
+
+        <h2>Tres decisiones que cambian el resultado</h2>
+
+        <p>La ecuación de la reposición no es fija. Hay tres variables que el comprador controla y que pueden mover el resultado decenas de miles de euros en cualquier dirección.</p>
+
+        <h3>¿Vendes primero o compras primero?</h3>
+        <p>Vender primero te da certeza: sabes exactamente cuánto dinero tienes. Pero te deja sin vivienda y te obliga a encontrar algo rápido, lo que debilita tu posición negociadora como comprador. Comprar primero te permite buscar sin presión, pero necesitas financiación puente o doble hipoteca temporal — y si tu venta se retrasa, el coste financiero puede ser considerable. No hay respuesta universalmente correcta; depende de la liquidez del mercado en tu zona, de tu tolerancia al riesgo, y de tu capacidad de financiación temporal.</p>
+
+        <h3>¿Cuánta comisión de agencia negociar?</h3>
+        <p>El 3% que usa esta calculadora como referencia no es fijo. Hay agentes que cobran más, otros que negocian bajadas en propiedades de precio alto, y en algunos mercados se están consolidando modelos de tarifa plana. En una venta de €250.000, la diferencia entre pagar 3% y 4,5% de comisión es de €3.750 — dinero que sale directamente de tu neto.</p>
+
+        <h3>¿Aplica la exención por reinversión?</h3>
+        <p>Si cumples los requisitos (vivienda habitual, reinversión total en los 2 años, residencia efectiva durante al menos 3 años), la exención de IRPF puede ahorrarte entre €5.000 y €30.000 según el tamaño de tu ganancia patrimonial. Pero si reinviertes solo parcialmente, la exención es proporcional. Y si vendes una vivienda que no es tu residencia habitual (por ejemplo, si ya te mudaste hace más de 2 años), no aplica en absoluto.</p>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+        <h3>Los números de la venta son solo la mitad</h3>
+        <p>¿La nueva vivienda que estás mirando aguanta un escenario de esfuerzo hipotecario real? ¿El precio de oferta está alineado con el mercado de la zona? ¿Cuánto tardarías en revender si necesitas hacerlo?</p>
+        <a href="https://antesdelnotario.es" class="cta-link">Evalúa tu operación &rarr;</a>
+    </div>
+
+    <div class="prose">
+        <h2>Lo que esta calculadora no cubre</h2>
+
+        <p>Esta herramienta calcula el saldo neto de la reposición y la financiación necesaria. Es un punto de partida, no un diagnóstico completo. No evalúa si el precio de la vivienda que quieres comprar está por encima o por debajo del mercado de la zona. No simula tu esfuerzo hipotecario mensual en distintos escenarios de tipos de interés. No analiza la liquidez del distrito — cuánto tardarías en revender si tu situación cambia. Y no identifica riesgos estructurales como aluminosis, falta de ITE, o cargas registrales.</p>
+
+        <p>Para eso existe la Opinión Técnica de Compra: siete páginas de análisis que cubren precio, esfuerzo, liquidez, zona y negociación. El Pack Reposición (€299) incluye dos informes — uno para la venta y otro para la compra — porque vender bien y comprar bien forman parte de la misma decisión patrimonial.</p>
+    </div>
+
+    <footer class="article-footer">
+        <p>&copy; 2026 Dictum Previo. Esta guía tiene fines informativos y no constituye asesoramiento fiscal, legal ni financiero. Consulte a un profesional habilitado antes de tomar decisiones patrimoniales. Los tipos impositivos indicados son los generales vigentes a junio de 2026 y pueden variar según bonificaciones autonómicas, edad, discapacidad o situación familiar.</p>
+        <p style="margin-top: 0.75rem;"><a href="/">antesdelnotario.es</a> &middot; <a href="/blog.html">Blog</a></p>
+    </footer>
+
+</article>
+
+<script>
+function parseNum(id) {
+    const raw = document.getElementById(id).value.replace(/[^\d]/g, '');
+    return raw ? parseInt(raw) : 0;
+}
+
+function fmt(n) {
+    return n.toLocaleString('es-ES', { maximumFractionDigits: 0 }) + ' \u20AC';
+}
+
+function fmtSign(n) {
+    const prefix = n < 0 ? '-' : '+';
+    return prefix + Math.abs(n).toLocaleString('es-ES', { maximumFractionDigits: 0 }) + ' \u20AC';
+}
+
+function calcular() {
+    const pventa = parseNum('precioVenta');
+    const hipPendiente = parseNum('hipotecaPendiente');
+    const pcompra = parseNum('precioCompra');
+    const plusvalia = parseNum('plusvalia');
+    const itpRate = parseFloat(document.getElementById('ccaa').value);
+    const plazo = parseInt(document.getElementById('plazoHipoteca').value);
+
+    if (!pventa || !pcompra) {
+        alert('Introduce al menos el precio de venta y el de compra.');
+        return;
+    }
+
+    // === VENTA ===
+    const comisionAgencia = Math.round(pventa * 0.03 * 1.21); // 3% + 21% IVA
+    const cancelacionRegistral = hipPendiente > 0 ? 1000 : 0;
+    const netoVenta = pventa - hipPendiente - comisionAgencia - plusvalia - cancelacionRegistral;
+
+    // === COMPRA ===
+    const itp = Math.round(pcompra * itpRate);
+    const gastosEscritura = Math.round(pcompra * 0.018); // ~1.8% (notaría + registro + gestoría)
+    const costeCompra = pcompra + itp + gastosEscritura;
+
+    // === GAP ===
+    const gap = costeCompra - netoVenta;
+
+    // === CUOTA HIPOTECA ===
+    const tipoAnual = 0.03; // 3% referencia mixta
+    const tipoMensual = tipoAnual / 12;
+    const meses = plazo * 12;
+    let cuotaMensual = 0;
+    if (gap > 0) {
+        cuotaMensual = gap * (tipoMensual * Math.pow(1 + tipoMensual, meses)) /
+                       (Math.pow(1 + tipoMensual, meses) - 1);
+    }
+
+    // === RENDER ===
+    document.getElementById('r_pventa').textContent = fmt(pventa);
+    document.getElementById('r_hipoteca').textContent = '- ' + fmt(hipPendiente);
+    document.getElementById('r_comision').textContent = '- ' + fmt(comisionAgencia);
+    document.getElementById('r_plusvalia').textContent = '- ' + fmt(plusvalia);
+    document.getElementById('r_cancelacion').textContent = cancelacionRegistral > 0 ? '- ' + fmt(cancelacionRegistral) : '—';
+
+    const netoEl = document.getElementById('r_neto_venta');
+    netoEl.textContent = fmt(netoVenta);
+    netoEl.className = 'value ' + (netoVenta >= 0 ? 'positive' : 'negative');
+
+    document.getElementById('r_pcompra').textContent = fmt(pcompra);
+    document.getElementById('r_itp').textContent = fmt(itp) + ' (' + (itpRate * 100).toFixed(0) + '%)';
+    document.getElementById('r_gastos_escritura').textContent = '~' + fmt(gastosEscritura);
+    document.getElementById('r_coste_compra').textContent = fmt(costeCompra);
+
+    const gapEl = document.getElementById('r_gap');
+    if (gap <= 0) {
+        gapEl.textContent = '0 \u20AC';
+        document.getElementById('r_cuota').textContent =
+            'No necesitas hipoteca nueva. Tu neto cubre la compra y te quedan ' + fmt(Math.abs(gap)) + ' de remanente.';
+    } else {
+        gapEl.textContent = fmt(gap);
+        document.getElementById('r_cuota').textContent =
+            'Cuota estimada: ' + Math.round(cuotaMensual).toLocaleString('es-ES') + ' \u20AC/mes a ' + plazo +
+            ' años (tipo fijo 3% referencia). Esfuerzo hipotecario a validar con tus ingresos reales.';
+    }
+
+    // Diagnosis
+    const diagEl = document.getElementById('r_diagnosis');
+    const esfuerzo = gap > 0 ? gap / pcompra : 0;
+    if (gap <= 0) {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-green">Operación autofinanciada</span>';
+    } else if (esfuerzo < 0.6) {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-green">Financiación moderada</span>';
+    } else if (esfuerzo < 0.8) {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-amber">Financiación elevada</span>';
+    } else {
+        diagEl.innerHTML = '<span class="result-diagnosis diag-red">Financiación máxima — requiere revisión</span>';
+    }
+
+    document.getElementById('resultados').classList.add('visible');
+    document.getElementById('resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Auto-format inputs with thousands separator
+document.querySelectorAll('.calc-input').forEach(input => {
+    input.addEventListener('blur', function() {
+        const raw = this.value.replace(/[^\d]/g, '');
+        if (raw) {
+            this.value = parseInt(raw).toLocaleString('es-ES');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
