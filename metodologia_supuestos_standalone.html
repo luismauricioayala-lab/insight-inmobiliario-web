@@ -65,6 +65,8 @@
   .section-title{font-family:Arial,sans-serif;font-size:16px;font-weight:700;color:var(--text-heading);padding-bottom:0.5rem;border-bottom:2px solid var(--blue);margin:2.5rem 0 1rem;}
   .section-sub{font-family:Arial,sans-serif;font-size:13px;font-weight:600;color:var(--muted);margin:1.5rem 0 0.5rem;text-transform:uppercase;letter-spacing:0.05em;}
 
+  .example-tag{display:inline-block;background:var(--amber-light);color:var(--amber-callout-text);font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-right:0.5rem;}
+
   p{margin-bottom:0.8rem;}
 
   .callout-blue{background:var(--blue-light);border-left:3px solid var(--blue);padding:1rem 1.25rem;font-family:Arial,sans-serif;font-size:13px;color:var(--blue-callout-text);margin:1.25rem 0;border-radius:0 4px 4px 0;line-height:1.6;}
@@ -85,12 +87,12 @@
 
   <div class="brand-tag">Dictum Previo — Nota Metodológica</div>
   <div class="doc-h1">Cómo trabajamos con los datos</div>
-  <div class="doc-sub">Versión 3.0 · Junio 2026 · antesdelnotario.es</div>
+  <div class="doc-sub">Versión 4.0 · Junio 2026 · Multi-ciudad · antesdelnotario.es</div>
 
-  <p class="intro">Cada número que aparece en tu informe tiene un origen. Algunos vienen directamente de fuentes oficiales; otros los estimamos porque todavía no tenemos acceso a los datos reales. En ambos casos, te decimos cuál es cuál. Este documento explica exactamente de dónde sale cada cifra y qué estamos haciendo para mejorar las que aún son estimaciones.</p>
+  <p class="intro">Cada número que aparece en tu informe tiene un origen. Algunos vienen directamente de fuentes oficiales; otros los estimamos porque todavía no tenemos acceso a los datos primarios. En ambos casos, te decimos cuál es cuál. Este documento explica el sistema metodológico que aplicamos en cada ciudad cubierta — Sevilla, Zaragoza, Oviedo y Toledo — y cómo se calibra por separado para cada una.</p>
 
   <div class="callout-blue">
-    <strong>Nuestro principio:</strong> cuando un dato es una estimación, te lo decimos. Cuando lo corregimos, te explicamos por qué. Cuando no tenemos acceso al dato real, te indicamos cuándo esperamos tenerlo.
+    <strong>Nuestro principio:</strong> cuando un dato es una estimación, te lo decimos. Cuando lo corregimos, te explicamos por qué. Cuando no tenemos acceso al dato real, te indicamos cuándo esperamos tenerlo. La lógica es la misma para todas las ciudades; lo que cambia son los inputs y los umbrales calibrados.
   </div>
 
   <!-- ============================================================ -->
@@ -106,17 +108,17 @@
     <tbody>
       <tr>
         <td><strong>Precio de oferta por m²</strong><br>Lo que los vendedores piden en portales inmobiliarios en tu distrito.</td>
-        <td>Brains RE (Q1-2026) e Idealista (Dic-2025 y May-2026). Datos de oferta publicada.</td>
+        <td>Idealista (datos vigentes) cruzado con agregadores regionales (Brains RE en Andalucía, Propiso en Aragón). Ver sección 6 para el detalle por ciudad.</td>
         <td class="td-field">Precio_Oferta_m2</td>
       </tr>
       <tr>
         <td><strong>Alquiler medio por m²</strong><br>Lo que se pide de media por alquilar en tu zona.</td>
-        <td>Idealista Research Q1-2026.</td>
+        <td>Idealista Research, datos del trimestre más reciente disponible por ciudad.</td>
         <td class="td-field">Alquiler_Medio_m2</td>
       </tr>
       <tr>
         <td><strong>Tendencia anual de precios</strong><br>Cuánto han subido (o bajado) los precios en el último año.</td>
-        <td>Brains RE Q1-2026. Dos distritos corregidos por dato atípico (ver sección 3).</td>
+        <td>Idealista y agregadores regionales. Los datos atípicos se corrigen explícitamente (sección 3).</td>
         <td class="td-field">Tendencia_Anual</td>
       </tr>
       <tr>
@@ -134,7 +136,7 @@
   <p>Hay datos que aún no tenemos directamente porque requieren acuerdos con notarías o acceso a estadística registral por distrito. En estos casos, estimamos el valor con la mejor metodología disponible y lo marcamos explícitamente en cada informe.</p>
 
   <div class="callout-amber">
-    <strong>Limitación que declaramos:</strong> el precio al que realmente se cierran las compraventas en tu distrito es una estimación. Todavía no tenemos acceso sistemático a precios escriturados. Para compensar, calibramos el descuento de negociación con los estudios más rigurosos disponibles (Tinsa y Fotocasa). Cada informe lo indica claramente.
+    <strong>Limitación que declaramos:</strong> el precio al que realmente se cierran las compraventas en tu distrito es una estimación. Todavía no tenemos acceso sistemático a precios escriturados a nivel de distrito en ninguna ciudad. Para compensar, calibramos el descuento de negociación con los estudios más rigurosos disponibles (Tinsa IMIE y Fotocasa Research a nivel nacional, ajustados por presión de demanda local). Cada informe lo indica claramente.
   </div>
 
   <table>
@@ -144,55 +146,61 @@
     <tbody>
       <tr>
         <td><strong>Precio real de cierre por m²</strong><br>Lo que finalmente se paga — no lo que se pide.</td>
-        <td>Aplicamos un descuento calibrado al precio de oferta. El descuento varía por zona (3%–8%) según la presión de demanda del distrito.</td>
+        <td>Aplicamos un descuento calibrado al precio de oferta. El descuento varía por zona (rangos típicos de 0%–8%) según la presión de demanda del distrito.</td>
         <td class="td-field">Precio_Transaccion_m2</td>
       </tr>
       <tr>
         <td><strong>Descuento de negociación</strong><br>La diferencia habitual entre lo publicado y lo firmado.</td>
-        <td>Calibrado con Tinsa IMIE Q1-2026 (rango nacional 5%–7%) y Fotocasa Research 2025, ajustado por zona entre 3% y 8%.</td>
+        <td>Calibrado con Tinsa IMIE (rango nacional 5%–7%) y Fotocasa Research, ajustado por ciudad según presión de demanda observada (Idealista/data). Mercados con alta presión pueden tener descuento cero o incluso negativo.</td>
         <td class="td-field">Descuento_Negociacion</td>
       </tr>
       <tr>
         <td><strong>Compraventas por trimestre</strong><br>Cuántas operaciones se cierran en tu zona cada 3 meses.</td>
-        <td>Distribuimos las 2.580 operaciones trimestrales de Sevilla capital (Registradores Q4-2025) por proporción poblacional y demanda relativa de cada distrito.</td>
+        <td>Distribuimos las compraventas trimestrales totales de cada capital (Colegio de Registradores, Estadística Registral Inmobiliaria) por proporción poblacional y demanda relativa de cada distrito.</td>
         <td class="td-field">Volumen_Transacciones</td>
       </tr>
       <tr>
         <td><strong>Días en el mercado</strong><br>Cuánto tarda en venderse una propiedad en tu zona.</td>
-        <td>Partimos de 52 días como media de Sevilla (Idealista Research Q1-2026) y ajustamos entre ±7 y ±14 días según si el distrito tiene más o menos demanda que la media.</td>
+        <td>Partimos de la media de la ciudad (Idealista Research) y ajustamos entre ±7 y ±14 días según si el distrito tiene más o menos demanda que la media.</td>
         <td class="td-field">Dias_Mercado</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="section-sub">Resumen por distrito — valores aplicados</div>
-  <p>Esta tabla muestra los valores concretos que usamos para cada distrito de Sevilla. Los distritos marcados como "Piloto" están activos en producción; los demás se incorporarán progresivamente.</p>
+  <div class="section-sub">Caso ilustrativo: Sevilla — Q1 2026</div>
+  <p><span class="example-tag">Ejemplo</span>Esta tabla muestra los valores concretos aplicados a los 11 distritos de Sevilla en la edición vigente. Los datasets equivalentes para Zaragoza, Oviedo y Toledo se publican como CSV descargables en la landing y siguen exactamente la misma estructura.</p>
 
 <table>
     <thead>
-      <tr><th>Distrito</th><th>Oferta €/m²</th><th>Descuento</th><th>Cierre est. €/m²</th><th>Tendencia</th><th>Estado</th><th>Perfil</th></tr>
+      <tr><th>Distrito</th><th>Oferta €/m²</th><th>Descuento</th><th>Cierre est. €/m²</th><th>Tendencia</th><th>Perfil</th></tr>
     </thead>
     <tbody>
-      <tr><td>Casco Antiguo</td><td>4.236</td><td>5,5%</td><td>4.003</td><td>+9,6%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:#9B2C2C;font-weight:600;">Presión*</td></tr>
-      <tr><td>Los Remedios</td><td>3.891</td><td>4,5%</td><td>3.716</td><td>+7,5%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
-      <tr><td>Triana</td><td>3.770</td><td>3,5%</td><td>3.638</td><td>+13,6%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:#9B2C2C;font-weight:600;">Presión</td></tr>
-      <tr><td>Nervión</td><td>3.682</td><td>4,0%</td><td>3.535</td><td>+9,2%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
-      <tr><td>Sur</td><td>2.744</td><td>5,0%</td><td>2.607</td><td>+8,2%</td><td>Datos al cierre de 2025</td><td style="color:var(--green);font-weight:600;">Consolidado</td></tr>
-      <tr><td>San Pablo-Santa Justa</td><td>2.720</td><td>5,0%</td><td>2.584</td><td>+10,2%*</td><td>Activo*</td><td style="color:var(--green);font-weight:600;">Consolidado</td></tr>
-      <tr><td>Bellavista-La Palmera</td><td>2.644</td><td>5,0%</td><td>2.512</td><td>+11,3%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
-      <tr><td>Macarena</td><td>2.463</td><td>6,0%</td><td>2.315</td><td>+9,6%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:var(--green);font-weight:600;">Consolidado</td></tr>
-      <tr><td>Este-Alcosa-Torreblanca</td><td>1.855</td><td>7,0%</td><td>1.725</td><td>+7,4%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
-      <tr><td>Norte</td><td>1.673</td><td>7,5%</td><td>1.548</td><td>+11,5%*</td><td>Activo*</td><td style="color:#9B2C2C;font-weight:600;">Presión</td></tr>
-      <tr><td>Cerro-Amate</td><td>1.490</td><td>7,0%</td><td>1.386</td><td>+9,6%</td><td style="color:var(--green);font-weight:600;">Activo</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
+      <tr><td>Casco Antiguo</td><td>4.236</td><td>5,5%</td><td>4.003</td><td>+9,6%</td><td style="color:#9B2C2C;font-weight:600;">Presión*</td></tr>
+      <tr><td>Los Remedios</td><td>3.891</td><td>4,5%</td><td>3.716</td><td>+7,5%</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
+      <tr><td>Triana</td><td>3.770</td><td>3,5%</td><td>3.638</td><td>+13,6%</td><td style="color:#9B2C2C;font-weight:600;">Presión</td></tr>
+      <tr><td>Nervión</td><td>3.682</td><td>4,0%</td><td>3.535</td><td>+9,2%</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
+      <tr><td>Sur</td><td>2.744</td><td>5,0%</td><td>2.607</td><td>+8,2%</td><td style="color:var(--green);font-weight:600;">Consolidado</td></tr>
+      <tr><td>San Pablo-Santa Justa</td><td>2.720</td><td>5,0%</td><td>2.584</td><td>+10,2%*</td><td style="color:var(--green);font-weight:600;">Consolidado</td></tr>
+      <tr><td>Bellavista-La Palmera</td><td>2.644</td><td>5,0%</td><td>2.512</td><td>+11,3%</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
+      <tr><td>Macarena</td><td>2.463</td><td>6,0%</td><td>2.315</td><td>+9,6%</td><td style="color:var(--green);font-weight:600;">Consolidado</td></tr>
+      <tr><td>Este-Alcosa-Torreblanca</td><td>1.855</td><td>7,0%</td><td>1.725</td><td>+7,4%</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
+      <tr><td>Norte</td><td>1.673</td><td>7,5%</td><td>1.548</td><td>+11,5%*</td><td style="color:#9B2C2C;font-weight:600;">Presión</td></tr>
+      <tr><td>Cerro-Amate</td><td>1.490</td><td>7,0%</td><td>1.386</td><td>+9,6%</td><td style="color:var(--amber);font-weight:600;">Dinámico</td></tr>
     </tbody>
   </table>
   <p style="font-size:12px;color:var(--muted);font-family:Arial,sans-serif;">* Tendencia corregida por dato atípico — ver sección 3. Fuente precios: Brains RE Q1-2026 / Idealista May-2026.</p>
 
   <!-- ============================================================ -->
-  <div class="section-title">3. Correcciones que hemos aplicado</div>
+  <div class="section-title">3. Correcciones que aplicamos</div>
   <!-- ============================================================ -->
 
-  <p>En dos distritos, la tendencia anual publicada por Idealista mostraba subidas de más del 23%, muy por encima de cualquier otro distrito comparable. Esto puede ocurrir cuando la base de cálculo del portal es pequeña o cuando una promoción puntual distorsiona la media. En lugar de usar esos datos tal cual, los hemos corregido con fuentes adicionales.</p>
+  <p>Cuando la tendencia anual publicada por un agregador muestra subidas significativamente fuera del rango del resto de distritos comparables de la misma ciudad, aplicamos un criterio de corrección. Esto puede ocurrir cuando la base de cálculo del portal es pequeña o cuando una promoción puntual distorsiona la media interanual. En esos casos, en lugar de usar el dato original, lo cruzamos con fuentes adicionales.</p>
+
+  <div class="section-sub">Criterio de detección</div>
+  <p>Marcamos un distrito como atípico cuando su tendencia anual supera en más de 1,5 veces la mediana de los distritos de su misma franja de precios en la ciudad. La corrección se hace con media ponderada entre el dato original y otras fuentes (Registradores, agregadores secundarios).</p>
+
+  <div class="section-sub">Caso ilustrativo: Sevilla — Q1 2026</div>
+  <p><span class="example-tag">Ejemplo</span>En la edición vigente de Sevilla, dos distritos se corrigieron por este criterio:</p>
 
   <table>
     <thead>
@@ -203,54 +211,71 @@
         <td>San Pablo-Santa Justa</td>
         <td style="color:var(--amber);font-weight:600;">+26,1%</td>
         <td style="color:var(--green);font-weight:600;">+10,2%</td>
-        <td>Media ponderada Brains RE + Registradores Sevilla 2025. El valor original era un outlier estadístico.</td>
+        <td>Media ponderada Brains RE + Registradores Sevilla 2025. El valor original era un outlier estadístico frente a distritos de rango similar.</td>
       </tr>
       <tr>
         <td>Norte</td>
         <td style="color:var(--amber);font-weight:600;">+23,9%</td>
         <td style="color:var(--green);font-weight:600;">+11,5%</td>
-        <td>Mismo criterio. Tendencia corregida consistente con los distritos de rango similar.</td>
+        <td>Mismo criterio. Tendencia corregida consistente con los distritos de rango de precio similar.</td>
       </tr>
     </tbody>
   </table>
 
-  <p>Los valores originales quedan registrados en el dataset interno para trazabilidad. Cuando tengamos los datos de Registradores Q1-2026, podremos confirmar o ajustar estas correcciones.</p>
+  <p>Los valores originales quedan registrados en el dataset interno para trazabilidad. Cuando dispongamos de los datos de Registradores T1-2026 desglosados por distrito, podremos confirmar o ajustar estas correcciones. El mismo criterio se aplica en las ciudades incorporadas a la cobertura.</p>
 
   <!-- ============================================================ -->
-  <div class="section-title">4. Clasificación de Perfil de Mercado por distrito</div>
+  <div class="section-title">4. Clasificación de Perfil de Mercado</div>
   <!-- ============================================================ -->
 
   <p>Cada distrito recibe una clasificación de perfil de mercado basada en tres indicadores cuantitativos observables. La clasificación no constituye una calificación de riesgo formal — es una señal orientativa que el comprador puede verificar con los datos públicos citados.</p>
 
-  <div class="section-sub">Criterios de puntuación</div>
+  <div class="section-sub">Lógica del modelo (transversal)</div>
 
-  <p>Se evalúan tres condiciones. Cada condición cumplida suma un punto al score del distrito.</p>
+  <p>Se evalúan tres condiciones. Cada condición cumplida suma un punto al score del distrito. Los umbrales de cada condición se recalibran por ciudad, porque las medias de precio y de subida varían (ver tabla siguiente).</p>
 
   <table>
     <thead>
-      <tr><th>Criterio</th><th>Condición</th><th>Fuente del umbral</th><th style="width:80px">Puntos</th></tr>
+      <tr><th>Criterio</th><th>Condición</th><th style="width:80px">Puntos</th></tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>Prima sobre referencia municipal</strong><br>El distrito cotiza significativamente por encima de la media de tasaciones de la ciudad.</td>
-        <td>Oferta_m2 / Tinsa_Ref_Ciudad_m2 &gt; 1,40</td>
-        <td>Tinsa IMIE Q1-2026 (Sevilla ciudad: 2.565 €/m²)</td>
+        <td>Oferta_m2 / Tinsa_Ref_Ciudad_m2 &gt; umbral_prima</td>
         <td style="text-align:center;">+1</td>
       </tr>
       <tr>
         <td><strong>Aceleración de precios</strong><br>La apreciación interanual supera la media municipal.</td>
-        <td>Tendencia_Anual &gt; 11%</td>
-        <td>Brains RE Q1-2026 (media Sevilla: 9,6%)</td>
+        <td>Tendencia_Anual &gt; umbral_tendencia</td>
         <td style="text-align:center;">+1</td>
       </tr>
       <tr>
         <td><strong>Brecha de negociación amplia</strong><br>El descuento calibrado es alto, lo que sugiere menor soporte de demanda orgánica.</td>
-        <td>Descuento_Negociacion &ge; 6,5%</td>
-        <td>Calibración Tinsa IMIE / Fotocasa 2025</td>
+        <td>Descuento_Negociacion &ge; umbral_descuento</td>
         <td style="text-align:center;">+1</td>
       </tr>
     </tbody>
   </table>
+
+  <div class="section-sub">Calibración por ciudad</div>
+
+  <p>Los umbrales se fijan a partir de la distribución observada en cada ciudad. Esta es la calibración vigente:</p>
+
+  <table>
+    <thead>
+      <tr><th>Ciudad</th><th>Umbral prima</th><th>Umbral tendencia</th><th>Umbral descuento</th><th>Ref. ciudad €/m²</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Sevilla</td><td>1,40</td><td>11,0%</td><td>6,5%</td><td>2.565 (Tinsa IMIE)</td></tr>
+      <tr><td>Zaragoza</td><td>1,30</td><td>14,5%</td><td>3,0%</td><td>2.306 (ERI T1-2026)</td></tr>
+      <tr><td>Oviedo</td><td>1,35</td><td>9,0%</td><td>6,0%</td><td>1.950 (estimado)</td></tr>
+      <tr><td>Toledo</td><td>1,35</td><td>8,0%</td><td>6,0%</td><td>1.750 (estimado)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout-amber">
+    <strong>Por qué los umbrales difieren entre ciudades:</strong> en Zaragoza, la presión de demanda es tan alta que el descuento típico está cerca de cero — el umbral de descuento se baja porque cualquier descuento positivo ya es señal. En Sevilla, donde el gap oferta-cierre medio es del 16%, el umbral se mantiene en 6,5% para identificar solo los descuentos realmente amplios. La lógica del modelo es la misma; los inputs reflejan la realidad de cada mercado.
+  </div>
 
   <div class="section-sub">Escala de clasificación</div>
 
@@ -277,7 +302,9 @@
     </tbody>
   </table>
 
-  <div class="section-sub">Resultado por distrito — junio 2026</div>
+  <div class="section-sub">Resultado por distrito — Sevilla, junio 2026</div>
+
+  <p><span class="example-tag">Ejemplo</span>Aplicación del modelo a los 11 distritos de Sevilla con los umbrales de Sevilla.</p>
 
   <table>
     <thead>
@@ -299,16 +326,16 @@
   </table>
 
   <div class="callout-amber">
-    <strong>* Excepción cualitativa — Casco Antiguo:</strong> el score cuantitativo es 1 (solo prima sobre Tinsa). Se eleva a Presión por la concentración documentada de demanda turística e inversora (viviendas de uso turístico VFT) sobre el parque residencial, factor no capturado en los indicadores cuantitativos del modelo. Esta excepción se revisará cuando se disponga de datos directos de Registradores sobre el peso de compradores no residentes en el distrito.
+    <strong>* Excepción cualitativa — Casco Antiguo:</strong> el score cuantitativo es 1 (solo prima sobre Tinsa). Se eleva a Presión por la concentración documentada de demanda turística e inversora (viviendas de uso turístico VFT) sobre el parque residencial, factor no capturado en los indicadores cuantitativos del modelo. Las excepciones cualitativas se documentan caso a caso por ciudad cuando un factor exógeno relevante no queda capturado por los tres indicadores cuantitativos.
   </div>
 
-  <p>La clasificación se actualiza trimestralmente con cada revisión del dataset de distritos. Los umbrales (1,40 / 11% / 6,5%) se calibraron sobre la distribución de Sevilla capital en Q1-2026 y pueden ajustarse conforme se incorporen más ciudades al motor.</p>
+  <p>La clasificación se actualiza trimestralmente con cada revisión del dataset. Las tablas equivalentes para Zaragoza, Oviedo y Toledo se publican junto con cada monitor trimestral del comprador.</p>
 
   <!-- ============================================================ -->
   <div class="section-title">5. Cómo vamos a mejorar estos datos</div>
   <!-- ============================================================ -->
 
-  <p>Cada estimación que usamos hoy tiene un plan para ser reemplazada por un dato real. El objetivo es que en los próximos meses, la mayoría de los campos estimados se sustituyan por datos directos de fuentes primarias.</p>
+  <p>Cada estimación que usamos hoy tiene un plan para ser reemplazada por un dato real. El objetivo es que en los próximos meses, la mayoría de los campos estimados se sustituyan por datos directos de fuentes primarias en todas las ciudades cubiertas.</p>
 
   <table>
     <thead>
@@ -317,7 +344,7 @@
     <tbody>
       <tr>
         <td><strong>Precio real de cierre</strong></td>
-        <td>Acuerdos con notarías piloto en Nervión y Centro + datos de clientes post-compra</td>
+        <td>Acuerdos con notarías piloto en las ciudades cubiertas + datos de clientes post-compra</td>
         <td>Meses 6–8</td>
       </tr>
       <tr>
@@ -337,36 +364,53 @@
       </tr>
       <tr>
         <td><strong>Tendencias corregidas</strong></td>
-        <td>Confirmación con Registradores Q1-Q2 2026</td>
+        <td>Confirmación con Registradores Q1-Q2 2026 por ciudad</td>
         <td>Meses 3–4</td>
       </tr>
     </tbody>
   </table>
 
   <div class="callout-green">
-    <strong>El dato que más nos importa mejorar</strong> es el precio real de cierre. Cada cliente que comparte el resultado de su operación (mediante nuestro seguimiento post-compra) nos ayuda a calibrar mejor las estimaciones para el siguiente comprador. Es un proceso acumulativo: cuantos más informes vendamos, más precisos serán los datos.
+    <strong>El dato que más nos importa mejorar</strong> es el precio real de cierre. Cada cliente que comparte el resultado de su operación (mediante nuestro seguimiento post-compra) nos ayuda a calibrar mejor las estimaciones para el siguiente comprador en su ciudad. Es un proceso acumulativo: cuantos más informes vendamos, más precisos serán los datos.
   </div>
 
   <!-- ============================================================ -->
   <div class="section-title">6. Fuentes utilizadas</div>
   <!-- ============================================================ -->
 
+  <div class="section-sub">Fuentes transversales (todas las ciudades)</div>
+
   <table>
     <thead>
       <tr><th>Fuente</th><th>Qué aporta</th><th>Período</th></tr>
     </thead>
     <tbody>
-      <tr><td>Brains RE</td><td>Precios de oferta y tendencias por distrito de Sevilla</td><td>Q1-2026</td></tr>
-      <tr><td>Idealista / Idealista Research</td><td>Precios de oferta, alquileres, tiempo de mercado</td><td>Dic-2025 y May-2026</td></tr>
-      <tr><td>Tinsa IMIE</td><td>Descuento de negociación a nivel nacional y por zona</td><td>Q1-2026</td></tr>
-      <tr><td>Fotocasa Research</td><td>Descuento de negociación complementario</td><td>2025</td></tr>
-      <tr><td>Colegio de Registradores</td><td>Volumen de compraventas trimestrales por provincia</td><td>Q4-2025</td></tr>
-      <tr><td>INE / Catastro</td><td>Valor de referencia catastral, datos censales</td><td>2025-2026</td></tr>
+      <tr><td>Idealista / Idealista Research</td><td>Precios de oferta, alquileres, tiempo de mercado, presión de demanda</td><td>Actualización mensual / trimestral</td></tr>
+      <tr><td>Tinsa IMIE</td><td>Referencia de valor de tasación por ciudad y descuento nacional</td><td>Trimestral</td></tr>
+      <tr><td>Fotocasa Research</td><td>Descuento de negociación complementario</td><td>Anual</td></tr>
+      <tr><td>Colegio de Registradores (ERI)</td><td>Volumen de compraventas y precio medio por provincia / capital</td><td>Trimestral</td></tr>
+      <tr><td>INE / Catastro</td><td>Valor de referencia catastral, datos censales y demográficos</td><td>Anual</td></tr>
     </tbody>
   </table>
 
+  <div class="section-sub">Fuentes regionales por ciudad</div>
+
+  <table>
+    <thead>
+      <tr><th>Ciudad</th><th>Fuente regional principal</th><th>Período más reciente</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Sevilla</td><td>Brains RE (agregador andaluz)</td><td>Q1-2026</td></tr>
+      <tr><td>Zaragoza</td><td>Propiso (agregador aragonés)</td><td>Q1-2026</td></tr>
+      <tr><td>Oviedo</td><td>Idealista zonificación + Ayto. Oviedo (distritos oficiales)</td><td>Abril 2026</td></tr>
+      <tr><td>Toledo</td><td>Idealista zonificación + Ayto. Toledo (distritos oficiales)</td><td>Marzo 2026</td></tr>
+    </tbody>
+  </table>
+
+  <p>Las cuatro ciudades usan distritos oficiales municipales — no la zonificación comercial de portales inmobiliarios. Esto puede generar pequeñas diferencias entre nuestros datos y los que se ven en Idealista o Fotocasa: nuestros números agregan por distrito administrativo, no por barrio publicitario.</p>
+
   <div class="footer">
-    <span>Dictum Previo — Nota Metodológica v3.0</span>
+    <span>Dictum Previo — Nota Metodológica v4.0 · Multi-ciudad</span>
     <span>Junio 2026 · antesdelnotario.es</span>
   </div>
 
