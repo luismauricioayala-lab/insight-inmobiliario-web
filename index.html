@@ -869,6 +869,8 @@
             .plan-vuelo-container h3 { font-size: 1.8rem; }
             .plan-vuelo-container .price { font-size: 3.2rem; }
             .scope-grid { grid-template-columns: 1fr !important; }
+            .cobertura-primary-card { grid-template-columns: 1fr !important; gap: 1rem !important; }
+            .cobertura-grid { grid-template-columns: 1fr !important; }
         }
 
         @media (min-width: 769px) {
@@ -1009,16 +1011,16 @@
         <div class="modules-section">
             <div class="modules-container">
                 <div class="module-card">
-                    <h3>Nuestros ingresos no dependen de que compres o no</h3>
-                    <p>No cobramos comisión por la venta ni participamos en el cierre. El portal te ayuda a encontrar, la agencia a ejecutar, el banco a financiar. Nosotros te ayudamos a revisar la operación. Cobramos lo mismo compres o no compres.</p>
+                    <h3>Cobramos lo mismo compres o no</h3>
+                    <p>El portal gana si encuentras. La agencia gana si cierras. El banco gana si financias. Nosotros cobramos por revisar la operación — y el resultado es el mismo para nosotros si decides comprar o si decides no hacerlo.</p>
                 </div>
                 <div class="module-card">
-                    <h3>Análisis pensado para tu decisión</h3>
-                    <p>Traducimos los mismos indicadores que usan los bancos para aprobar hipotecas a conceptos que puedes entender y usar: cuánto te costará cada mes, cuánto te queda después de firmar y qué pasa si suben los tipos o bajan tus ingresos.</p>
+                    <h3>Números que puedes usar en la mesa</h3>
+                    <p>Cuánto se cierra realmente en tu zona, cuántos meses de colchón te quedan tras la firma y qué pasa con tu cuota si los tipos suben dos puntos. Si no puedes usarlo para tomar una decisión o negociar, no lo incluimos.</p>
                 </div>
                 <div class="module-card">
-                    <h3>Cada cifra tiene origen conocido</h3>
-                    <p>Utilizamos fuentes públicas como el Catastro, el INE y el Colegio de Registradores. Cuando estimamos una variable, te lo decimos y te explicamos cómo. Nada de cifras opacas ni conclusiones sin respaldo.</p>
+                    <h3>Cada dato tiene nombre y apellido</h3>
+                    <p>INE, Catastro, Colegio de Registradores, Banco de España. Cuando una cifra es estimación nuestra, te lo decimos. Si no podemos respaldar un número, no aparece en el informe.</p>
                 </div>
             </div>
         </div>
@@ -1178,8 +1180,8 @@
         <section id="cobertura" style="padding: 5rem 10%; border-bottom: 1px solid var(--bb-border);">
             <div style="max-width: 1000px; margin: 0 auto;">
                 <p style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bb-accent); margin-bottom: 0.75rem;">Cobertura</p>
-                <h2 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; color: var(--bb-text); margin-bottom: 1rem;">Cuatro mercados. Cuatro problemas distintos del comprador.</h2>
-                <p class="section-intro" style="margin-bottom: 2.5rem; max-width: 720px;">No todas las ciudades se compran igual. En cada una hemos identificado el factor que más condiciona la decisión del comprador y hemos construido el análisis alrededor de ese factor. Para cualquier otra ciudad, preparamos un informe personalizado con la misma metodología.</p>
+                <h2 style="font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; color: var(--bb-text); margin-bottom: 1rem;">Dos mercados en profundidad. Cobertura nacional bajo demanda.</h2>
+                <p class="section-intro" style="margin-bottom: 2.5rem; max-width: 720px;">No todas las ciudades se compran igual. Sevilla y Zaragoza representan dos perfiles de comprador opuestos — arraigo local y movilidad — y cubrimos ambos con análisis de zona completo. Para cualquier otra ciudad de España, preparamos un informe personalizado con la misma metodología.</p>
                 
                 <a href="monitor_comprador_espana_t1_2026.html" style="display: flex; align-items: center; gap: 1rem; background: var(--hero-bg); border-radius: 6px; padding: 1rem 1.5rem; margin-bottom: 2rem; text-decoration: none; transition: var(--transition);">
                     <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; white-space: nowrap;">Monitor España · T1 2026</span>
@@ -1187,34 +1189,80 @@
                     <span style="color: var(--bb-orange); font-size: 0.82rem; font-weight: 600; white-space: nowrap;">Leer →</span>
                 </a>
 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 2.5rem;" class="cobertura-grid">
+                <!-- MERCADOS PRIMARIOS: Sevilla y Zaragoza (full-width) -->
+                <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
                     <!-- SEVILLA -->
-                    <a href="monitor_comprador_sevilla_t1_2026.html" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-left: 4px solid var(--bb-orange); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: block; transition: var(--transition);">
-                        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; font-weight: 600;">11 distritos · Andalucía</div>
-                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Sevilla</div>
-                        <p style="font-size: 0.88rem; color: var(--bb-text-muted); line-height: 1.55; margin: 0 0 1rem 0;">Gap del 16% entre anuncio y cierre. Cada distrito negocia distinto: analizamos el margen real zona a zona para que sepas hasta dónde apretar tu oferta.</p>
-                        <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.82rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor + fichas de distrito →</span>
+                    <a href="monitor_comprador_sevilla_t1_2026.html" class="cobertura-primary-card" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-left: 4px solid var(--bb-orange); border-radius: 6px; padding: 2rem; text-decoration: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; transition: var(--transition);">
+                        <div>
+                            <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; font-weight: 600;">11 distritos · Andalucía · Mercado principal</div>
+                            <div style="font-size: 1.4rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.75rem;">Sevilla</div>
+                            <p style="font-size: 0.92rem; color: var(--bb-text-muted); line-height: 1.6; margin: 0 0 1rem 0;">El comprador sevillano compra donde ya vive. Conoce la ciudad, pero no los números: hay un gap del 16% entre lo que piden y lo que se cierra. Cada distrito negocia distinto — analizamos el margen real zona a zona.</p>
+                            <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.82rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor + fichas de distrito →</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0; border-bottom: 1px solid var(--bb-border);">
+                                <span style="color: var(--bb-text-muted);">Perfil comprador</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">Arraigo local</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0; border-bottom: 1px solid var(--bb-border);">
+                                <span style="color: var(--bb-text-muted);">Reto principal</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">Negociar el precio</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0; border-bottom: 1px solid var(--bb-border);">
+                                <span style="color: var(--bb-text-muted);">ITP vigente</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">7%</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0;">
+                                <span style="color: var(--bb-text-muted);">Contenido</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">Monitor + fichas + comparador</span>
+                            </div>
+                        </div>
                     </a>
                     <!-- ZARAGOZA -->
-                    <a href="alternativas_zaragoza_2026.html" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-left: 4px solid var(--bb-orange); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: block; transition: var(--transition);">
-                        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; font-weight: 600;">16 distritos · Aragón</div>
-                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Zaragoza</div>
-                        <p style="font-size: 0.88rem; color: var(--bb-text-muted); line-height: 1.55; margin: 0 0 1rem 0;">2ª ciudad con más presión de demanda de España. Para el comprador de reposición, el reto no es negociar: es saber si el barrio al que te mudas tiene mejor o peor perfil que el que dejas.</p>
-                        <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.82rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor + comparador de distritos →</span>
+                    <a href="alternativas_zaragoza_2026.html" class="cobertura-primary-card" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-left: 4px solid var(--bb-orange); border-radius: 6px; padding: 2rem; text-decoration: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; transition: var(--transition);">
+                        <div>
+                            <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; font-weight: 600;">16 distritos · Aragón · Mercado principal</div>
+                            <div style="font-size: 1.4rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.75rem;">Zaragoza</div>
+                            <p style="font-size: 0.92rem; color: var(--bb-text-muted); line-height: 1.6; margin: 0 0 1rem 0;">2ª ciudad con más presión de demanda de España. Aquí el comprador se mueve entre barrios — o llega de fuera. El reto no es negociar: es saber si el distrito al que te mudas tiene mejor o peor perfil que el que dejas.</p>
+                            <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.82rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor + comparador de distritos →</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0; border-bottom: 1px solid var(--bb-border);">
+                                <span style="color: var(--bb-text-muted);">Perfil comprador</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">Movilidad y reposición</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0; border-bottom: 1px solid var(--bb-border);">
+                                <span style="color: var(--bb-text-muted);">Reto principal</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">Elegir la zona correcta</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0; border-bottom: 1px solid var(--bb-border);">
+                                <span style="color: var(--bb-text-muted);">ITP vigente</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">8%</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; padding: 0.5rem 0;">
+                                <span style="color: var(--bb-text-muted);">Contenido</span>
+                                <span style="color: var(--bb-text); font-weight: 600;">Monitor + fichas + comparador</span>
+                            </div>
+                        </div>
                     </a>
+                </div>
+
+                <!-- MERCADOS SECUNDARIOS: Oviedo y Toledo -->
+                <div style="font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--bb-text-muted); margin-bottom: 0.75rem; font-weight: 600;">También cubrimos</div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 2.5rem;" class="cobertura-grid">
                     <!-- OVIEDO -->
-                    <a href="monitor_comprador_oviedo_t1_2026.html" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-left: 4px solid var(--bb-orange); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: block; transition: var(--transition);">
-                        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; font-weight: 600;">7 distritos · Asturias</div>
-                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Oviedo</div>
-                        <p style="font-size: 0.88rem; color: var(--bb-text-muted); line-height: 1.55; margin: 0 0 1rem 0;">Tipos hipotecarios más altos de España (3,24%) y 76% de contratación a tipo fijo. ¿Cuánto te cuesta realmente la tranquilidad de fijarte a 25 años? Nuestro análisis responde esa pregunta.</p>
-                        <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.82rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor →</span>
+                    <a href="monitor_comprador_oviedo_t1_2026.html" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 6px; padding: 1.25rem; text-decoration: none; display: block; transition: var(--transition);">
+                        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.4rem; font-weight: 600;">7 distritos · Asturias</div>
+                        <div style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.4rem;">Oviedo</div>
+                        <p style="font-size: 0.85rem; color: var(--bb-text-muted); line-height: 1.5; margin: 0 0 0.75rem 0;">Tipos hipotecarios más altos de España y 76% de contratación a tipo fijo. Monitor de mercado disponible.</p>
+                        <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.78rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor →</span>
                     </a>
                     <!-- TOLEDO -->
-                    <a href="monitor_comprador_toledo_t1_2026.html" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-left: 4px solid var(--bb-orange); border-radius: 6px; padding: 1.5rem; text-decoration: none; display: block; transition: var(--transition);">
-                        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; font-weight: 600;">5 distritos · Castilla-La Mancha</div>
-                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.5rem;">Toledo</div>
-                        <p style="font-size: 0.88rem; color: var(--bb-text-muted); line-height: 1.55; margin: 0 0 1rem 0;">A 30 minutos de Madrid y con un ITP del 9%. ¿Estás comprando en Toledo o pagando precio importado de la capital? El análisis separa demanda local de derrame madrileño.</p>
-                        <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.82rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor →</span>
+                    <a href="monitor_comprador_toledo_t1_2026.html" style="background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 6px; padding: 1.25rem; text-decoration: none; display: block; transition: var(--transition);">
+                        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.4rem; font-weight: 600;">5 distritos · Castilla-La Mancha</div>
+                        <div style="font-size: 1.1rem; font-weight: 700; color: var(--bb-text); margin-bottom: 0.4rem;">Toledo</div>
+                        <p style="font-size: 0.85rem; color: var(--bb-text-muted); line-height: 1.5; margin: 0 0 0.75rem 0;">A 30 minutos de Madrid y con ITP del 9%. El análisis separa demanda local de derrame madrileño.</p>
+                        <span style="color: var(--bb-accent); font-weight: 600; font-size: 0.78rem; border-bottom: 1px solid var(--bb-accent);">Ver monitor →</span>
                     </a>
                 </div>
 
