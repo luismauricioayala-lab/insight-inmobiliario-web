@@ -24,7 +24,7 @@
     <style>
         /* ===== PALETA DICTUM PREVIO — "despacho patrimonial" (MODO CLARO) =====
            Derivada del template del informe PDF: navy #0d1f3c, gold #b8832a.
-           Una sola identidad: landing → app Streamlit → PDF. */
+           Una sola identidad: landing → simulador → PDF. */
         :root {
             --bb-bg: #FFFFFF;
             --bb-panel-bg: #F7F3ED;
@@ -877,6 +877,88 @@
     }
 }
 
+    /* === SIMULADOR v2: STRESS BARS === */
+    .stress-section { margin-bottom: 2.5rem; }
+    .stress-title {
+        font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.08em; color: var(--bb-accent);
+        margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--bb-border);
+    }
+    .stress-row {
+        display: grid; grid-template-columns: 160px 1fr 90px; align-items: center;
+        gap: 1rem; margin-bottom: 0.75rem;
+    }
+    .stress-label { font-size: 0.82rem; color: var(--bb-text); font-weight: 500; }
+    .stress-label-sub { font-family: var(--font-mono); font-size: 0.68rem; color: var(--bb-text-muted); }
+    .stress-bar-track {
+        height: 32px; background: var(--bb-panel-bg); border-radius: 3px; position: relative;
+        overflow: hidden; border: 1px solid var(--bb-border);
+    }
+    .stress-bar-fill {
+        height: 100%; border-radius: 2px; transition: width 0.5s ease, background 0.3s;
+        display: flex; align-items: center; padding-left: 10px;
+        font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: #fff;
+        min-width: 2rem;
+    }
+    .stress-bar-fill.bar-green { background: var(--green); }
+    .stress-bar-fill.bar-amber { background: var(--bb-orange); }
+    .stress-bar-fill.bar-red { background: var(--red); }
+    .stress-bar-track::before, .stress-bar-track::after {
+        content: ''; position: absolute; top: 0; height: 100%; width: 1px;
+        background: rgba(0,0,0,0.15); z-index: 1;
+    }
+    .stress-bar-track::before { left: 55%; }
+    .stress-bar-track::after { left: 66.6%; }
+    .stress-value { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-align: right; }
+
+    .combined-stress {
+        background: var(--bb-panel-bg); border: 1px solid var(--bb-border); border-radius: 4px;
+        padding: 1.25rem 1.5rem; margin-top: 1rem;
+    }
+    .combined-stress-label { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--bb-text-muted); font-weight: 600; margin-bottom: 0.4rem; }
+    .combined-stress-value { font-size: 0.92rem; line-height: 1.55; color: var(--bb-text); }
+
+    /* SIMULADOR v2: DIAGNOSIS STRIP */
+    .diagnosis-strip {
+        display: flex; align-items: center; gap: 1rem;
+        padding: 1.25rem 1.5rem; border-radius: 4px; margin-bottom: 2rem;
+        border: 1px solid transparent; transition: all 0.2s;
+    }
+    .diagnosis-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .diagnosis-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .diagnosis-text { font-size: 0.92rem; line-height: 1.55; color: var(--bb-text); }
+
+    /* SIMULADOR v2: PREMIUM GATE */
+    .gate-section {
+        border: 1px solid var(--bb-border); border-left: 4px solid var(--bb-orange);
+        border-radius: 0 4px 4px 0; padding: 1.75rem 2rem; margin-bottom: 2rem;
+        background: var(--bb-panel-bg);
+    }
+    .gate-label { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--bb-orange); font-weight: 700; margin-bottom: 1rem; }
+    .gate-items { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 2rem; }
+    .gate-item { display: flex; align-items: flex-start; gap: 0.6rem; }
+    .gate-icon { color: var(--bb-orange); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; font-weight: 700; }
+    .gate-text { font-size: 0.88rem; color: var(--bb-text); line-height: 1.5; }
+    .gate-text strong { color: var(--bb-accent); }
+
+    /* SIMULADOR v2: CTA BLOCK */
+    .sim-cta-block {
+        background: var(--ticket-bg); border-radius: 4px; padding: 2.5rem; color: var(--ticket-text);
+    }
+    .sim-cta-eyebrow { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--bb-orange); margin-bottom: 0.5rem; font-weight: 600; }
+    .sim-cta-heading { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 0.5rem; color: #FFFFFF; }
+    .sim-cta-sub { font-size: 0.92rem; color: var(--ticket-muted); line-height: 1.6; margin-bottom: 1.75rem; }
+    .sim-cta-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.25rem; border-top: 1px solid var(--ticket-border); padding-top: 1.5rem; }
+    .sim-cta-price { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--bb-orange); }
+    .sim-cta-price-note { font-size: 0.75rem; color: var(--ticket-muted); font-family: var(--font-sans); font-weight: 400; margin-left: 0.5rem; }
+
+    @media (max-width: 768px) {
+        .stress-row { grid-template-columns: 1fr; gap: 0.25rem; }
+        .stress-row .stress-value { text-align: left; }
+        .gate-items { grid-template-columns: 1fr; }
+        .sim-cta-footer { flex-direction: column; align-items: flex-start; }
+    }
+
     </style>
 </head>
 <body>
@@ -1655,111 +1737,171 @@
 
     <div id="view-simulador" class="page-view">
         <div class="topbar-interna">
-            <div class="brand-title">Dictum Previo // Simulador de Viabilidad de Compra</div>
-            <a href="#home" class="btn-retorno">← Volver al inicio</a>
+            <div class="brand-title">Dictum Previo // Simulador de Viabilidad</div>
+            <a href="#home" class="btn-retorno">&larr; Volver al inicio</a>
         </div>
         <div class="wrapper-interior">
 
             <div class="doc-header">
-                <div class="doc-meta">Simulador de viabilidad patrimonial · Analizamos mucho más que la cuota hipotecaria.</div>
-                <h1 class="doc-h1">¿Es realmente una buena compra para tu patrimonio?</h1>
+                <div class="doc-meta">Simulador de viabilidad de compra</div>
+                <h1 class="doc-h1">&iquest;Puedes sostener esta compra sin comprometer tu estabilidad?</h1>
             </div>
 
-            <p style="font-size:1rem; color:var(--bb-text-muted); line-height:1.7; margin-bottom:2rem;">Introduce los datos de la operación que estás considerando. El simulador te muestra al instante cuánto pagarías cada mes, qué porcentaje de tus ingresos se iría en la cuota y qué pasaría si suben los tipos de interés.</p>
-            
+            <p style="font-size:0.95rem; color:var(--bb-text-muted); line-height:1.65; margin-bottom:2rem;">Introduce los datos de la operaci&oacute;n. El simulador calcula al instante tu esfuerzo hipotecario y qu&eacute; pasar&iacute;a bajo escenarios adversos. Sin registro, sin datos personales.</p>
+
+            <!-- PRIMARY INPUTS -->
             <div class="sim-input-grid">
                 <div class="sim-input-block">
                     <label class="sim-label-accent">Precio de la vivienda <span style="color:var(--bb-orange)">*</span></label>
                     <input type="number" id="sim-precio" value="300000" min="50000" max="2000000" step="5000" oninput="syncEntradaYCalc()" class="sim-field">
-                    <span class="sim-field-desc">Precio pedido por el vendedor</span>
+                    <span class="sim-field-desc">Precio publicado por el vendedor</span>
                 </div>
-
                 <div class="sim-input-block">
-                    <label class="sim-label-accent">Capital que aportas <span style="color:var(--bb-orange)">*</span></label>
-                    <input type="number" id="sim-capital" value="60000" min="0" step="1000" oninput="calcSimulador()" class="sim-field">
-                    <span class="sim-field-desc">Ahorros totales (Mínimo 20% del precio para la entrada)</span>    
+                    <label class="sim-label-accent">Capital disponible <span style="color:var(--bb-orange)">*</span></label>
+                    <input type="number" id="sim-capital" value="90000" min="0" step="1000" oninput="calcSimulador()" class="sim-field">
+                    <span class="sim-field-desc">Ahorros totales para la operaci&oacute;n</span>
                 </div>
-
                 <div class="sim-input-block">
                     <label class="sim-label-accent">Ingresos netos / mes <span style="color:var(--bb-orange)">*</span></label>
-                    <input type="number" id="sim-ing-range" name="ingresos" value="2600" min="0" step="25" placeholder="Ej. 2600" oninput="calcSimulador()" class="sim-field">
-                    <span class="sim-field-desc">Neto de IRPF. Del hogar completo.</span>
+                    <input type="number" id="sim-ing-range" name="ingresos" value="3200" min="500" step="50" oninput="calcSimulador()" class="sim-field">
+                    <span class="sim-field-desc">Netos de IRPF, del hogar completo</span>
                 </div>
             </div>
 
+            <!-- SECONDARY INPUTS -->
             <div class="sim-secondary-grid">
                 <div class="sim-secondary-block">
-                    <label class="sim-label-muted">Euríbor (%)</label>
-                    <input type="number" id="sim-euribor" value="2.8" step="0.1" oninput="calcSimulador()" class="sim-field-secondary">
+                    <label class="sim-label-muted">Eur&iacute;bor (%)</label>
+                    <input type="number" id="sim-euribor" value="2.4" step="0.1" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
                 <div class="sim-secondary-block">
                     <label class="sim-label-muted">Diferencial (%)</label>
                     <input type="number" id="sim-dif" value="0.7" step="0.1" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
                 <div class="sim-secondary-block">
-                    <label class="sim-label-muted">Plazo (años)</label>
+                    <label class="sim-label-muted">Plazo (a&ntilde;os)</label>
                     <input type="number" id="sim-plazo" value="25" min="10" max="30" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
                 <div class="sim-secondary-block">
-                    <label class="sim-label-muted">Superficie (m²)</label>
+                    <label class="sim-label-muted">Superficie (m&sup2;)</label>
                     <input type="number" id="sim-metros" value="65" min="15" max="500" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
                 <div class="sim-secondary-block">
-                    <label class="sim-label-muted">Otras deudas / mes (€)</label>
+                    <label class="sim-label-muted">Otras deudas/mes (&euro;)</label>
                     <input type="number" id="sim-deudas" value="0" step="50" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
                 <div class="sim-secondary-block">
-                    <label class="sim-label-muted">Entrada (€)</label>
+                    <label class="sim-label-muted">Entrada (&euro;)</label>
                     <input type="number" id="sim-entrada-eur" value="60000" min="60000" step="500" oninput="calcSimulador()" class="sim-field-secondary">
                 </div>
             </div>
 
-            <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--bb-text-muted); margin-top: -0.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 6px;">
-                <span style="color: var(--bb-orange); font-weight: 700;">[i]</span> 
-                El informe completo compara el precio que te piden con lo que realmente se paga en tu zona y calcula cuánto margen de negociación podrías tener.
-            </p>
+            <!-- DIAGNOSIS STRIP -->
+            <div class="diagnosis-strip" id="sim-diag-strip">
+                <div class="diagnosis-dot" id="sim-diag-dot"></div>
+                <div>
+                    <div class="diagnosis-label" id="sim-diag-label">Calculando...</div>
+                    <div class="diagnosis-text" id="sim-diag-text"></div>
+                </div>
+            </div>
 
-            <div class="kpi-grid-internal" style="margin-bottom:1.5rem;">
+            <!-- KPIs -->
+            <div class="kpi-grid-internal" style="margin-bottom:2.5rem;">
                 <div class="kpi-card-internal">
                     <div class="kpi-label-internal">Cuota mensual</div>
-                    <div class="kpi-value-internal" id="sim-cuota">—</div>
+                    <div class="kpi-value-internal" id="sim-cuota">&mdash;</div>
                 </div>
                 <div class="kpi-card-internal">
-                    <div class="kpi-label-internal">Ratio de esfuerzo financiero</div>
-                    <div class="kpi-value-internal" id="sim-esfuerzo" style="color:var(--bb-orange)">—</div>
+                    <div class="kpi-label-internal">Esfuerzo hipotecario</div>
+                    <div class="kpi-value-internal" id="sim-esfuerzo" style="color:var(--bb-orange)">&mdash;</div>
                 </div>
                 <div class="kpi-card-internal">
-                    <div class="kpi-label-internal">MDSV</div>
-                    <div class="kpi-value-internal" id="sim-mdsv">—</div>
+                    <div class="kpi-label-internal">Margen de vida</div>
+                    <div class="kpi-value-internal" id="sim-mdsv">&mdash;</div>
                 </div>
                 <div class="kpi-card-internal">
                     <div class="kpi-label-internal">Capital hipotecado</div>
-                    <div class="kpi-value-internal" id="sim-hip">—</div>
+                    <div class="kpi-value-internal" id="sim-hip">&mdash;</div>
                 </div>
             </div>
 
+            <!-- STRESS SCENARIOS -->
+            <div class="stress-section">
+                <div class="stress-title">Escenarios de estr&eacute;s &mdash; &iquest;qu&eacute; pasa si suben los tipos?</div>
 
-            <div id="sim-diag" style="border-radius:4px; padding:1.25rem; margin-bottom:2rem; display:flex; align-items:flex-start; gap:0.75rem; font-family:var(--font-sans); font-size:0.95rem; line-height:1.6; border:1px solid transparent;">
-                <span id="sim-diag-icon" style="font-size:1rem; flex-shrink:0; margin-top:2px;">⬤</span>
-                <span id="sim-diag-text">Calculando diagnóstico...</span>
-            </div>
-
-            <!-- PREMIUM TEASER: lo que el simulador no cubre -->
-            <div style="background:var(--bb-panel-bg); border:1px solid var(--bb-border); border-left:4px solid var(--bb-orange); border-radius:0 4px 4px 0; padding:1.5rem; margin-bottom:2rem;">
-                <div style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--bb-orange); margin-bottom:0.75rem; font-weight:600;">Lo que este simulador no te muestra</div>
-                <p style="font-size:0.92rem; color:var(--bb-text); line-height:1.65; margin:0;">Qué pasa si suben los tipos de interés o bajan tus ingresos. Cuánto colchón te queda después de pagar entrada, impuestos y gastos. Si el precio que te piden está por encima o por debajo de lo que realmente se paga en tu zona. Y cuánto margen de negociación podrías tener antes de firmar.</p>
-            </div>
-
-            <div class="plan-vuelo-container" style="padding:2.5rem;">
-                <p class="version" style="color:var(--bb-orange) !important; font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px;">El simulador es solo el primer paso</p>
-                <h3 style="color:#FFFFFF !important; font-size:1.6rem; font-weight:700; margin:0.5rem 0; letter-spacing:-0.5px;">¿Quieres saber si esta operación es segura?</h3>
-                <p style="color:var(--ticket-muted) !important; font-family:var(--font-sans) !important; text-transform:none !important; font-size:0.95rem !important; margin:0.75rem 0 1.5rem; line-height:1.6;">Siete páginas con escenarios de estrés financiero, análisis de liquidez post-firma, contraste del precio con testigos reales de tu zona, evaluación de la posición del vendedor y un rango de negociación fundamentado.</p>
-                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; border-top:1px solid var(--ticket-border); padding-top:1.5rem;">
-                    <div style="font-family:var(--font-mono); font-size:1.8rem; font-weight:700; color:var(--bb-orange);">175 € <span style="font-size:12px; font-family:var(--font-sans); color:var(--ticket-muted); font-weight:400; margin-left:8px; letter-spacing:0;">· Entrega en 48h garantizada</span></div>
-                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-                        <a href="https://buy.stripe.com/test_fZuaEZ42o0yS2O0aGSbo400" target="_blank" class="cta-primary" style="padding:0.8rem 1.5rem; font-size:0.8rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; border-radius:3px;">Solicitar segunda opinión independiente</a>
-                        <button onclick="abrirMotorCompleto()" type="button" style="padding:0.8rem 1.5rem; font-size:0.8rem; font-family:var(--font-mono); text-transform:uppercase; border:1px solid var(--bb-orange); color:var(--bb-orange); background:transparent; border-radius:3px; cursor:pointer; display:flex; align-items:center; font-weight:600; transition:var(--transition);">Explorar la compra en detalle</button>
+                <div class="stress-row">
+                    <div>
+                        <div class="stress-label">Escenario actual</div>
+                        <div class="stress-label-sub" id="ss-base-rate"></div>
                     </div>
+                    <div class="stress-bar-track">
+                        <div class="stress-bar-fill" id="ss-base-bar"></div>
+                    </div>
+                    <div class="stress-value" id="ss-base-val"></div>
+                </div>
+
+                <div class="stress-row">
+                    <div>
+                        <div class="stress-label">Eur&iacute;bor +1%</div>
+                        <div class="stress-label-sub" id="ss-mod-rate"></div>
+                    </div>
+                    <div class="stress-bar-track">
+                        <div class="stress-bar-fill" id="ss-mod-bar"></div>
+                    </div>
+                    <div class="stress-value" id="ss-mod-val"></div>
+                </div>
+
+                <div class="stress-row">
+                    <div>
+                        <div class="stress-label">Eur&iacute;bor +2%</div>
+                        <div class="stress-label-sub" id="ss-sev-rate"></div>
+                    </div>
+                    <div class="stress-bar-track">
+                        <div class="stress-bar-fill" id="ss-sev-bar"></div>
+                    </div>
+                    <div class="stress-value" id="ss-sev-val"></div>
+                </div>
+
+                <div class="combined-stress">
+                    <div class="combined-stress-label">Escenario combinado &mdash; tipos +2% e ingresos &minus;20%</div>
+                    <div class="combined-stress-value" id="sc-combined-text"></div>
+                </div>
+            </div>
+
+            <!-- PREMIUM GATE -->
+            <div class="gate-section">
+                <div class="gate-label">Lo que este simulador no puede calcular</div>
+                <div class="gate-items">
+                    <div class="gate-item">
+                        <span class="gate-icon">&rsaquo;</span>
+                        <div class="gate-text"><strong>Contraste de precio con la zona.</strong> &iquest;El precio que te piden est&aacute; por encima o por debajo de lo que realmente se cierra en tu distrito?</div>
+                    </div>
+                    <div class="gate-item">
+                        <span class="gate-icon">&rsaquo;</span>
+                        <div class="gate-text"><strong>Liquidez post-firma.</strong> Cu&aacute;nto capital te queda despu&eacute;s de pagar entrada, ITP, notar&iacute;a y gestor&iacute;a. Y cu&aacute;ntos meses de colch&oacute;n representa.</div>
+                    </div>
+                    <div class="gate-item">
+                        <span class="gate-icon">&rsaquo;</span>
+                        <div class="gate-text"><strong>Rango de negociaci&oacute;n.</strong> Hasta d&oacute;nde puedes apretar tu oferta, respaldado por datos de cierre reales de la zona.</div>
+                    </div>
+                    <div class="gate-item">
+                        <span class="gate-icon">&rsaquo;</span>
+                        <div class="gate-text"><strong>Posici&oacute;n del vendedor.</strong> Cu&aacute;nto tiempo lleva el anuncio publicado y qu&eacute; dice eso sobre su urgencia de vender.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="sim-cta-block">
+                <div class="sim-cta-eyebrow">El simulador es el primer paso</div>
+                <div class="sim-cta-heading">&iquest;Quieres saber si esta operaci&oacute;n es segura antes de firmar?</div>
+                <div class="sim-cta-sub">Siete p&aacute;ginas con an&aacute;lisis de liquidez, contraste de precio con testigos reales de tu zona, evaluaci&oacute;n de la posici&oacute;n del vendedor y un rango de negociaci&oacute;n fundamentado. Entrega en 48 horas.</div>
+                <div class="sim-cta-footer">
+                    <div>
+                        <span class="sim-cta-price">175 &euro;</span>
+                        <span class="sim-cta-price-note">IVA incluido &middot; Entrega en 48h</span>
+                    </div>
+                    <a href="https://buy.stripe.com/test_fZuaEZ42o0yS2O0aGSbo400" target="_blank" rel="noopener" class="cta-primary" style="padding:0.85rem 2rem; font-size:0.82rem; text-decoration:none; border-radius:3px;">Solicitar informe independiente</a>
                 </div>
             </div>
 
@@ -1861,23 +2003,7 @@
         window.location.hash = '#simulador';
     }
 
-    function abrirMotorCompleto() {
-        const selectDistrito = document.getElementById('distrito');
-        const distrito = (selectDistrito && selectDistrito.value) ? selectDistrito.value : (sessionStorage.getItem('sim_distrito') || 'nervion');
-        const precio   = document.getElementById('sim-precio').value || '300000';
-
-        const capital  = document.getElementById('sim-capital').value || '60000';
-        const ingresos = document.getElementById('sim-ing-range').value || '2600';
-        const plazo    = document.getElementById('sim-plazo').value || '25';
-        const euribor     = document.getElementById('sim-euribor')?.value || '3.7';
-        const diferencial = document.getElementById('sim-dif')?.value || '0.8';
-        const metros      = document.getElementById('sim-metros')?.value || '65';
-        const entradaEur  = document.getElementById('sim-entrada-eur')?.value || '60000';
-        const pctEntrada  = Math.round((parseFloat(entradaEur) / parseFloat(precio)) * 100);
-        
-        const streamlitUrl = `https://dictum-previo.streamlit.app/?ciudad=${encodeURIComponent(document.getElementById('ciudad').value)}&distrito=${encodeURIComponent(distrito)}&precio=${precio}&ahorros=${capital}&ingresos=${ingresos}&plazo=${plazo}&metros=${metros}&euribor=${euribor}&diferencial=${diferencial}&pct_entrada=${pctEntrada}`;    
-        window.open(streamlitUrl, '_blank');
-    }
+    /* abrirMotorCompleto eliminado — Streamlit ya no es client-facing */
 
     /* 4. SELECTOR MULTICIUDAD — Distritos dinámicos */
     const CITY_DATA = {
@@ -1993,8 +2119,8 @@
         var precio   = parseFloat(document.getElementById('sim-precio').value) || 0;
         var capital  = parseFloat(document.getElementById('sim-capital').value) || 0;
         var ingresos = parseFloat(document.getElementById('sim-ing-range').value) || 1;
-        var euribor  = parseFloat(document.getElementById('sim-euribor').value) || 3.7;
-        var dif      = parseFloat(document.getElementById('sim-dif').value) || 0.8;
+        var euribor  = parseFloat(document.getElementById('sim-euribor').value) || 2.4;
+        var dif      = parseFloat(document.getElementById('sim-dif').value) || 0.7;
         var plazo    = parseInt(document.getElementById('sim-plazo').value) || 25;
         var deudas   = parseFloat(document.getElementById('sim-deudas').value) || 0;
 
@@ -2002,77 +2128,90 @@
         var entradaMin = Math.round(precio * 0.20);
         entradaInput.min = entradaMin;
 
-    var entrada = parseFloat(entradaInput.value) || entradaMin;
-    if (entrada < entradaMin) { entrada = entradaMin; entradaInput.value = entrada; }
-    if (entrada > capital)    { entrada = capital;    entradaInput.value = entrada; }
+        var entrada = parseFloat(entradaInput.value) || entradaMin;
+        if (entrada < entradaMin) { entrada = entradaMin; entradaInput.value = entrada; }
+        if (entrada > capital)    { entrada = capital;    entradaInput.value = entrada; }
 
         var hip = precio - entrada;
         var cuota   = calcCuotaSim(hip, euribor, dif, plazo);
         var esf     = (cuota + deudas) / ingresos;
         var mdsv    = 1 - esf;
 
+        // KPIs
         document.getElementById('sim-cuota').textContent    = fmtEur(cuota);
         document.getElementById('sim-esfuerzo').textContent = fmtPct(esf);
         document.getElementById('sim-mdsv').textContent     = fmtPct(mdsv);
         document.getElementById('sim-hip').textContent      = fmtEur(hip);
 
-        var diag = document.getElementById('sim-diag');
-        var txt  = document.getElementById('sim-diag-text');
-        diag.style.background  = '';
-        diag.style.borderColor = '';
-        diag.style.color       = '';
+        // Color esfuerzo
+        var esfEl = document.getElementById('sim-esfuerzo');
+        if (esf >= 0.40) esfEl.style.color = 'var(--red)';
+        else if (esf >= 0.33) esfEl.style.color = 'var(--bb-orange)';
+        else esfEl.style.color = 'var(--green)';
 
-        var ahorroEstimado = precio * 0.072; 
-        if(document.getElementById('sim-ahorro-valor')) {
-            document.getElementById('sim-ahorro-valor').textContent = fmtEur(ahorroEstimado);
-        }
-        
+        // Diagnosis strip
+        var strip = document.getElementById('sim-diag-strip');
+        var dot   = document.getElementById('sim-diag-dot');
+        var label = document.getElementById('sim-diag-label');
+        var text  = document.getElementById('sim-diag-text');
+
         if (esf >= 0.40) {
-            diag.style.background  = 'rgba(192,57,43,0.12)';
-            diag.style.borderColor = '#C0392B';
-            diag.style.color       = '#C0392B';
-            txt.textContent = 'DIAGNÓSTICO ROJO — Esfuerzo ' + fmtPct(esf) + ' ≥ 40%. Más del 40% de tus ingresos se irían en la cuota. Es una carga muy alta — conviene revisar el precio, el plazo o cuánto aportas de entrada.';
+            strip.style.background = 'rgba(184,50,50,0.10)'; strip.style.borderColor = 'var(--red)';
+            dot.style.background = 'var(--red)';
+            label.textContent = 'DIAGN\u00D3STICO ROJO'; label.style.color = 'var(--red)';
+            text.textContent = 'M\u00E1s del 40% de tus ingresos se ir\u00EDan en la cuota. Es una carga muy alta \u2014 conviene revisar el precio, el plazo o cu\u00E1nto aportas de entrada.';
         } else if (esf >= 0.33) {
-            diag.style.background  = 'rgba(183,121,31,0.12)';
-            diag.style.borderColor = 'var(--bb-orange)';
-            diag.style.color       = 'var(--bb-orange)';
-            txt.textContent = 'DIAGNÓSTICO AMARILLO — Esfuerzo ' + fmtPct(esf) + ' entre 33% y 40%. Viable, pero ajustado. Antes de firmar arras, conviene ver qué pasaría si suben los tipos o bajan tus ingresos.';
+            strip.style.background = 'rgba(184,131,42,0.10)'; strip.style.borderColor = 'var(--bb-orange)';
+            dot.style.background = 'var(--bb-orange)';
+            label.textContent = 'DIAGN\u00D3STICO AMARILLO'; label.style.color = 'var(--bb-orange)';
+            text.textContent = 'La operaci\u00F3n es viable pero ajustada. Antes de firmar arras, conviene evaluar qu\u00E9 pasar\u00EDa si suben los tipos o bajan tus ingresos.';
         } else {
-            diag.style.background  = 'rgba(14,122,78,0.12)';
-            diag.style.borderColor = '#0E7A4E';
-            diag.style.color       = '#0E7A4E';
-            txt.textContent = 'DIAGNÓSTICO VERDE — Esfuerzo ' + fmtPct(esf) + ' < 33%. La cuota es asumible y te queda margen para absorber subidas de tipos o gastos imprevistos sin comprometer tu estabilidad financiera.';
+            strip.style.background = 'rgba(26,122,74,0.10)'; strip.style.borderColor = 'var(--green)';
+            dot.style.background = 'var(--green)';
+            label.textContent = 'DIAGN\u00D3STICO VERDE'; label.style.color = 'var(--green)';
+            text.textContent = 'La cuota es asumible y queda margen para absorber subidas de tipos o gastos imprevistos sin comprometer tu estabilidad financiera.';
         }
 
-        var scenarios = [[0,'base'],[1.0,'mod'],[2.0,'sev']];
-        for (var i=0; i<scenarios.length; i++) {
-            var delta = scenarios[i][0], sid = scenarios[i][1];
-            var c = calcCuotaSim(hip, euribor + delta, dif, plazo);
+        // Stress scenario bars
+        var scenarios = [
+            { delta: 0, prefix: 'base' },
+            { delta: 1.0, prefix: 'mod' },
+            { delta: 2.0, prefix: 'sev' }
+        ];
+
+        for (var i = 0; i < scenarios.length; i++) {
+            var s = scenarios[i];
+            var c = calcCuotaSim(hip, euribor + s.delta, dif, plazo);
             var e = (c + deudas) / ingresos;
-            
-            if(document.getElementById('ss-'+sid)) {
-                document.getElementById('ss-'+sid).innerHTML = fmtEur(c);
+            var rate = euribor + s.delta + dif;
+
+            var bar    = document.getElementById('ss-' + s.prefix + '-bar');
+            var valEl  = document.getElementById('ss-' + s.prefix + '-val');
+            var rateEl = document.getElementById('ss-' + s.prefix + '-rate');
+
+            if (bar) {
+                var pct = Math.min(e / 0.60 * 100, 100);
+                bar.style.width = pct + '%';
+                bar.textContent = fmtPct(e);
+                bar.className = 'stress-bar-fill ' + (e >= 0.40 ? 'bar-red' : e >= 0.33 ? 'bar-amber' : 'bar-green');
             }
-            if(document.getElementById('ss-'+sid+'-mdsv')) {
-                document.getElementById('ss-'+sid+'-mdsv').textContent = 'MDSV ' + fmtPct(1 - e);
+            if (valEl) {
+                valEl.textContent = fmtEur(c);
+                valEl.style.color = e >= 0.40 ? 'var(--red)' : e >= 0.33 ? 'var(--bb-orange)' : 'var(--green)';
+            }
+            if (rateEl) {
+                rateEl.textContent = 'Tipo nominal ' + rate.toLocaleString('es-ES', {minimumFractionDigits:1, maximumFractionDigits:1}) + '%';
             }
         }
 
+        // Combined stress: tipos +2%, ingresos -20%
         var c_sev = calcCuotaSim(hip, euribor + 2.0, dif, plazo);
-        var i_sev = ingresos * 0.80; 
+        var i_sev = ingresos * 0.80;
         var e_sev = (c_sev + deudas) / i_sev;
-
-        if(document.getElementById('sc-cuota')) {
-            document.getElementById('sc-cuota').textContent = fmtEur(c_sev);
-        }
-        if(document.getElementById('sc-ing')) {
-            document.getElementById('sc-ing').textContent   = fmtEur(i_sev);
-        }
-        
-        var scEsf = document.getElementById('sc-esf');
-        if(scEsf) {
-            scEsf.textContent = fmtPct(e_sev);
-            scEsf.style.color = e_sev >= 0.40 ? '#C0392B' : '#0E7A4E';
+        var combinedEl = document.getElementById('sc-combined-text');
+        if (combinedEl) {
+            var colorTag = e_sev >= 0.40 ? 'var(--red)' : e_sev >= 0.33 ? 'var(--bb-orange)' : 'var(--green)';
+            combinedEl.innerHTML = 'Con tipos +2% e ingresos un 20% menores, tu cuota ser\u00EDa <strong>' + fmtEur(c_sev) + '</strong> sobre ingresos de <strong>' + fmtEur(i_sev) + '</strong>/mes. Esfuerzo resultante: <strong style="color:' + colorTag + '">' + fmtPct(e_sev) + '</strong>';
         }
     }
 
